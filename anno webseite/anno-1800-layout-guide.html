@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#27231f">
+<title>Anno 1800 – Layout-Guide aktualisiert</title>
+<style>
+:root{color-scheme:light;--paper:#f2eee5;--surface:#fffefa;--ink:#28241f;--muted:#716757;--line:#e3dccd;--accent:#a94f2f;--dark:#27231f}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--paper);color:var(--ink);font:16px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{width:min(720px,100%);padding:clamp(24px,5vw,42px);border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:0 14px 40px #28241f12}
+.eyebrow{margin:0 0 9px;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+h1{margin:0 0 12px;font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.15;letter-spacing:-.035em}
+p{max-width:62ch;color:var(--muted)}
+.links{display:grid;gap:11px;margin:24px 0 16px}
+.links a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:54px;padding:13px 16px;border:1px solid var(--line);border-radius:11px;background:#f8f5ee;color:#793b24;font-weight:750;text-decoration:none}
+.links a::after{content:"→";font-size:1.2rem}
+.links a:hover,.links a:focus-visible{border-color:#c9a16e;background:#f5e4cc}
+.note{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:.88rem}
+:focus-visible{outline:3px solid #bc7d39;outline-offset:3px}
+@media(prefers-color-scheme:dark){
+ :root{color-scheme:dark;--paper:#171714;--surface:#23221e;--ink:#eee8dd;--muted:#c0b49f;--line:#464138;--accent:#d17b58}
+ body{background:var(--paper)}
+ .links a{background:#2b2923;color:#f0b08c}
+ .links a:hover,.links a:focus-visible{background:#483727}
+}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Anno 1800 · Layout-Bibliothek</p>
+<h1>Der Layout-Guide ist umgezogen.</h1>
+<p>Die alte Druckfassung verwendete Bilder, die hier nicht mehr verfügbar waren. Stadt- und Produktionspläne sind jetzt gesammelt, durchsuchbar und mit deutschen Titeln in die aktuelle Bibliothek eingebaut.</p>
+<nav class="links" aria-label="Aktuelle Layoutsammlungen">
+<a href="anno-1800-komplett-guide.html#atlas-stadt">Stadtlayouts ansehen · 34 Pläne</a>
+<a href="anno-1800-komplett-guide.html#atlas-produktion">Produktionslayouts ansehen · 68 Pläne</a>
+<a href="index.html">Zur Schritt-für-Schritt-Anleitung</a>
+</nav>
+<p class="note">Für die Offline-Nutzung den gesamten Webseiten-Ordner beisammen lassen, einschließlich der Ordner <code>img/</code> und <code>grafiken/</code>.</p>
+</main>
+</body>
+</html>

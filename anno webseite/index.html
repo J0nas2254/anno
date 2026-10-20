@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anno 1800 – Haupt-Guide: Schritt für Schritt durch jedes Zeitalter</title>
+<style>
+:root{color-scheme:light;--paper:#f1ecdf;--surface:#fffdf8;--surface-soft:#fbf8f1;--ink:#2a2118;--muted:#6b5c48;--line:#e0d6c4;--accent:#a84e2b;--accent-dark:#2a2118;--gold:#d6bd8e;--green:#4d7c3f;--purple:#6b4a8f;--blue:#4a7fb5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 system-ui,-apple-system,'Segoe UI',Roboto,Ubuntu,sans-serif}
+header{position:sticky;top:0;z-index:50;background:var(--accent-dark);color:#f5efe3;display:flex;align-items:center;gap:14px;padding:10px 16px;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+header .t{font-weight:800;font-size:1.02rem;letter-spacing:.035em}
+header .s{color:#c9b998;font-size:.78rem;margin-left:auto;text-align:right}
+#nav{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#nav:focus-visible + header .burger{outline:3px solid #e5bd78;outline-offset:3px}
+.burger{cursor:pointer;width:42px;height:38px;border:1px solid #6b5c48;border-radius:9px;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 8px;background:#3a2f22;flex:0 0 auto}
+.burger span{display:block;height:3px;background:#f5efe3;border-radius:2px;transition:transform .2s,opacity .2s}
+#nav:checked ~ header .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+#nav:checked ~ header .burger span:nth-child(2){opacity:0}
+#nav:checked ~ header .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.drawer{position:fixed;inset:0 auto 0 0;width:min(330px,86vw);background:#221a10;color:#f5efe3;padding:70px 16px 24px;transform:translateX(-105%);transition:transform .25s;z-index:60;overflow-y:auto}
+#nav:checked ~ .drawer{transform:none}
+.drawer a{display:block;color:#e8dcc4;text-decoration:none;padding:9px 12px;border-radius:8px;font-size:.95rem}
+.drawer a:hover,.drawer a:focus-visible{background:#3a2f22;color:#ffd9a8}
+.drawer .grp{color:#c9b998;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;margin:14px 12px 5px}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .25s;z-index:55}
+#nav:checked ~ .scrim{opacity:1;pointer-events:auto}
+.skip-link{position:absolute;left:12px;top:-60px;z-index:100;background:var(--surface);padding:9px 12px;border-radius:8px}
+.skip-link:focus{top:8px}
+main{max-width:1000px;margin:0 auto;padding:26px 16px 90px}
+section{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 22px;margin:24px 0;scroll-margin-top:96px;box-shadow:0 5px 18px rgba(52,39,21,.035)}
+h1{font-size:clamp(1.65rem,4.5vw,2.45rem);line-height:1.2;letter-spacing:-.025em;margin:0 0 10px}
+h2{font-size:clamp(1.25rem,3vw,1.48rem);line-height:1.35;margin:0 0 8px;display:flex;gap:12px;align-items:flex-start}
+h2 .n{background:var(--accent);color:#fff;font-size:.85rem;min-width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;font-weight:700}
+h3{font-size:1.08rem;line-height:1.4;margin:20px 0 6px}
+.lead{color:var(--muted);margin:0 0 14px;max-width:74ch}
+p{margin:0 0 12px;max-width:76ch}
+ul{margin:0 0 12px;padding-left:22px}li{margin-bottom:6px}
+.hero{background:linear-gradient(145deg,#292016,#60462a);color:#f5efe3;border-radius:18px;padding:clamp(24px,5vw,38px);margin:0 0 20px;box-shadow:0 12px 28px rgba(42,33,24,.16)}
+.hero h1{color:#fff}.hero p{color:#eadcc1;max-width:70ch}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
+.btn{display:inline-flex;align-items:center;min-height:42px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:9px 15px;border-radius:10px}
+.btn.alt{background:var(--blue)}.btn.green{background:var(--green)}
+.btn:hover,.btn:focus-visible{filter:brightness(1.12)}
+.phase-nav{position:sticky;top:58px;z-index:40;display:flex;gap:7px;overflow-x:auto;white-space:nowrap;padding:9px 4px;margin:0 -4px 18px;background:rgba(241,236,223,.96);backdrop-filter:blur(10px);scrollbar-width:thin}
+.phase-nav a{flex:0 0 auto;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 11px;font-size:.8rem;font-weight:700;text-decoration:none}
+.phase-nav a:hover,.phase-nav a:focus-visible{background:#f5e4cc;border-color:#c9a16e}
+.step{position:relative;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;background:var(--surface-soft);padding:14px 15px;margin:12px 0}
+.step .no{font-weight:800;color:var(--accent);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+.step h4{margin:2px 0 6px;font-size:1.02rem;line-height:1.4}
+.step p{margin:0 0 6px;font-size:.95rem}
+.ev,.warn,.ok{border-left:5px solid var(--purple);background:#f1ebf7;border-radius:0 12px 12px 0;padding:11px 15px;margin:12px 0;font-size:.94rem}
+.ev b{color:#5b3d80}
+.warn{border-color:#d2564a;background:#fdeeea}
+.ok{border-color:var(--green);background:#eef5e8}
+.tier{display:inline-block;background:#e8e0f2;color:#5b3d80;font-weight:700;font-size:.72rem;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em;vertical-align:middle}
+a{color:#85431f;text-underline-offset:2px}
+.table-scroll{max-width:100%;overflow-x:auto;margin:12px 0;border-radius:9px}
+table{width:100%;border-collapse:collapse;font-size:.92rem;margin:0;min-width:480px}
+th,td{text-align:left;padding:8px 9px;border-bottom:1px solid #e6ddcb;vertical-align:top}
+th{background:#f7f2e7;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+code{background:#efe7d6;padding:2px 6px;border-radius:4px;font-size:.9em}
+.progress-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 15px;margin:0 0 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.progress-tools p{margin:0;font-size:.9rem;color:var(--muted)}
+.progress-tools button{border:1px solid #b9ab8d;border-radius:8px;background:transparent;color:var(--ink);font:inherit;font-size:.84rem;font-weight:650;padding:7px 10px;cursor:pointer}
+.progress-tools button:hover{background:#f5e4cc}
+.trackable{position:relative;padding-right:112px}
+.progress-check{position:absolute;right:12px;top:12px;display:flex;align-items:center;gap:6px;color:var(--muted);font-size:.78rem;white-space:nowrap;cursor:pointer}
+.progress-check input{width:18px;height:18px;accent-color:var(--green)}
+.trackable.is-done{opacity:.72}
+.trackable.is-done h4,.trackable.is-done>b{text-decoration:line-through;text-decoration-color:#78936f}
+.back-top{position:fixed;right:16px;bottom:16px;z-index:45;background:var(--accent-dark);color:#fff;text-decoration:none;border:1px solid #78634a;border-radius:999px;padding:9px 13px;font-size:.82rem;font-weight:700;box-shadow:0 5px 16px rgba(0,0,0,.2)}
+.back-top:hover,.back-top:focus-visible{background:var(--accent)}
+.foot{text-align:center;color:var(--muted);font-size:.86rem;margin-top:30px}
+:focus-visible{outline:3px solid #bc7d39;outline-offset:3px}
+@media(prefers-color-scheme:dark){
+ :root{color-scheme:dark;--paper:#171612;--surface:#24221c;--surface-soft:#2b2821;--ink:#eee7d9;--muted:#c1b49b;--line:#494238;--accent:#ca7551;--accent-dark:#1e1b16}
+ header{background:#201c15}.drawer{background:#191611}.phase-nav{background:rgba(23,22,18,.94)}
+ .phase-nav a{background:#2b2821;color:var(--ink);border-color:#494238}
+ .hero{background:linear-gradient(145deg,#1e1b16,#493821)}
+ .ev{background:#30283a}.warn{background:#3a2825}.ok{background:#283326}
+ th{background:#312d25;color:var(--muted)}td,th{border-color:#494238}
+ code{background:#39342a}.progress-tools button{color:var(--ink);border-color:#716650}
+}
+@media(max-width:640px){
+ body{font-size:15px}main{padding:18px 12px 80px}section{padding:20px 14px;margin:18px 0}
+ header{gap:10px;padding:9px 12px}header .t{font-size:.78rem;white-space:nowrap}header .s{font-size:.65rem;max-width:100px}
+ .phase-nav{top:56px;margin-bottom:14px}
+ .trackable{padding-right:14px;padding-top:38px}
+ .progress-check{top:8px;right:10px}
+ .back-top{right:10px;bottom:10px}
+}
+@media(max-width:400px){header .s{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+@media print{
+ body{background:#fff;color:#111;font-size:11pt}header,.drawer,.scrim,.phase-nav,.back-top,.progress-tools,.progress-check{display:none!important}
+ main{max-width:none;padding:0}section,.hero{box-shadow:none;border:1px solid #888;border-radius:0;margin:12pt 0;padding:14pt;break-inside:avoid}
+ .hero{background:#fff;color:#111}.hero h1,.hero p{color:#111}a{color:inherit;text-decoration:none}
+ .step,.ev,.warn,.ok{break-inside:avoid}table{min-width:0;font-size:9pt}th,td{padding:5pt;border-color:#bbb}
+}
+</style></head><body id="top">
+<a class="skip-link" href="#main">Direkt zum Guide</a>
+<input type="checkbox" id="nav" aria-label="Menü öffnen oder schließen" aria-controls="drawer">
+<header><label class="burger" for="nav" aria-label="Menü"><span></span><span></span><span></span></label>
+<div class="t">ANNO 1800 · HAUPT-GUIDE</div><div class="s">Folge ihm Schritt für Schritt</div></header>
+<nav class="drawer" id="drawer" aria-label="Hauptmenü">
+<div class="grp">Folgen Schritt für Schritt</div>
+<a href="#phase0">Phase 0 · Weltgeburt</a>
+<a href="#phase1">Phase 1 · Bauern</a>
+<a href="#phase2">Phase 2 · Arbeiter</a>
+<a href="#phase3">Phase 3 · Handwerker</a>
+<a href="#phase4">Phase 4 · Ingenieure</a>
+<a href="#phase5">Phase 5 · Investoren</a>
+<a href="#phase6">Phase 6 · Endlosschleife</a>
+<div class="grp">Nachschlagen</div>
+<a href="#almanach">Ereignis-Almanach</a>
+<a href="anno-1800-komplett-guide.html#ketten">Produktions-Layouts (Bibliothek)</a>
+<a href="anno-1800-komplett-guide.html#stadt">Stadtlayout & Radien</a>
+<a href="anno-1800-komplett-guide.html#welt">Seeds & Weltsettings</a>
+<a href="anno-1800-komplett-guide.html#ki">KI & Piraten</a>
+<a href="#dateien">Dateien & Offline</a>
+</nav><label class="scrim" for="nav"></label>
+<main id="main">
+<div class="hero"><h1>Der Guide zum Folgen:<br>jedes Zeitalter, jeder Schritt, jedes Ereignis.</h1>
+<p>Von der Weltgeburt bis zur Endlosschleife – in Phasen, Schritten und Checkpoints. Wenn du Details, Grafiken oder ein Produktions-Modul brauchst, springst du über die Links in die Bibliothek und wieder zurück.</p>
+<div class="btns">
+<a class="btn" href="anno-1800-komplett-guide.html#ketten">Produktions-Layouts öffnen</a>
+<a class="btn alt" href="anno-1800-komplett-guide.html#stadt">Stadtlayout & Grafiken</a>
+<a class="btn" href="anno-1800-komplett-guide.html#grafikatlas">Alle 367 Originalbilder öffnen</a>
+<a class="btn green" href="anno-1800-komplett-guide.html#welt">Seed & Weltsettings</a>
+</div></div>
+
+<div class="progress-tools" aria-label="Spielfortschritt">
+<p id="progress-status" aria-live="polite">Fortschritt wird nur in diesem Browser gespeichert – du musst nichts abhaken.</p>
+<button type="button" id="progress-reset">Häkchen zurücksetzen</button>
+</div>
+<nav class="phase-nav" aria-label="Schnellsprung zu einer Phase">
+<a href="#phase0">0 · Welt</a><a href="#phase1">1 · Bauern</a><a href="#phase2">2 · Arbeiter</a><a href="#phase3">3 · Handwerker</a><a href="#phase4">4 · Ingenieure</a><a href="#phase5">5 · Investoren</a><a href="#phase6">6 · Endlos</a><a href="#almanach">7 · Almanach</a>
+</nav>
+
+<section id="phase0"><h2><span class="n">0</span>Weltgeburt – einmal richtig, dann nie wieder</h2>
+<p class="lead">Anno 1800 erlaubt kein DLC-Umschalten pro Spielstand. Diese sechs Schritte passieren VOR dem ersten Kontor – und genau deshalb stehen sie am Anfang.</p>
+<div class="step"><span class="no">Schritt 0.1</span><h4>DLC-Set festzurren</h4>
+<p>An: Gesunkene Schätze, Reiche Ernte, Speicherstadt/Docklands, Botanica. Optional: Die Passage, Paläste der Macht. Aus: Land der Löwen, Reisezeit, Dächer der Stadt, Keim der Hoffnung, Reich der Lüfte. Begründung pro DLC: <a href="anno-1800-komplett-guide.html#setup">Bibliothek Kapitel 1</a>.</p></div>
+<div class="step"><span class="no">Schritt 0.2</span><h4>Weltsettings + Seed tippen</h4>
+<p>Sandbox · Archipel · groß · überwiegend groß · normal · Fruchtbarkeiten <b>normal</b> · Vorkommen <b>viel</b> · Seed <b>1337032</b>. Alternativen 975 (Megabau) und 9333 (Chill): <a href="anno-1800-komplett-guide.html#welt">Bibliothek Kapitel 2</a>.</p></div>
+<div class="step"><span class="no">Schritt 0.3</span><h4>Faktionen: Bente + Willie, Piraten einfach</h4>
+<p>Startkontor <b>aus</b>. Anne Harlow startet feindselig, Jean La Fortune friedlich – beide bleiben, Schwierigkeit einfach. Details & Waffenstillstands-Mathematik: <a href="anno-1800-komplett-guide.html#ki">Bibliothek Kapitel 3</a>.</p></div>
+<div class="step"><span class="no">Schritt 0.4</span><h4>Startinsel wählen</h4>
+<p>Beim Seed: die große Insel in der Norden-Mitte. Ohne Seed-Vertrauen: Checkliste Kartoffel + Getreide + Hopfen (+ Fell), ≥3 Lehm, ≥2 Eisen, ≥3 Öl. Overlay-Taste für Ressourcen nicht vergessen.</p></div>
+<div class="step"><span class="no">Schritt 0.5</span><h4>Erste Blicke & Gewohnheiten</h4>
+<p>Karte aufgedeckt, Blaupausen-Modus an (unten rechts), <code>STRG+Q</code> als Statistik-Festermin. Diese drei Angewohnheiten sparen später Stunden.</p></div>
+<div class="step"><span class="no">Schritt 0.6</span><h4>Das unsichtbare Raster im Kopf</h4>
+<p>Bevor das erste Haus steht: Hauptachse 2 Kacheln breit planen, Schienen-Korridor 1–3 Kacheln freihalten, Küstenstreifen frei (nur Kontor/Werft/Ölhafen/Lager). Passende Stadtpläne findest du im <a href="anno-1800-komplett-guide.html#atlas-stadt">Stadtlayout-Atlas</a>.</p></div>
+<div class="ok"><b>Checkpoint Phase 0:</b> Welt erstellt, Insel gewählt, drei Korridore im Kopf. Nichts gebaut, nichts bereut.</div>
+</section>
+<section id="phase1"><h2><span class="n">1</span>Zeitalter der Bauern</h2>
+<p class="lead"><span class="tier">Stufe 1</span> Bedürfnisse: Fische (ab ~50 Bauern), Arbeitskleidung (~100), Schnaps als Luxus. Ketten: Holz, Fisch, Kleidung, Schnaps – alle vier als Module in der <a href="anno-1800-komplett-guide.html#ketten">Layout-Bibliothek</a>.</p>
+<div class="step"><span class="no">Schritt 1.1</span><h4>Kontor, Hauptachse, Blaupausen-Modus</h4>
+<p>Kontor an die Küste, Hauptachse 2 Kacheln breit ins Innere, Blaupausen-Modus an. Ab jetzt kostet Planen nichts mehr.</p></div>
+<div class="step"><span class="no">Schritt 1.2</span><h4>Holz-Modul an den Rand</h4>
+<p>1 Holzfällerhütte : 1 Sägewerk → <a href="anno-1800-komplett-guide.html#k-holz">Modul ansehen</a>. Bretter sind die Währung des frühen Spiels.</p></div>
+<div class="step"><span class="no">Schritt 1.3</span><h4>Erste 2×3-Blöcke + Marktplatz</h4>
+<p>Zwei Blöcke als Blaupause um den Marktplatz (6×5 = zwei Hausreihen + Mittelstraße). Vergleichbare Bauideen: <a href="anno-1800-komplett-guide.html#atlas-stadt">Stadtlayouts im Atlas</a>.</p></div>
+<div class="step"><span class="no">Schritt 1.4</span><h4>Fischerei an die Küste</h4>
+<p><a href="anno-1800-komplett-guide.html#k-fisch">Modul</a> – die einzige Produktion, die bewusst an die sonst freie Küste darf.</p></div>
+<div class="step"><span class="no">Schritt 1.5</span><h4>Kleidung + Schnaps</h4>
+<p>Schaffarm:Rahmenstrickerei 1:1 (<a href="anno-1800-komplett-guide.html#k-kleidung">Modul</a>), Kartoffelhof+Brennerei 1:1 mit 9×8-Feldblock (<a href="anno-1800-komplett-guide.html#k-schnaps">Modul</a>). Schnaps verkauft sich – erstes echtes Einkommen.</p></div>
+<div class="step"><span class="no">Schritt 1.6</span><h4>Feuerwehr + Wirtshaus in die Marktplatz-Lücke</h4>
+<p>Beide direkt neben den Marktplatz, an dieselbe Straße – Reichweitentabelle: <a href="anno-1800-komplett-guide.html#stadt">Kapitel 5</a>. Nicht warten, bis es brennt.</p></div>
+<div class="step"><span class="no">Schritt 1.7</span><h4>Ziegel für die ersten Upgrades</h4>
+<p>1 Lehmgrube : 2 Ziegeleien – die berühmte 1:2-Falle (<a href="anno-1800-komplett-guide.html#k-ziegel">Modul</a>).</p></div>
+<div class="ev"><b>Ereignis:</b> Erstes Feuer. Feuer springt bis 3 Kacheln – ohne Feuerwehr brennt die ganze Reihe. Deine Ringstraßen sind die Brandschneisen.</div>
+<div class="ev"><b>Ereignis:</b> Erste Piratensichtung (Anne Harlow, feindselig). Nicht kämpfen: später Waffenstillstand kaufen (~+10 Rep, Kostenleiter 20–30 k → gratis).</div>
+<div class="ev"><b>Ereignis:</b> Händler-Quests klopfen an (Archibald Blake & Co.). Freundlich bleiben – frühe Reputation ist dein Diplomatie-Polster.</div>
+<div class="ok"><b>Checkpoint:</b> ~200–400 Bauern, alle Bedürfnisse dunkelgrün, Schnaps-Verkauf positiv, kein Haus abgebrannt.</div>
+</section>
+<section id="phase2"><h2><span class="n">2</span>Zeitalter der Arbeiter</h2>
+<p class="lead"><span class="tier">Stufe 2</span> Neue Bedürfnisse: Wurst (1 Arbeiter), Brot (150), Seife, Bier (500 Hopfen). Jetzt beginnt das Pflastern – und der erste richtige Einkommens-Boom.</p>
+<div class="step"><span class="no">Schritt 2.1</span><h4>Erste Blöcke upgraden + Wurst</h4>
+<p>Schweinefarm:Schlachthaus 1:1 (<a href="anno-1800-komplett-guide.html#k-wurst">Modul</a>). Schweine brauchen kein Feld – schnellste neue Kette.</p></div>
+<div class="step"><span class="no">Schritt 2.2</span><h4>Brot: das 2:1:2-Modul</h4>
+<p>2 Getreidefarmen (je 12×12 Felder) : 1 Mühle : 2 Bäckereien (<a href="anno-1800-komplett-guide.html#k-brot">Modul</a>). Mühle 0:30 – deshalb die ungerade Ratio.</p></div>
+<div class="step"><span class="no">Schritt 2.3</span><h4>Seife: Schweine doppelt denken</h4>
+<p>2 Schweinefarmen : 2 Talgsiedereien : 1 Seifenfabrik (<a href="anno-1800-komplett-guide.html#k-seife">Modul</a>). Die Schweine farmst du jetzt besser im Doppel-Pack.</p></div>
+<div class="step"><span class="no">Schritt 2.4</span><h4>Pflastern! Hauptachse + Marktplatz-Straßen</h4>
+<p>Pflaster = +46–49 % Reichweite auf jedes straßengebundene Gebäude. Ein Marktplatz an Pflaster deckt fast anderthalbmal so viele Häuser – der billigste Boost im Spiel (<a href="anno-1800-komplett-guide.html#stadt">Stadtplanung & Reichweiten</a>).</p></div>
+<div class="step"><span class="no">Schritt 2.5</span><h4>Bier ab 500 Hopfen – das große Modul</h4>
+<p>2 Getreide + 3 Hopfen : 1 Mälzerei : 2 Brauereien (<a href="anno-1800-komplett-guide.html#k-bier">Modul</a>). An den Inselrand: Hopfenfelder sind 8×12-Bänder pro Plantage.</p></div>
+<div class="step"><span class="no">Schritt 2.6</span><h4>Zweiter Marktplatz pro 2–4 Blöcke, Feuerwehr nachziehen</h4>
+<p>Faustformel aus Phase 1 behalten; neue Blöcke immer erst als Blaupause prüfen, dann bauen.</p></div>
+<div class="ev"><b>Ereignis:</b> Krankheit/Unruhen drohen, wenn Bedürfnisse hellgrün bleiben oder die Zufriedenheit sackt – Gegenmittel: Bedürfnisse grün, Wirtshaus nah, später Deko.</div>
+<div class="ev"><b>Ereignis:</b> Bier-Einkommens-Boom: erster Luxus, der deine Bilanz sichtbar entspannt. Ab jetzt finanzierst du Ausbau aus der Kasse, nicht aus dem Verkauf von Grundwaren.</div>
+<div class="ev"><b>Ereignis:</b> Letzte Vorstufe zur Neuen Welt: bei <b>1 Handwerker</b> geht die Tür auf – Quest & Expedition kommen automatisch in Phase 3.</div>
+<div class="ok"><b>Checkpoint:</b> ~1.000+ Arbeiter, Brot & Wurst dunkelgrün, Bilanz dank Bier positiv, Hauptachse gepflastert.</div>
+</section>
+<section id="phase3"><h2><span class="n">3</span>Zeitalter der Handwerker</h2>
+<p class="lead"><span class="tier">Stufe 3</span> Das Zwischen-Zeitalter der großen Tore: Neue Welt (1 Handwerker), Kap Trelawney (700), dazu Kaffee, Glas/Fenster/Brillen, Konserven – und die ersten echten Handelsrouten.</p>
+<div class="step"><span class="no">Schritt 3.1</span><h4>Ereignis-Quest: Expedition Neue Welt</h4>
+<p>Erstes Kontor in der Neuen Welt setzen. Für die NW-Bewohner sofort Rum (<a href="anno-1800-komplett-guide.html#k-rum">Modul</a>) und Tortillas (<a href="anno-1800-komplett-guide.html#k-tortillas">Modul</a>) planen – Maisfelder 12×14 nicht verstreuen!</p></div>
+<div class="step"><span class="no">Schritt 3.2</span><h4>Kaffee-Route: 2 Plantagen : 1 Rösterei</h4>
+<p><a href="anno-1800-komplett-guide.html#k-kaffee">Modul</a>. Handelsroute als <b>Charter-Schiff</b>: Charter werden nie angegriffen – deine sicherste Route im Spiel.</p></div>
+<div class="step"><span class="no">Schritt 3.3</span><h4>Glas-Kette für Fenster & Brillen</h4>
+<p>Quarzsteinbruch : Glasbläserei : Fenstermacher/Brillenfabrik (<a href="anno-1800-komplett-guide.html#k-glas">Modul</a>). Quarz-Vorkommen im Overlay prüfen, bevor du den Stadtteil planst.</p></div>
+<div class="step"><span class="no">Schritt 3.4</span><h4>Kirche & Schule platzieren – Radius-Denken</h4>
+<p>56 Kacheln an Pflaster reichen NICHT um einen ganzen Rathaus-Kreis: Kirche zweimal pro Kreis, Schule einmal von der Seite (48–56-Logik). Tabelle & Grafik: <a href="anno-1800-komplett-guide.html#stadt">Kapitel 5</a>.</p></div>
+<div class="step"><span class="no">Schritt 3.5</span><h4>Konserven (optional, NW-lastig)</h4>
+<p>4 Rinder + 4 Paprika : 4 Küchen : 3 Konservenfabriken (<a href="anno-1800-komplett-guide.html#k-dosen">Modul</a>) – oder bewusst klein starten: 1 Küche + 1 Fabrik reicht für wenige Handwerker.</p></div>
+<div class="step"><span class="no">Schritt 3.6</span><h4>Bei 700: Ereignis-Quest Kap Trelawney</h4>
+<p>Archibald-Blake-Quest → Story um die Schlacht von Trelawney → <b>Crown Falls</b> + Königin-Hauptstadt-Quest → Alter Nate mit Crafting-Werkstatt + Bergungsschiff mit Taucherglocke. Region ohne Piratenangriffe – dein Endgame-Baugrund.</p></div>
+<div class="step"><span class="no">Schritt 3.7</span><h4>Pflastern abschließen + erste Rathaus-Items sammeln</h4>
+<p>Ab jetzt lohnt der Blick ins Rathaus: Items mit Bedacht (Arbeitskraft/Einkommen), nicht alles einsetzen was glänzt.</p></div>
+<div class="ev"><b>Ereignis:</b> Jean La Fortune (NW-Pirat, friedlich) & Isabel Sarmento (NW-Händlerin) treten auf – Diplomatie-Menü wird zweiregional.</div>
+<div class="ev"><b>Ereignis:</b> Felle ab ~900 Handwerkern sichtbar – Pelzmäntel erst Investoren-relevant, jetzt nur Vorkommen notieren.</div>
+<div class="warn"><b>Warnung:</b> Handwerker sind die erste Stufe, die bei hellgrünen Bedürfnissen richtig sauer wird – Kaffee-Route nicht aufschieben.</div>
+<div class="ok"><b>Checkpoint:</b> Kaffee & Brillen grün, 2–3 Charter-Routen laufen, Kap Trelawney entdeckt, Nate-Werkstatt besucht.</div>
+</section>
+<section id="phase4"><h2><span class="n">4</span>Zeitalter der Ingenieure</h2>
+<p class="lead"><span class="tier">Stufe 4</span> Das Maschinen-Zeitalter: Stahl, Strom, Bank – und bei 500 Ingenieuren die Traktoren. Ab hier beginnt der Umbau zur Rathaus-Kreis-Stadt.</p>
+<div class="step"><span class="no">Schritt 4.1</span><h4>Stahl-Modul klein starten</h4>
+<p>1 Eisenmine + 1 Kohlemine : 1 Hochofen : 1 Stahlwerk reicht früh; volle Ratio (2 Öfen : 3 Stahlwerke / 6 Waffenfabriken) später (<a href="anno-1800-komplett-guide.html#k-stahl">Modul</a>).</p></div>
+<div class="step"><span class="no">Schritt 4.2</span><h4>Ereignis Elektrizität: Kraftwerk + Strom</h4>
+<p>Kohle- oder Ölkraftwerk (Alte Welt + Kap Trelawney) – Öl hast du vom Seed gleich 7×. Strom boostet Fabriken massiv; Kraftwerk an den Rand, nicht ins Wohngebiet.</p></div>
+<div class="step"><span class="no">Schritt 4.3</span><h4>Bank einplanen</h4>
+<p>Die Bank frisst einen ganzen Block – im 10×10-Denken (Video-Check BauPilot) oder als eigener Lücken-Block zwischen zwei Rathaus-Kreisen.</p></div>
+<div class="step"><span class="no">Schritt 4.4</span><h4>Bei 500: Ereignis Reiche Ernte – Traktor & Silo</h4>
+<p>Feldblöcke von Linien zu Quadraten umbauen, Traktorscheune in die Mitte, Silos an die Lager: +Felder & Produktivität. Deine 9×8/12×12-Blöcke aus Kapitel 7 sind dafür schon richtig geformt.</p></div>
+<div class="step"><span class="no">Schritt 4.5</span><h4>Optional: Arktis (Die Passage)</h4>
+<p>Bei 1 Ingenieur offen: Pemmikan, Öllampen, Parkas – Faustregel 1:1, Zyklen im Tooltip. Gaswerke ganz ohne Schienen-Pflicht als Strom-/Heiz-Alternative.</p></div>
+<div class="step"><span class="no">Schritt 4.6</span><h4>Stadt-Umbau Phase 2: Rathaus-Kreise blaupausen</h4>
+<p>Blaupausen-Rathäuser in die dichtesten Distrikte, Häuser im Radius verdichten, Service an den Kreisrand; alte Marktplatz-Blöcke außen stehen lassen. Weitere Baupläne: <a href="anno-1800-komplett-guide.html#atlas-stadt">Stadtlayouts im Atlas</a>.</p></div>
+<div class="ev"><b>Ereignis:</b> Piraten-Druck steigt: Kriegserklärungen sind selbst bei ~45 Rep möglich – Charter-Schiffe bleiben unangreifbar, Waffenstillstände bleiben deine Waffe.</div>
+<div class="ev"><b>Ereignis:</b> Anarchie-Risiko bei tiefer Unzufriedenheit: Produktion steht still. Gegengift: Bedürfnisse, Wirtshäuser, Ereignisse (Feste/Deko), keine Steuer-Experimente mitten in der Upgrade-Welle.</div>
+<div class="ok"><b>Checkpoint:</b> Stromnetz läuft, Stahl eigenständig, erster Rathaus-Kreis als Blaupause gesetzt, Feldblöcke traktorisiert.</div>
+</section>
+<section id="phase5"><h2><span class="n">5</span>Zeitalter der Investoren</h2>
+<p class="lead"><span class="tier">Stufe 5</span> Das Luxus-Finale: Sekt, Taschenuhren, Glühbirnen – und die großen öffentlichen Gebäude. Das High-Life-Tor (5000 Investoren) bleibt bewusst zu (DLC aus).</p>
+<div class="step"><span class="no">Schritt 5.1</span><h4>Sekt: Weinberg + Kellerei</h4>
+<p>1:1, aber Weinberg braucht Fruchtbarkeit – vor dem Modul die Overlay-Prüfung (<a href="anno-1800-komplett-guide.html#k-sekt">Modul</a>, Reben 8×16).</p></div>
+<div class="step"><span class="no">Schritt 5.2</span><h4>Gold-Route: Mine → Goldschmied → Uhrmacherei</h4>
+<p>Gold liegt in der Neuen Welt – zweite Charter-Route etablieren (<a href="anno-1800-komplett-guide.html#k-uhren">Modul</a>).</p></div>
+<div class="step"><span class="no">Schritt 5.3</span><h4>Glühbirnen: beide Welten verzahnen</h4>
+<p>Glas aus der Handwerker-Kette + Filamente – hier sieht man, warum man Glas nie abgerissen hat.</p></div>
+<div class="step"><span class="no">Schritt 5.4</span><h4>Universität, Varieté, Kaufhaus setzen</h4>
+<p>Reichweiten 64/56/62 an Pflaster – an die Kreisränder bzw. ins Service-Band, nicht in Wohnflächen (weitere Ideen: <a href="anno-1800-komplett-guide.html#atlas-stadt">Stadtlayouts im Atlas</a>).</p></div>
+<div class="step"><span class="no">Schritt 5.5</span><h4>Bente & Willie glücklich machen</h4>
+<p>Zoo/Museum/Expeditionen für Bente, Weltausstellung für Willie – die Chill-Capstones, die nebenbei Reputation und Buffs bringen.</p></div>
+<div class="step"><span class="no">Schritt 5.6</span><h4>Rathaus-Kreise ketten: 41 Kacheln Mindestabstand</h4>
+<p>Jeder neue Kreis = ein neues Viertel nach derselben Blaupause. Radien überlappen nie – die Stadt wächst als Perlenkette.</p></div>
+<div class="ev"><b>Ereignis:</b> Weltausstellung: globales Projekt mit Besuchern – Willies Lieblings-Event und ein hübscher Vorwand, Botanica-Deko zu setzen.</div>
+<div class="ev"><b>Ereignis:</b> Rathaus-Items im Endgame: drei Slots pro Rathaus, jetzt mit echten Kandidaten – Arbeitskraft, Einkommen, Warenverbrauch je nach Engpass.</div>
+<div class="ok"><b>Checkpoint:</b> Alle Investoren-Bedürfnisse grün, 3/3 Rathaus-Items aktiv in jedem Kreis, Bilanz tief schwarz – Zeit für Phase 6.</div>
+</section>
+<section id="phase6"><h2><span class="n">6</span>Endlosschleife – Bauen um des Bauens willen</h2>
+<div class="step"><span class="no">Schritt 6.1</span><h4>Crown Falls: die Königinnen-Hauptstadt</h4>
+<p>Quest-Kette abschließen und auf der größten Insel der Anno-Geschichte die Kreise ketten: >100.000 Kacheln, keine Piraten, 50.000+ Einwohner Platz. Details: <a href="anno-1800-komplett-guide.html#spät">Bibliothek Kapitel 8</a>.</p></div>
+<div class="step"><span class="no">Schritt 6.2</span><h4>Schienen- & Öl-Netz vollenden</h4>
+<p>Ölhafen → Tankhof → Kraftwerke entlang der in Phase 0 freigehaltenen Korridore. Der Moment, in dem sich deine Disziplin auszahlt.</p></div>
+<div class="step"><span class="no">Schritt 6.3</span><h4>Stempel & Rundfahrt</h4>
+<p>Viertel als Blaupause kopieren (<code>C</code>), Ego-Stadtrundfahrt mit <code>STRG+UMSCHALT+R</code> – jetzt darfst du stolz sein.</p></div>
+<div class="step"><span class="no">Schritt 6.4</span><h4>Piraten-Frieden zementieren</h4>
+<p>Dauerhafte Waffenstillstände mit Anne & Jean, Handel mit beiden Nestern – die entspannteste Form von „Piraten-Content".</p></div>
+<div class="step"><span class="no">Schritt 6.5</span><h4>Was du willst: Botanica, Musikpavillon, organische Zweitinsel</h4>
+<p>Modularer Garten ab 1000 Ingenieuren, Musikpavillon mit alter Anno-Musik, oder eine versetzte Deko-Stadt nach Video-Check-Optik. Es gibt kein Ziel mehr – nur noch Geschmack.</p></div>
+</section>
+<section id="almanach"><h2><span class="n">7</span>Ereignis-Almanach – alles, was passieren kann</h2>
+<h3>Freischalt-Ereignisse (Schwellen)</h3>
+<div class="table-scroll" role="region" aria-label="Tabelle der Freischalt-Ereignisse" tabindex="0"><table><thead><tr><th>Schwelle</th><th>Ereignis</th></tr></thead><tbody>
+<tr><td>~50 Bauern</td><td>Fischerei & Fisch-Bedürfnis</td></tr>
+<tr><td>~100 Bauern</td><td>Wolle/Kartoffeln sichtbar, Arbeitskleidung & Schnaps ziehen an</td></tr>
+<tr><td>1 Arbeiter</td><td>Schweine/Wurst; Neue-Welt-Gerüchte</td></tr>
+<tr><td>150 Arbeiter</td><td>Getreide & Brot</td></tr>
+<tr><td>500 Arbeiter</td><td>Hopfen & Bier</td></tr>
+<tr><td>1 Handwerker</td><td><b>Neue Welt offen</b> (Expeditions-Quest), Rind & Paprika</td></tr>
+<tr><td>700 Handwerker</td><td><b>Kap-Trelawney-Expedition</b> (Gesunkene Schätze): Story, Crown Falls, Nate, Tauchglocke</td></tr>
+<tr><td>900 Handwerker</td><td>Felle sichtbar</td></tr>
+<tr><td>1 Ingenieur</td><td><b>Arktis offen</b> (mit Die Passage): Gas, Pemmikan, Öllampen</td></tr>
+<tr><td>500 Ingenieure</td><td><b>Reiche Ernte</b>: Traktorscheune & Silos</td></tr>
+<tr><td>5000 Investoren</td><td>High-Life-Tor – in deinem Setup bewusst geschlossen</td></tr>
+</tbody></table></div>
+<h3>Gefahren-Ereignisse & Gegengift</h3>
+<ul>
+<li><b>Feuer:</b> springt bis 3 Kacheln → Ringstraßen/Querstraßen als Schneisen, Feuerwehr 48/71, Zisternen-Logik erst in 117</li>
+<li><b>Krankheit & Unruhen:</b> hellgrüne Bedürfnisse + schlechte Laune → Bedürfnisse grün, Wirtshaus/Kirche nah, Deko dosiert</li>
+<li><b>Anarchie:</b> tiefe Unzufriedenheit stoppt Produktion → nie mitten in Upgrade-Wellen an Steuern/Bedürfnissen schrauben</li>
+<li><b>Piratenüberfall:</b> Charter-Schiffe immun; Waffenstillstand ≈ +10 Rep vs +2 pro Geschenk; besiegte Nester kommen wieder</li>
+</ul>
+<h3>Diplomatie- & Story-Ereignisse</h3>
+<ul>
+<li>1-Stern-KIs fragen vor dem Besiedeln, betreten neue Regionen nicht vor dir – aber <b>nie Allianzen</b> schließen</li>
+<li>Die beiden Piraten missgönnen einander Verträge – diplomatisches Kleingeld für dich</li>
+<li>Schlacht von Trelawney + Königinnen-Hauptstadtquest (Gesunkene Schätze), Weltausstellung (Willie), Zoo/Museum (Bente)</li>
+<li>Elektrizität, Gas (Passage), Palast-Richtlinien (optional): Wirtschafts-Ereignisse statt Dramen</li>
+</ul>
+</section>
+<section id="dateien"><h2><span class="n">8</span>Dateien & Offline-Nutzung</h2>
+<ul>
+<li><b>index.html</b> – diese Seite, der Haupt-Guide zum Folgen</li>
+<li><b>anno-1800-komplett-guide.html</b> – die Detail-Bibliothek mit einem durchsuchbaren Grafik-Atlas: alle 117 Stadtbilder und 250 Produktionsbilder (einschließlich Bauplänen, Übersichten und Icons; lokale Ordner <code>img/</code> und <code>grafiken/</code>)</li>
+<li><b>anno-1800-layout-guide.html</b> – kurzer Einstieg zur aktuellen Layout-Bibliothek (die alte Druckfassung enthielt nicht mehr vorhandene Bilder)</li>
+<li><b>anno-1800-dlc-insel-layout-guide.md</b> u. a. .md-Guides – Textfassungen zum Nachlesen</li>
+</ul>
+<div class="ok"><b>Offline-Regel:</b> Den gesamten Webseiten-Ordner zusammenhalten: index.html, anno-1800-komplett-guide.html sowie die Ordner <code>img/</code> und <code>grafiken/</code>. So bleiben alle lokalen Bilder und Links zwischen den Seiten offline verfügbar; externe Wiki- und Video-Links benötigen weiterhin Internet.</div>
+</section>
+<p class="foot">Haupt-Guide = diese Datei · Bibliothek = anno-1800-komplett-guide.html · beide offline nutzbar, wenn sie im selben Ordner liegen.<br>Entspannt bauen: kein Min-Maxing, aber immer zu wissen, warum.</p>
+</main>
+<a class="back-top" href="#top">↑ Nach oben</a>
+<script>
+(() => {
+ const key = "anno1800-guide-progress-v1";
+ const status = document.getElementById("progress-status");
+ const cards = [...document.querySelectorAll(".step, .ok")];
+ let saved = {};
+ let storageWorks = true;
+ let storageMessage = "";
+ try {
+  const raw = localStorage.getItem(key);
+  if (raw) {
+   const parsed = JSON.parse(raw);
+   if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) saved = parsed;
+   else status.textContent = "Gespeicherte Häkchen waren nicht lesbar und wurden ignoriert.";
+  }
+ } catch {
+  storageWorks = false;
+  storageMessage = "Dein Browser sperrt den lokalen Speicher – Häkchen bleiben nur bis zum Schließen dieser Seite.";
+ }
+ const controls = cards.map((card, index) => {
+  const step = card.querySelector(".no")?.textContent.trim();
+  const section = card.closest("section")?.id || `card-${index + 1}`;
+  const id = step ? step.replace(/[^a-zA-Z0-9.-]/g, "") : `${section}-checkpoint`;
+  const caption = step || `Checkpoint ${section.replace("phase", "Phase ")}`;
+  const label = document.createElement("label");
+  label.className = "progress-check";
+  const input = document.createElement("input");
+  input.type = "checkbox";
+  input.checked = saved[id] === true;
+  input.setAttribute("aria-label", `${caption} erledigt`);
+  const text = document.createElement("span");
+  text.textContent = "Erledigt";
+  label.append(input, text);
+  card.classList.add("trackable");
+  card.classList.toggle("is-done", input.checked);
+  card.append(label);
+  input.addEventListener("change", () => {
+   saved[id] = input.checked;
+   card.classList.toggle("is-done", input.checked);
+   persist();
+  });
+  return input;
+ });
+ function persist() {
+  const complete = controls.filter(input => input.checked).length;
+  if (storageWorks) {
+   try {
+    localStorage.setItem(key, JSON.stringify(saved));
+   } catch {
+    storageWorks = false;
+    storageMessage = "Speichern ist nicht möglich; deine Häkchen bleiben nur bis zum Schließen dieser Seite.";
+   }
+  }
+  if (storageWorks) status.textContent = `${complete} von ${controls.length} Schritten und Checkpoints abgehakt.`;
+  else status.textContent = `${storageMessage} ${complete} von ${controls.length} aktuell abgehakt.`;
+ }
+ if (storageWorks) persist();
+ document.getElementById("progress-reset").addEventListener("click", () => {
+  controls.forEach(input => {
+   input.checked = false;
+   input.closest(".trackable")?.classList.remove("is-done");
+  });
+  saved = {};
+  persist();
+ });
+ const menu = document.getElementById("nav");
+ document.querySelectorAll(".drawer a").forEach(link => link.addEventListener("click", () => { menu.checked = false; }));
+ document.addEventListener("keydown", event => {
+  if (event.key === "Escape") menu.checked = false;
+ });
+})();
+</script>
+</body></html>
