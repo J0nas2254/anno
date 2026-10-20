@@ -179,9 +179,15 @@ table{width:100%;margin:0;min-width:560px}
 .atlas-status{margin:0;color:var(--muted);font-size:.82rem}
 .atlas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(180px,100%),1fr));gap:12px}
 .atlas-card{min-width:0;margin:0;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--surface)}
-.atlas-card a{display:block;background:var(--surface-soft)}
+.atlas-image-button{display:grid;place-items:center;width:100%;min-height:170px;padding:0;border:0;background:var(--surface-soft);cursor:zoom-in}
+.atlas-image-button:focus-visible{outline:3px solid #bc7d39;outline-offset:-3px}
 .atlas-card img{display:block;width:100%;height:170px;object-fit:contain;padding:7px}
 .atlas-card figcaption{padding:9px 10px 11px;font-size:.8rem;line-height:1.4;overflow-wrap:anywhere}
+.atlas-viewer{width:min(96vw,1400px);max-width:none;max-height:94vh;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);box-shadow:0 18px 70px rgba(0,0,0,.45)}
+.atlas-viewer::backdrop{background:rgba(20,17,13,.82)}
+.atlas-viewer-close{display:block;margin:0 0 8px auto;min-height:40px;padding:7px 13px;border:1px solid var(--line);border-radius:9px;background:var(--surface-soft);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+.atlas-viewer img{display:block;max-width:100%;max-height:calc(94vh - 90px);width:auto;height:auto;margin:0 auto;object-fit:contain}
+.atlas-viewer figcaption{padding:9px 4px 2px;text-align:center;font-size:.9rem}
 .atlas-badges{display:flex;flex-wrap:wrap;gap:5px;padding:0 10px 10px}
 .atlas-badge{display:inline-flex;padding:3px 8px;border-radius:999px;background:#eee5d3;color:var(--muted);font-size:.68rem;font-weight:750}
 .atlas-empty{margin:10px 0;color:var(--muted);font-size:.9rem}
@@ -274,7 +280,7 @@ table{width:100%;margin:0;min-width:560px}
  .chain-reference-content{padding:14px}
  .chain-details-content{padding:10px}
  .package-graphic figcaption::after{display:inline}
- .atlas-content{padding-inline:11px}.atlas-controls label,.atlas-controls input,.atlas-controls select{width:100%}.atlas-grid{grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:8px}.atlas-card img{height:135px}
+ .atlas-content{padding-inline:11px}.atlas-controls label,.atlas-controls input,.atlas-controls select{width:100%}.atlas-grid{grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:8px}.atlas-image-button{min-height:135px}.atlas-card img{height:135px}
  .productivity-reference>div{padding-inline:10px}
  .grid{zoom:1.12}
  .back-top{right:10px;bottom:10px}
@@ -485,7 +491,7 @@ td b,th{letter-spacing:.01em}
 <div class="box blue">Aus den Videos lässt sich das allgemeine Prinzip modularer Stadtviertel und freigehaltener Infrastruktur-Korridore mitnehmen. Die Pläne hier sind aber eigens gezeichnete Skizzen – keine nachgebauten YouTube-Layouts und keine Screenshots. Der Waschberik-Verweis bezieht sich auf <i>Anno 117</i>; dessen Raster ist eine Anregung fürs Freihalten von Trassen, nicht dieselbe Spielmechanik wie in Anno 1800.</div>
 </section>
 <section id="grafikatlas"><h2><span class="n">6</span>Grafik-Atlas · Stadt- und Produktionslayouts</h2>
-<p class="lead">Die Bildsammlung ist nach Stadt- und Produktionsgrafiken sortiert. Öffne einen Bereich, suche nach Region, Ware oder Layout und klicke ein Bild für die Originalgröße an.</p>
+<p class="lead">Die Bildsammlung ist nach Stadt- und Produktionsgrafiken sortiert. Öffne einen Bereich, suche nach Region, Ware oder Layout und klicke ein Bild, um es direkt hier auf der Seite groß anzusehen.</p>
 <p class="source-note">Vollständiges Grafikpaket: alle 117 Stadtbilder und 250 Produktionsbilder, einschließlich Gebäude-, Waren- und Arbeitskräfte-Icons, Übersichten und Layoutplänen. Die Galerien lassen sich nach Spielregion und Bildtyp filtern; Bildtitel und Filter sind auf Deutsch. Bereits in die Originalgrafiken eingebettete Beschriftungen bleiben in ihrer Originalsprache.</p>
 <details class="asset-atlas" id="atlas-stadt" data-atlas="city" data-directory="img/city-layouts/">
 <summary>Stadtgrafiken aus allen Regionen <span class="atlas-count">117 Bilder</span></summary>
@@ -678,6 +684,10 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
 </div>
 </details>
 </main>
+<dialog class="atlas-viewer" aria-label="Bildansicht">
+<form method="dialog"><button class="atlas-viewer-close" aria-label="Bildansicht schließen">Schließen <span aria-hidden="true">×</span></button></form>
+<figure><img alt=""><figcaption></figcaption></figure>
+</dialog>
 <a class="back-top" href="#top">↑ Nach oben</a>
 <script src="grafiken/manifest.js"></script>
 <script>
@@ -946,6 +956,23 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
   city: { plan: "Stadtbaupläne", overview: "Reichweitenübersicht", icon: "Icons" },
   production: { plan: "Produktionsbaupläne", overview: "Kettenübersichten", icon: "Icons" }
  };
+ const atlasViewer = document.querySelector(".atlas-viewer");
+ const atlasViewerImage = atlasViewer.querySelector("img");
+ const atlasViewerCaption = atlasViewer.querySelector("figcaption");
+ document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && atlasViewer.open) atlasViewer.close();
+ });
+ document.addEventListener("click", event => {
+  const trigger = event.target.closest("[data-image-viewer]");
+  if (!trigger) return;
+  atlasViewerImage.src = trigger.dataset.imageSrc;
+  atlasViewerImage.alt = trigger.dataset.imageAlt;
+  atlasViewerCaption.textContent = trigger.dataset.imageAlt;
+  atlasViewer.showModal();
+ });
+ atlasViewer.addEventListener("click", event => {
+  if (event.target === atlasViewer) atlasViewer.close();
+ });
  document.querySelectorAll("[data-atlas-featured]").forEach(featured => {
   const images = atlasManifest?.[featured.dataset.atlasFeatured];
   if (!Array.isArray(images)) {
@@ -956,14 +983,17 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
    const figure = document.createElement("figure");
    figure.className = "atlas-card";
    if (item.featuredId) figure.id = item.featuredId;
-   const link = document.createElement("a");
+   const link = document.createElement("button");
+   link.type = "button";
+   link.className = "atlas-image-button";
+   link.dataset.imageViewer = "";
+   link.dataset.imageSrc = `${featured.dataset.atlasFeatured === "city" ? "img/city-layouts/" : "img/production-layouts/"}${encodeURIComponent(item.file)}`;
+   link.dataset.imageAlt = item.alt;
    const image = document.createElement("img");
    const caption = document.createElement("figcaption");
-   link.href = `${featured.dataset.atlasFeatured === "city" ? "img/city-layouts/" : "img/production-layouts/"}${encodeURIComponent(item.file)}`;
-   link.target = "_blank";
-   link.rel = "noopener noreferrer";
-   link.title = `${item.alt} – Originalgröße öffnen`;
-   image.src = link.href;
+   link.setAttribute("aria-label", `${item.alt} – groß anzeigen`);
+   link.title = `${item.alt} – groß anzeigen`;
+   image.src = link.dataset.imageSrc;
    image.alt = item.alt;
    image.loading = "lazy";
    image.decoding = "async";
@@ -1010,14 +1040,17 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
     figure.className = "atlas-card";
     if (item.region) figure.dataset.region = item.region;
     if (item.kind) figure.dataset.kind = item.kind;
-    const link = document.createElement("a");
+    const link = document.createElement("button");
+    link.type = "button";
+    link.className = "atlas-image-button";
+    link.dataset.imageViewer = "";
+    link.dataset.imageSrc = `${atlas.dataset.directory}${encodeURIComponent(item.file)}`;
+    link.dataset.imageAlt = item.alt;
     const image = document.createElement("img");
     const caption = document.createElement("figcaption");
-    link.href = `${atlas.dataset.directory}${encodeURIComponent(item.file)}`;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.title = `${item.alt} – Originalgröße öffnen`;
-    image.src = link.href;
+    link.setAttribute("aria-label", `${item.alt} – groß anzeigen`);
+    link.title = `${item.alt} – groß anzeigen`;
+    image.src = link.dataset.imageSrc;
     image.alt = item.alt;
     image.loading = "lazy";
     image.decoding = "async";
