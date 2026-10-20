@@ -112,6 +112,11 @@ p{max-width:76ch}
 .fact-note strong{color:#8b3d22}
 .source-note{font-size:.84rem;color:var(--muted)}
 .seed-note{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface-soft);color:var(--muted);font-size:.88rem}
+.seed-comparison{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.seed-comparison>summary{padding:13px 16px;cursor:pointer;font-weight:750}
+.seed-comparison[open]>summary{border-bottom:1px solid var(--line)}
+.seed-comparison-content{padding:14px 16px}
+.seed-table{min-width:1080px}
 .source-links{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
 .source-links a{display:inline-flex;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface-soft);font-size:.82rem;font-weight:700;text-decoration:none}
 .source-links a:hover{border-color:#c9a16e;background:#f5e4cc}
@@ -431,7 +436,8 @@ td b,th{letter-spacing:.01em}
 <ul>
 <li>Sandbox · Kartentyp <b>Ecken</b> · Weltgröße <b>groß</b> · Inselgröße <b>überwiegend groß</b> · Schwierigkeit <b>normal</b></li>
 <li>Fruchtbarkeiten <b>reichlich</b> · Vorkommen <b>reichlich</b> · Seed <b>1248</b></li>
-<li>KI: <b>Bente + Willie</b> · Piraten <b>einfach</b> · Startkontor <b>aus</b>. Wähle die Startinsel selbst nach Platz, Fruchtbarkeiten und Vorkommen; die alte Norden-Mitte-Notiz gehört zum Fallback-Seed 1337032.</li>
+<li>Die Startinsel deckt die Wunschliste allein ab: Kartoffel, Getreide, Hopfen, Fell sowie Lehm, Eisen, Kohle und Öl im Überfluss. Ecken bietet alle <b>4 XL- und 8 L-Inseln</b>; Fruchtbarkeiten und Vorkommen stehen auf reichlich. Nach der Generierung Karte und Startinsel gegenprüfen.</li>
+<li>KI: <b>Bente + Willie</b> · Piraten <b>einfach</b> · Startkontor <b>aus</b>. Die Piraten liegen in der Kartenmitte; einfach passt zu deinem gewünschten Piraten-Spiel. Die alte Norden-Mitte-Notiz gehört zum Fallback-Seed 1337032.</li>
 </ul>
 <h3>Rekordbauer-Alternativen mit denselben Weltsettings</h3>
 <ul>
@@ -452,10 +458,73 @@ td b,th{letter-spacing:.01em}
 </ul>
 <h3>Welt-Einstellungen für Chill-Spieler</h3>
 <ul>
-<li><b>Startkontor aus</b> → du suchst dir die Startinsel selbst (Checkliste: Kartoffel+Getreide+Hopfen, ≥3 Lehm, ≥2 Eisen, ≥3 Öl; beim dokumentierten Seed 1337032 zusätzlich Fell, Kohle und 7× Öl)</li>
+<li><b>Startkontor aus</b> → du suchst dir die Startinsel selbst. Für Seed 1248 ist die Wunschliste auf der Hauptinsel vorhanden; bei anderen Seeds prüfe Kartoffel+Getreide+Hopfen, ≥3 Lehm, ≥2 Eisen und ≥3 Öl (beim dokumentierten Seed 1337032 zusätzlich Fell, Kohle und 7× Öl).</li>
 <li>Karte aufgedeckt starten, KI = nur <b>Bente + Willie</b>, Piraten <b>Einfach</b></li>
 <li>Falls die Welt nach einem Patch nicht zur Beschreibung passt: Map-Generation wurde mehrfach umgestellt – dann von Hand nach Checkliste wählen</li>
 </ul>
+<details class="seed-comparison" id="seed-vergleich">
+<summary>Seed-Ranking und Vergleichstabelle · alle 17 Kandidaten anzeigen</summary>
+<div class="seed-comparison-content">
+<p>Gewichtung für dein Profil: entspannt bauen, alle DLCs, mehrere Inseln okay, Piraten auf einfach und gewünscht, große Inseln, alle Fruchtbarkeiten und Erze der Alten Welt sowie zügiges Wachstum. Seed 1248 ist die Hauptempfehlung; die Rangliste macht sichtbar, wann ein anderer Seed besser passt.</p>
+<h4>Bewertungskriterien</h4>
+<ul>
+<li><b>Chill-Faktor · 30 %:</b> Piraten-Nähe zu Hauptrouten, Verwaltungsaufwand und unnötiger Optimierungsdruck</li>
+<li><b>Bauplatz · 25 %:</b> XL-/L-Insel-Inventar, Ecken-Bonus, Flüsse und Überbaubarkeit</li>
+<li><b>Startversorgung · 20 %:</b> Fruchtbarkeiten und Erze auf oder neben der Startinsel</li>
+<li><b>Sicherheit & Frische · 15 %:</b> eigener Test vor Quellen ab 2023 vor Quellen vor 2022</li>
+<li><b>Spaß-Bonus · 10 %:</b> Händlernähe für Diplomatie sowie Kap-/Neue-Welt-Besonderheiten</li>
+</ul>
+<h4>Ranking mit Kurzbegründung</h4>
+<ol>
+<li><b>1248</b> – Hauptempfehlung: vollständige Startversorgung auf einer Insel und das Ecken-Inventar aller XL- und L-Inseln. Piraten sind zentral, aber auf einfach passend zu deinem Setting.</li>
+<li><b>111108851</b> – Chill-Alternative mit großen Inseln, reichlichen Ressourcen und Piraten abseits der Handelsrouten; genaue Details und Startversorgung sind nur begrenzt dokumentiert.</li>
+<li><b>1337032</b> – selbst dokumentierter Sicherheits-Fallback mit bestätigter Startversorgung und Händler-Cluster im Osten; Archipel bietet weniger L-Inseln.</li>
+<li><b>394 224 798</b> – Rekordklasse-Bauplatz und Vollversorgung laut Seed-Finder; Reserve für eine spätere Megacity-Runde.</li>
+<li><b>9333</b> – Chill-Fallback mit Start im Osten, vier Start-Fruchtbarkeiten, nahen Händlern und Piraten am anderen Kartenende.</li>
+<li><b>440654298</b> – große Inseln in mehreren Sphären, einschließlich einer Neuwelt-Insel in Crown-Falls-Größe; community-seitig dünn belegt.</li>
+<li><b>975</b> – Megastadt-Klassiker mit wenigen Flüssen in der Alten Welt; wenig Startinsel-Information.</li>
+<li><b>1707095715</b> – flussfrei in Alter Welt, Neuer Welt und Kap; maximale Überbaubarkeit, aber etwas weniger Einwohner-Kapazität als 394 224 798.</li>
+<li><b>1633727535</b> – flussfrei und mit besonders großen Inseln in der Kap-Region; Nischenwahl für Crown-Falls-Fans.</li>
+<li><b>220781</b> – vier Lehmvorkommen und Paprika direkt auf der Startinsel; übrige Karte kaum beschrieben.</li>
+<li><b>6614</b> – Atoll mit Paprika-/Salpeter-Start und nahen Händlern; Piraten zentral.</li>
+<li><b>1800</b> – ausgewogener Lern-Seed ohne extreme Eigenschaften und mit ungefährlicher Piratenlage.</li>
+<li><b>8511</b> – Community-Fundstück von 2021 ohne belastbare Detailangaben.</li>
+<li><b>1320629524</b> – historischer Rekordbauer-Seed, Messung von 2020; hohes Patch-Drift-Risiko.</li>
+<li><b>767 048 542</b> – Rekord-Kandidat zu 394 224 798; Optimierungs-Sog und alte Quelle.</li>
+<li><b>8882</b> – historischer Öl-Seed mit 7× Öl auf der Hauptinsel; Angaben von 2019 sind wahrscheinlich veraltet.</li>
+<li><b>69420</b> – Legende für große freie Stadtfläche nach einer Messung von 2019; sehr hohes Patch-Drift-Risiko.</li>
+</ol>
+<p><b>Tabellenzeichen:</b> EG = Ecken (Corners), AR = Archipel, AT = Atoll; reichlich/reichlich bedeutet maximale Fruchtbarkeiten und Vorkommen. „–“ heißt: community-seitig nicht gemeldet. ⚠ kennzeichnet Quellen vor 2022 mit wahrscheinlichem Patch-Drift.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Seed-Vergleichstabelle, horizontal scrollen">
+<table class="seed-table"><thead><tr><th>Rang / Seed</th><th>Kartentyp & Einstellungen</th><th>Startinsel: Fruchtbarkeiten / Erze</th><th>Inseln & Bauplatz</th><th>Piraten & Händler</th><th>Geeignet für</th><th>Quelle & Aktualität</th></tr></thead><tbody>
+<tr><td>1 · <b>1248</b></td><td>EG · groß / überwiegend groß · normal · reichlich/reichlich</td><td>Kartoffel, Getreide, Hopfen, Fell + Lehm, Eisen, Kohle, Öl im Überfluss</td><td>Alle 4 XL- und 8 L-Inseln (Ecken-Effekt), viele große Inseln</td><td>Piraten aktiv in Kartenmitte; einfach stellen</td><td>Komplette Startversorgung + maximaler Bauplatz</td><td>GameRant · 08/2024</td></tr>
+<tr><td>2 · <b>111108851</b></td><td>–</td><td>Großzügige Ressourcen</td><td>Von großen Inseln dominiert</td><td>Piraten bewusst abseits der Routen</td><td>Große Inseln ohne Piratenstress</td><td>GameRant · 08/2024</td></tr>
+<tr><td>3 · <b>1337032</b></td><td>AR · groß / überwiegend groß · normal · normal/reichlich</td><td>Norden-Mitte: Kartoffel, Getreide, Hopfen, Fell + 3× Lehm, 3× Eisen, 3× Kohle, 7× Öl</td><td>4 XL + 4 L + mittlere Inseln</td><td>Alle drei Händler der Alten Welt nah beieinander (Osten)</td><td>Getesteter Klassiker und früher Diplomatie-Spaß</td><td>Reddit · 06/2024 + eigener Test</td></tr>
+<tr><td>4 · <b>394 224 798</b></td><td>EG · reichlich/reichlich</td><td>– (Vollversorgung laut Finder erreichbar)</td><td>Maximaler Bauplatz, Rekordklasse</td><td>–</td><td>Maximal bauen mit Vollversorgung</td><td>AnnoZone Seed-Finder · 12/2022 ⚠</td></tr>
+<tr><td>5 · <b>9333</b></td><td>AR · groß / überwiegend groß · normal · reichlich/reichlich</td><td>Osten: Getreide, Kartoffel, Hopfen, Fell</td><td>Viele große, offene Inseln</td><td>Piraten am anderen Kartenende, Händler nah</td><td>Chill-Variante mit Sicherheitsabstand</td><td>Fandom + Reddit · 2020 ⚠</td></tr>
+<tr><td>6 · <b>440654298</b></td><td>– (große Inseln in allen Sphären)</td><td>–</td><td>Neuwelt-Insel in Crown-Falls-Größe + große Inseln der Alten Welt</td><td>–</td><td>Megacity mit zweitem Riesen</td><td>GameRant · 08/2024</td></tr>
+<tr><td>7 · <b>975</b></td><td>EG · groß / überwiegend groß · normal · reichlich/reichlich</td><td>–</td><td>Alte-Welt-Inseln mit sehr wenigen Flüssen, leicht überbaubar</td><td>–</td><td>Megastadt-Klassiker der Rekordbauer</td><td>Fandom / Reddit</td></tr>
+<tr><td>8 · <b>1707095715</b></td><td>EG</td><td>–</td><td>Flussfrei in Alter Welt, Neuer Welt und Kap; etwas weniger Kapazität als 394 224 798</td><td>–</td><td>Überbauer, die Flüsse vermeiden möchten</td><td>Reddit · 03/2025 + AnnoZone ⚠</td></tr>
+<tr><td>9 · <b>1633727535</b></td><td>–</td><td>–</td><td>Flussfrei; größte Inseln in der Kap-Region</td><td>–</td><td>Kap-Trelawney-Fans</td><td>Reddit · 07/2023</td></tr>
+<tr><td>10 · <b>220781</b></td><td>AR</td><td>Startinsel: 4× Lehm + Paprika</td><td>–</td><td>–</td><td>Lehm-Vorrat von Anfang an</td><td>Reddit · 06/2024</td></tr>
+<tr><td>11 · <b>6614</b></td><td>AT · groß / überwiegend groß · reichlich/reichlich</td><td>Osten: Kartoffel, Getreide, Paprika, Salpeter</td><td>Atoll-Layout</td><td>Händler nah, Piraten zentral</td><td>Paprika-Start ohne Neue-Welt-Trip</td><td>Fandom</td></tr>
+<tr><td>12 · <b>1800</b></td><td>–</td><td>Solide Start-Fruchtbarkeiten</td><td>Ausbalanciert, nichts Extremes</td><td>Ungefährliche Piratenlage</td><td>Erste Sandbox-Runde / Lernen</td><td>toptenpick · 09/2026</td></tr>
+<tr><td>13 · <b>8511</b></td><td>AR · groß / überwiegend groß · reichlich/reichlich</td><td>–</td><td>–</td><td>–</td><td>Community-Fundstück</td><td>Reddit · 07/2021 ⚠</td></tr>
+<tr><td>14 · <b>1320629524</b></td><td>EG · groß / überwiegend groß · normal</td><td>–</td><td>Rekordbauer-Messung von 2020</td><td>–</td><td>Historischer Rekord-Seed</td><td>Reddit · 10/2020 ⚠</td></tr>
+<tr><td>15 · <b>767 048 542</b></td><td>EG</td><td>–</td><td>Rekord-Kandidat zu 394 224 798</td><td>–</td><td>Rekordbauer</td><td>AnnoZone · 12/2022 ⚠</td></tr>
+<tr><td>16 · <b>8882</b></td><td>–</td><td>Kartoffel / Getreide / Hopfen + 3× Lehm, 2× Eisen, 7× Öl</td><td>Starke Hauptinsel</td><td>–</td><td>Historischer Öl-Seed</td><td>Reddit · 2019 ⚠</td></tr>
+<tr><td>17 · <b>69420</b></td><td>AR · einfach / maximal</td><td>3× Lehm, 4× Öl am Rand, Zentrum komplett frei</td><td>Größte ungestörte Stadtfläche (Messung 2019)</td><td>Piraten vorhanden</td><td>Legende, aber mit Drift-Risiko</td><td>Reddit · 2019 ⚠</td></tr>
+</tbody></table></div>
+<p class="small-note">Die Sortierung folgt dem persönlichen Ranking, nicht der Seed-Nummer. Community-Angaben können sich durch Updates verändern; vor dem langfristigen Spielstart die generierte Karte im Spiel prüfen.</p>
+<h4>Abwäge-Hilfe, wenn du mehrere Inseln besiedelst</h4>
+<ul>
+<li><b>Durch Besiedeln ausgleichbar:</b> fehlende Startinsel-Fruchtbarkeiten, einzelne Erze und frühes Öl-Defizit – eine Schiffsroute kann das ausgleichen.</li>
+<li><b>Nicht ausgleichbar:</b> Inselgröße und Flüsse, XL-/L-Insel-Auswahl, Slot-Menge pro Insel sowie Piraten auf der Hauptroute und Händler-Distanzen.</li>
+<li><b>Abwäge-Reihenfolge:</b> (1) Ecken für Bauplatz · (2) reichlich/reichlich für Slots · (3) Startversorgung oder kurze Route zur Nachbarinsel · (4) Piratenlage · (5) Quellen ab 2023 bevorzugen, ältere Quellen als Inspiration behandeln.</li>
+<li><b>Chill-Regel:</b> höchstens drei Inseln pro Zeitalter, sonst verwalten die Routen dich.</li>
+</ul>
+</div>
+</details>
 </section>
 <section id="ki"><h2><span class="n">3</span>KI & Piraten – Spaß ohne Stress</h2>
 <ul>
