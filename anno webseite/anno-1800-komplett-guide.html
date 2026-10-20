@@ -40,6 +40,13 @@ th{background:#f7f2e7;color:#6b5c48;font-size:.76rem;text-transform:uppercase;le
 code{background:#efe7d6;padding:2px 6px;border-radius:4px;font-size:.9em}
 .tag{display:inline-block;font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;vertical-align:middle}
 .tag.ok{background:#e3efdc;color:#3d6630}.tag.mid{background:#fdf0d5;color:#8a6412}.tag.no{background:#f8ddd8;color:#8c352b}.tag.tier{background:#e8e0f2;color:#5b3d80}
+.range-reference{margin:16px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface-soft);scroll-margin-top:112px}
+.range-reference summary{cursor:pointer;padding:11px 14px;font-weight:750}
+.range-reference[open] summary{border-bottom:1px solid var(--line)}
+.range-reference>div{padding:12px 14px}
+.range-reference .fact-note{border-left:4px solid var(--blue);background:#eaf1f8;border-radius:0 9px 9px 0;padding:10px 12px;margin:12px 0}
+.range-reference table{min-width:450px}
+.range-reference p:last-child{margin-bottom:0}
 .chain{border:1px solid #e0d6c4;border-radius:12px;padding:14px 14px 12px;margin:14px 0;background:#fbf8f1}
 .chain h4{margin:0 0 4px;font-size:1.02rem}
 .chain .r{font-size:.88rem;color:#5b4d3c;margin:0 0 8px}
@@ -159,6 +166,13 @@ table{width:100%;margin:0;min-width:560px}
 .atlas-count{color:var(--muted);font-size:.82rem;font-weight:600;white-space:nowrap}
 .atlas-content{padding:0 16px 18px}
 .atlas-intro{margin:0 0 12px;color:var(--muted);font-size:.9rem}
+.productivity-reference{margin:14px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.productivity-reference>summary{cursor:pointer;padding:11px 14px;font-weight:750}
+.productivity-reference>div{padding:0 14px 12px}
+.productivity-reference p{font-size:.88rem}
+.productivity-table{min-width:680px}
+.productivity-table td:nth-child(2),.productivity-table td:nth-child(3){white-space:nowrap}
+.productivity-table td:last-child{font-size:.84rem;color:var(--muted)}
 .atlas-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0}
 .atlas-controls label{display:grid;gap:5px;font-size:.82rem;font-weight:700}
 .atlas-controls input,.atlas-controls select{width:min(360px,78vw);min-height:42px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);font:inherit;padding:8px 11px}
@@ -193,6 +207,32 @@ table{width:100%;margin:0;min-width:560px}
 .legend .lg-road{background:#c4b69b}
 #ketten .legend:not([aria-label]){display:none}
 .chain[hidden]{display:none}
+.chain-reference{margin:24px 0;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:0 5px 18px rgba(52,39,21,.035);scroll-margin-top:112px}
+.chain-reference>summary,.chain-details>summary{cursor:pointer;list-style:none}
+.chain-reference>summary::-webkit-details-marker,.chain-details>summary::-webkit-details-marker{display:none}
+.chain-reference>summary{display:flex;align-items:center;gap:14px;padding:17px 20px}
+.chain-reference[open]>summary{border-bottom:1px solid var(--line)}
+.chain-reference-number{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800}
+.chain-reference-title{display:grid;line-height:1.35}
+.chain-reference-title strong{font-size:1.08rem}
+.chain-reference-title small{color:var(--muted);font-size:.82rem}
+.chain-reference-count{margin-left:auto;padding:5px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:.78rem;font-weight:750;white-space:nowrap}
+.chain-reference-content{padding:20px}
+.chain-reference-content>.lead{margin-bottom:14px}
+.ratio-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0}
+.ratio-tools label{font-size:.88rem;font-weight:750}
+.ratio-tools input{flex:1 1 240px;min-width:0;border:1px solid #b9ab8d;border-radius:8px;padding:9px 11px;background:var(--surface);color:var(--ink);font:inherit}
+.ratio-tools [role=status]{width:100%;color:var(--muted);font-size:.82rem}
+.ratio-table{min-width:760px}
+.ratio-table td:first-child{font-weight:750;white-space:nowrap}
+.ratio-table td:nth-child(2){white-space:nowrap;color:var(--muted);font-size:.8rem}
+.ratio-table td:nth-child(3){min-width:230px}
+.ratio-table td:nth-child(4){font-size:.88rem;color:var(--muted)}
+.chain-details{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface-soft)}
+.chain-details>summary{padding:12px 14px;font-weight:750}
+.chain-details[open]>summary{border-bottom:1px solid var(--line)}
+.chain-details-content{padding:16px}
+.chain-details-content>section{box-shadow:none}
 .chain .tip{color:#354c2d;background:#eaf2e2;border:1px solid #d4e2c8}
 .chain-filter{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:12px;margin:14px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 .chain-filter label{font-weight:700;font-size:.9rem}
@@ -213,6 +253,9 @@ table{width:100%;margin:0;min-width:560px}
  .chapter-nav a:hover,.chapter-nav a:focus-visible,.chapter-nav a[aria-current="location"]{background:#493821;color:#fff}
  .hero{background:linear-gradient(145deg,#1e1b16,#493821)}
  .chain{background:var(--surface-soft)}.chain .r{color:#d4c8b1}
+ .chain-reference,.chain-details{background:var(--surface)}
+ .chain-reference-count{color:var(--muted)}
+ .ratio-table td:nth-child(4){color:var(--muted)}
  .plan-scroll{background:#373126}
  .package-graphic .plan-scroll{background:#373126}
  .chain .tip{background:#283326;color:#d8e6ce;border-color:#3d5235}
@@ -226,8 +269,13 @@ table{width:100%;margin:0;min-width:560px}
  body{font-size:15px}main{padding:18px 12px 80px}section{padding:20px 14px;margin:18px 0}
  header{gap:10px;padding:9px 12px}header .t{font-size:.78rem;white-space:nowrap}header .s{font-size:.65rem;max-width:100px}
  .chapter-nav{top:56px;margin-bottom:14px}
+ .chain-reference>summary{gap:10px;padding:15px 13px}
+ .chain-reference-count{font-size:.7rem;padding:4px 7px}
+ .chain-reference-content{padding:14px}
+ .chain-details-content{padding:10px}
  .package-graphic figcaption::after{display:inline}
  .atlas-content{padding-inline:11px}.atlas-controls label,.atlas-controls input,.atlas-controls select{width:100%}.atlas-grid{grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:8px}.atlas-card img{height:135px}
+ .productivity-reference>div{padding-inline:10px}
  .grid{zoom:1.12}
  .back-top{right:10px;bottom:10px}
 }
@@ -317,14 +365,13 @@ td b,th{letter-spacing:.01em}
 <a href="#ki">3 · KI & Piraten</a>
 <a href="#start">4 · Die ersten 30 Minuten</a>
 <div class="grp">Bauen</div>
-<a href="#stadt">5 · Stadtlayout & Radien</a>
-<a href="#video">6 · Video-Check 1800/117</a>
-<a href="#ketten">7 · Produktionsketten</a>
+<a href="#video">5 · Video-Check 1800/117</a>
+<a href="#grafikatlas">6 · Grafik-Atlas · 367 Bilder</a>
+<a href="#atlas-stadt">Stadtbilder · 117</a>
+<a href="#atlas-produktion">Produktionsbilder · 250</a>
+<a href="#ketten">7 · Kettenverhältnisse</a>
 <a href="#spät">8 · Late Game & Crown Falls</a>
 <div class="grp">Anhang</div>
-<a href="#grafikatlas">Grafik-Atlas · 367 Bilder</a>
-<a href="#atlas-stadt">Stadtgrafiken durchsuchen · 117</a>
-<a href="#atlas-produktion">Produktionsgrafiken durchsuchen · 250</a>
 <a href="#quellen">9 · Quellen</a>
 </nav><label class="scrim" for="nav"></label>
 <main id="main">
@@ -332,7 +379,7 @@ td b,th{letter-spacing:.01em}
 <div><p class="eyebrow">Dein persönlicher Anno-1800-Atlas</p>
 <h1>Eine Insel nach der anderen. Ohne Stress.</h1>
 <p class="hero-intro">Dein Nachschlagewerk für genau diesen Spielstil: gemütlich bauen, bei Bedarf Zahlen nachsehen und erst dann erweitern, wenn es sich gut anfühlt. Keine Pflicht zum Min-Maxing.</p>
-<div class="hero-actions"><a href="index.html">Spielstart Schritt für Schritt</a><a href="#stadt">Direkt zu den Stadt-Layouts</a></div></div>
+<div class="hero-actions"><a href="index.html">Spielstart Schritt für Schritt</a><a href="#reichweiten">Reichweiten nachschlagen</a></div></div>
 <aside class="personal-brief" aria-label="Dein gespeichertes Spielsetup"><h2>Dein Spiel-Kompass</h2><dl>
 <div><dt>Welt-Notiz</dt><dd><a href="#welt">Seed 1337032 · Archipel</a></dd></div>
 <div><dt>Spielgefühl</dt><dd>Ruhig aufbauen statt optimieren</dd></div>
@@ -341,12 +388,12 @@ td b,th{letter-spacing:.01em}
 
 <nav class="guide-shortcuts" aria-label="Schnelleinstieg in den Guide">
 <a class="guide-shortcut" href="#setup"><span class="shortcut-kicker">Vor dem neuen Spiel</span><strong>Welt & DLCs vorbereiten</strong><span class="shortcut-description">Dein DLC-Plan, die Startwelt und die Seed-Notizen.</span></a>
-<a class="guide-shortcut" href="#stadt"><span class="shortcut-kicker">Beim Stadtbau</span><strong>Ein Viertel in Ruhe planen</strong><span class="shortcut-description">Straßenreichweite, Rathaus und kopierbare Stadtblöcke.</span></a>
+<a class="guide-shortcut" href="#reichweiten"><span class="shortcut-kicker">Beim Stadtbau</span><strong>Reichweiten nachschlagen</strong><span class="shortcut-description">Straßenreichweiten, Pflasterbonus und Rathaus-Radius kompakt erklärt.</span></a>
 <a class="guide-shortcut" href="#ketten"><span class="shortcut-kicker">Wenn Waren fehlen</span><strong>Die passende Kette nachschlagen</strong><span class="shortcut-description">Suche nach Ware oder Gebäude; Richtwerte statt Baupflicht.</span></a>
 </nav>
 
 <nav class="chapter-nav" aria-label="Kapitel-Schnellsprung">
-<a href="#setup">1 · DLCs</a><a href="#welt">2 · Welt</a><a href="#ki">3 · KI</a><a href="#start">4 · Start</a><a href="#stadt">5 · Stadt</a><a href="#video">6 · Video</a><a href="#ketten">7 · Ketten</a><a href="#spät">8 · Spätspiel</a><a href="#grafikatlas">Grafik-Atlas</a><a href="#quellen">9 · Quellen</a>
+<a href="#setup">1 · DLCs</a><a href="#welt">2 · Welt</a><a href="#ki">3 · KI</a><a href="#start">4 · Start</a><a href="#video">5 · Video</a><a href="#grafikatlas">6 · Grafik-Atlas</a><a href="#ketten">7 · Verhältnisse</a><a href="#spät">8 · Spätspiel</a><a href="#quellen">9 · Quellen</a>
 </nav>
 
 <section id="setup"><h2><span class="n">1</span>DLCs & Session-Plan</h2>
@@ -411,18 +458,12 @@ td b,th{letter-spacing:.01em}
 <li>1–3 Kacheln <b>Schienen-Korridor</b> freihalten, bevor du zubaus – später nicht mehr möglich ohne Abriss</li>
 <li>Erste Waren: Kartoffeln, Fisch, Arbeitskleidung → Schnaps als Einkommens-Boost</li>
 </ul>
-<p><span class="kbd">C</span> kopieren · <span class="kbd">S</span> Straße · <span class="kbd">U</span> Upgrade · <span class="kbd">STRG+Q</span> Statistik (STRG+Klick auf Insel = inselübergreifend) · <span class="kbd">STRG+UMSCHALT+R</span> Ego-Stadtrundfahrt</p>
-</section>
-<section id="stadt"><h2><span class="n">5</span>Stadtlayout & Radien</h2>
-<p class="lead">Fürs Wohnen gibt es zwei verschiedene Reichweiten: öffentliche Gebäude versorgen entlang verbundener Straßen, das Rathaus wirkt mit seinen Items im Luftlinien-Radius. Beides lässt sich entspannt kombinieren – ein Raster ist nur eine Starthilfe.</p>
-<p class="atlas-links"><a href="#atlas-stadt">Alle 117 Stadtbilder im Grafik-Atlas ansehen</a></p>
-<div class="fact-note"><strong>Wichtige Korrektur zum Text in einigen Grafiken:</strong> Produktionsgebäude brauchen eine Straßenverbindung zum Kontor – direkt oder über ein angebundenes Lagerhaus. Karren holen und liefern Waren; Lagerhaus, Farm und Verarbeiter müssen dafür über Straßen erreichbar und in passender Reichweite sein. Du brauchst nicht automatisch ein eigenes Lagerhaus neben jedem Betrieb. Das Rathaus ist die Ausnahme: Seine Items wirken innerhalb des Radius ohne Straßenverbindung zu den betroffenen Gebäuden. <a href="#quellen">Quellen zur Straßen- und Warenlogistik</a>.</div>
-<div class="atlas-featured" data-atlas-featured="city" aria-label="Ausgewählte Stadtlayouts"></div>
-<table><thead><tr><th>System</th><th>Betrifft</th><th>Funktion</th></tr></thead><tbody>
-<tr><td><b>Straßendistanz</b></td><td>Marktplatz, Wirtshaus, Kirche, Schule, Feuerwehr, Polizei, Krankenhaus, Varieté, Uni</td><td>entlang der Straße; Pflaster = <b>+46–49 %</b></td></tr>
-<tr><td><b>Echter Radius</b></td><td><b>Rathaus</b> (4×4, Radius 20), Handelskammer, Hafenamt</td><td>Luftlinie, <b>keine Straße nötig</b>, Radien überlappen nie</td></tr>
-</tbody></table>
-<table><thead><tr><th>Gebäude</th><th>Feldweg</th><th>Pflaster</th></tr></thead><tbody>
+<details class="range-reference" id="reichweiten">
+<summary>Reichweiten-Spickzettel für Stadt- und Servicegebäude</summary>
+<div>
+<p>Öffentliche Gebäude wirken entlang verbundener Straßen. Die Werte zeigen die volle Wirkungsreichweite in Straßenkacheln; Pflaster vergrößert sie. Rathaus-Items wirken dagegen im Luftlinien-Radius und brauchen keine Straßenverbindung.</p>
+<div class="fact-note"><b>Auch für Produktionen wichtig:</b> Produktionsgebäude benötigen eine durchgehende Straßenverbindung zum Kontor, direkt oder über ein angebundenes Lagerhaus. Ein zusätzliches Lagerhaus neben jedem Betrieb ist nicht grundsätzlich nötig. <a href="#quellen">Quellen zu Straßen und Warenlogistik</a>.</div>
+<div class="table-scroll"><table><thead><tr><th>Gebäude</th><th>Feldweg</th><th>Pflaster</th></tr></thead><tbody>
 <tr><td>Wirtshaus</td><td>28</td><td><b>41</b></td></tr>
 <tr><td>Marktplatz</td><td>33</td><td><b>49</b></td></tr>
 <tr><td>Kirche / Schule / Varieté</td><td>38</td><td><b>56</b></td></tr>
@@ -430,37 +471,141 @@ td b,th{letter-spacing:.01em}
 <tr><td>Feuerwehr / Polizei / Krankenhaus</td><td>48</td><td><b>71</b></td></tr>
 <tr><td>Kaufhaus</td><td>42</td><td><b>62</b></td></tr>
 <tr><td>Feuerwehr-Depot / Polizeipräsidium</td><td>74</td><td><b>111</b></td></tr>
-</tbody></table>
-<figure><img src="data:image/png;base64,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" alt="Gleiche 61×61-Stadt mit 395 Häusern: Feldweg versorgt 70 %, Pflasterstraße 99 % – braun = versorgt, grau = wächst nicht"><figcaption>Gleiche 61×61-Stadt mit 395 Häusern: Feldweg versorgt 70 %, Pflasterstraße 99 % – braun = versorgt, grau = wächst nicht</figcaption></figure>
-
-
-
-
-
-<h3>Der Zwei-Phasen-Plan</h3>
-<ul>
-<li><b>Phase 1 (Bauern→Handwerker):</b> 2×3-Blöcke um den Marktplatz – Rathaus-Items sind früh schwach, jedes Rathaus kostet 20 Einfluss</li>
-<li><b>Phase 2 (Ingenieure/Investoren):</b> Blaupausen-Rathäuser in die dichtesten Wohngebiete, Häuser im Kreis verdichten, Service an den Kreisrand; alte Blöcke außen stehen lassen</li>
-<li><b>Immer:</b> pflastern sobald bezahlbar · Kirche zweimal pro Kreis (56 reicht nicht herum) · Feuerwehr/Polizei/Krankenhaus einmal (71 reicht) · Wohnen & Industrie trennen · Küste frei außer Kontor/Werft/Ölhafen/Lager</li>
-</ul>
-<h3>Alternativen aus Wiki & Community</h3>
-<table><thead><tr><th>Layout</th><th>Zahlen</th><th>Für wen</th></tr></thead><tbody>
-<tr><td>2×3-Raster um Marktplatz</td><td>Wiki-Konsolenstadt 110 Häuser, 50 % Effizienz</td><td><b>dein Start</b></td></tr>
-<tr><td>Rathaus-Kreise</td><td>Radius 20; Community-Bestwert 124 Häuser/Rathaus; Wiki-Investoren-Grid 61 % Effizienz</td><td>ab Ingenieuren</td></tr>
-<tr><td>10×10-Stadtblock</td><td>offizieller Wiki-Guide; ein Marktplatz an Pflaster deckt 2 Distrikte</td><td>Durchplaner</td></tr>
-<tr><td>Kompakt-Modul 80 Häuser</td><td>36×36, 67 % Effizienz</td><td>Produktionsinseln</td></tr>
-<tr><td>organisch/versetzt</td><td>T-Kreuzungen, echte Stadt-Optik</td><td>Deko-Insel</td></tr>
-</tbody></table>
+</tbody></table></div>
+<p>Das Rathaus ist 4×4 Kacheln groß und hat einen festen Radius von 20. Rathaus-Radien verschiedener Rathäuser überlappen nicht. Items, Handelskammer und Hafenamt können abweichende Reichweiten haben.</p>
+</div>
+</details>
+<p><span class="kbd">C</span> kopieren · <span class="kbd">S</span> Straße · <span class="kbd">U</span> Upgrade · <span class="kbd">STRG+Q</span> Statistik (STRG+Klick auf Insel = inselübergreifend) · <span class="kbd">STRG+UMSCHALT+R</span> Ego-Stadtrundfahrt</p>
 </section>
-<section id="video"><h2><span class="n">6</span>Video-Check: BauPilot (1800) & Waschberik (117)</h2>
+<section id="video"><h2><span class="n">5</span>Video-Check: BauPilot (1800) & Waschberik (117)</h2>
 <h3>BauPilot – „Perfektes 10×10 Layout" (Anno 1800)</h3>
 <p>Im Kern der offizielle Wiki-10×10-Guide als Video: kopierbare 10×10-Straßenfelder, Blockvarianten pro Stufe, Deko-Lücken, und eine Variante, bei der die Mittelreihe zur <b>Zugtrasse durch die fertige Stadt</b> wird. Dazu setzt er das Rathaus in eine freie Blockmitte – unabhängige Bestätigung unseres Rathaus-Kurses. Kritik: „maximale Effizienz" ist übertrieben (Deko-Lücken drücken die Dichte Richtung 50 %), Pflasterstraßen erwähnt er nicht, und ein Rathaus pro Blockmitte geht nicht (Radien überlappen nie → eins pro ~3×3 Blockgruppe).</p>
 <h3>Waschberik – „City Layout alle Stufen" (Anno 117: Pax Romana)</h3>
 <p>3×3-Häuserblöcke → 4×4-Superblöcke, dazwischen <b>eine Kachel Luft</b>: durch diese Luft läuft später das Aquädukt (ab Equites, Quelle im Bergslot, fließt nur bergab, Zisternen geben Gesundheit + Brandschutz und brauchen Straße). In die anderen Lücken setzt er Produktionsgebäude mit <b>Bereichseffekten</b> (Spinnerei, Pileusfilzer) – in 117 ist Stadt-Produktion Meta, nicht Fehler. Faustregel: ein Marktplatz ≈ halber Superblock; Pflaster & Forschung verlängern die Radien. Achtung: Bereichseffekte haben zwei Gesichter (Bäckerei +3 Einkommen aber +2 Brandrisiko; Holzkohlebrenner = Gesundheits-Desaster), und die Aquäduktquelle hat nur ~100 Wasser, das Farmen mittrinken.</p>
 <div class="box blue">Aus den Videos lässt sich das allgemeine Prinzip modularer Stadtviertel und freigehaltener Infrastruktur-Korridore mitnehmen. Die Pläne hier sind aber eigens gezeichnete Skizzen – keine nachgebauten YouTube-Layouts und keine Screenshots. Der Waschberik-Verweis bezieht sich auf <i>Anno 117</i>; dessen Raster ist eine Anregung fürs Freihalten von Trassen, nicht dieselbe Spielmechanik wie in Anno 1800.</div>
 </section>
-<section id="ketten"><h2><span class="n">7</span>Produktionsketten – platzsparende Module</h2>
-<p class="lead">Jede Kette ist ein überschaubares Modul: ein Grundverhältnis, Felder als zusammenhängender Block und genug Platz für Straßen und Warenwege. Die Zahlen starten bei 100 % Produktivität. Sie sind bequeme Richtwerte, keine Hausordnung für deine Insel.</p>
+<section id="grafikatlas"><h2><span class="n">6</span>Grafik-Atlas · Stadt- und Produktionslayouts</h2>
+<p class="lead">Die Bildsammlung ist nach Stadt- und Produktionsgrafiken sortiert. Öffne einen Bereich, suche nach Region, Ware oder Layout und klicke ein Bild für die Originalgröße an.</p>
+<p class="source-note">Vollständiges Grafikpaket: alle 117 Stadtbilder und 250 Produktionsbilder, einschließlich Gebäude-, Waren- und Arbeitskräfte-Icons, Übersichten und Layoutplänen. Die Galerien lassen sich nach Spielregion und Bildtyp filtern; Bildtitel und Filter sind auf Deutsch. Bereits in die Originalgrafiken eingebettete Beschriftungen bleiben in ihrer Originalsprache.</p>
+<details class="asset-atlas" id="atlas-stadt" data-atlas="city" data-directory="img/city-layouts/">
+<summary>Stadtgrafiken aus allen Regionen <span class="atlas-count">117 Bilder</span></summary>
+<div class="atlas-content">
+<p class="atlas-intro">Alle 117 Originalbilder aus dem Stadtgrafikpaket: Stadt- und Inselpläne, Gebäude- und Bewohner-Icons sowie Übersichten. Nach Spielregion und Bildtyp sortiert. Quelle: <a href="https://anno1800.fandom.com/wiki/City_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · City layouts</a>.</p>
+<div class="atlas-controls"><label for="atlas-city-world">Welt / Region<select id="atlas-city-world" data-filter="region"><option value="">Alle Welten / Regionen</option></select></label><label for="atlas-city-kind">Bildtyp<select id="atlas-city-kind" data-filter="kind"><option value="">Alle Bildtypen</option></select></label><label for="atlas-city-search">Bilder durchsuchen<input id="atlas-city-search" type="search" placeholder="z. B. Investoren, Rathaus oder Arktis"></label><p class="atlas-status" role="status" aria-live="polite">Bilder werden vorbereitet …</p></div>
+<div class="atlas-grid"></div><p class="atlas-empty" hidden>Keine passenden Bilder gefunden.</p>
+</div>
+</details>
+<details class="asset-atlas" id="atlas-produktion" data-atlas="production" data-directory="img/production-layouts/">
+<summary>Produktionsgrafiken aus allen Regionen <span class="atlas-count">250 Bilder</span></summary>
+<div class="atlas-content">
+<p class="atlas-intro">Alle 250 Originalbilder aus dem Produktionsgrafikpaket: Produktionslayouts, Kettenübersichten sowie Gebäude-, Waren- und Arbeitskräfte-Icons. Nach Spielregion und Bildtyp sortiert. Quelle: <a href="https://anno1800.fandom.com/wiki/Production_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · Production layouts</a>.</p>
+<details class="productivity-reference" open>
+<summary>Produktionsleistung bei 100 % · wichtige Grundgebäude</summary>
+<div>
+<p>Die ausgewählten Grundwerte gelten für ein einzelnes Gebäude ohne Items, Strom, Traktor- oder andere Produktivitätsboni. Bei einem Gut je Zyklus gilt: <b>t/min = 60 ÷ Zykluszeit in Sekunden × Produktivität ÷ 100</b>. Originalpläne können durch Items, DLC-Module, Felder und Arbeitsbedingungen abweichen; bildspezifische Prozentzahlen werden nur übernommen, wenn sie in der Bildbeschriftung eindeutig belegt sind.</p>
+<div class="table-scroll"><table class="productivity-table">
+<thead><tr><th>Gebäude / Gut</th><th>Grundzyklus</th><th>Ausstoß bei 100 %</th><th>Voraussetzung / Hinweis</th></tr></thead>
+<tbody>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Lumberjack%27s_Hut?action=render" target="_blank" rel="noopener noreferrer">Holzfällerhütte · Holz</a></td><td>15 s</td><td><b>4 t/min</b></td><td>Grundrate; Waldstand beeinflusst den Start</td></tr>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Sawmill?action=render" target="_blank" rel="noopener noreferrer">Sägewerk · Bretter</a></td><td>15 s</td><td><b>4 t/min</b></td><td>Verarbeitet 1 t Holz je Zyklus</td></tr>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Fishery?action=render" target="_blank" rel="noopener noreferrer">Fischerei · Fisch</a></td><td>30 s</td><td><b>2 t/min</b></td><td>Küste; Straßenverbindung zum Lager/Kontor</td></tr>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Potato_Farm?action=render" target="_blank" rel="noopener noreferrer">Kartoffelhof · Kartoffeln</a></td><td>30 s</td><td><b>2 t/min</b></td><td>72 Kartoffelfelder für 100 %</td></tr>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Schnapps_Distillery?action=render" target="_blank" rel="noopener noreferrer">Schnapsbrennerei · Schnaps</a></td><td>30 s</td><td><b>2 t/min</b></td><td>Verarbeitet 1 t Kartoffeln je Zyklus</td></tr>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Sheep_Farm?action=render" target="_blank" rel="noopener noreferrer">Schaffarm · Wolle</a></td><td>30 s</td><td><b>2 t/min</b></td><td>3 Schafweiden (je 3×3) für 100 %</td></tr>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Grain_Farm?action=render" target="_blank" rel="noopener noreferrer">Getreidehof · Getreide</a></td><td>60 s</td><td><b>1 t/min</b></td><td>144 Getreidefelder für 100 %</td></tr>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Bakery?action=render" target="_blank" rel="noopener noreferrer">Bäckerei · Brot</a></td><td>60 s</td><td><b>1 t/min</b></td><td>Verarbeitet 1 t Mehl je Zyklus</td></tr>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Clay_Pit?action=render" target="_blank" rel="noopener noreferrer">Lehmgrube · Lehm</a></td><td>30 s</td><td><b>2 t/min</b></td><td>Benötigt Lehmvorkommen</td></tr>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Brick_Factory?action=render" target="_blank" rel="noopener noreferrer">Ziegelei · Ziegel</a></td><td>60 s</td><td><b>1 t/min</b></td><td>Verarbeitet 1 t Lehm je Zyklus</td></tr>
+<tr><td><a href="https://anno1800.fandom.com/wiki/Cannery?action=render" target="_blank" rel="noopener noreferrer">Konservenfabrik · Konserven</a></td><td>90 s</td><td><b>0,67 t/min</b></td><td>Gerundeter Wert; benötigt Gulasch und Eisen</td></tr>
+</tbody></table></div>
+<p class="small-note">Die Prozentangaben in den Originalgrafiken bleiben in der Bildbeschriftung sichtbar. Wo keine layoutbezogene Prozentzahl belegt ist, zeigt diese Tabelle den Vergleichswert eines einzelnen Gebäudes bei 100 %, nicht den Gesamtausstoß des abgebildeten Inselplans. Community-Wiki-Daten, geprüft am 20.10.2026; die Produktivität im Gebäude-Menü und die Statistik im Spiel sind für deinen Spielstand maßgeblich.</p>
+</div>
+</details>
+<div class="atlas-controls"><label for="atlas-production-world">Welt / Region<select id="atlas-production-world" data-filter="region"><option value="">Alle Welten / Regionen</option></select></label><label for="atlas-production-kind">Bildtyp<select id="atlas-production-kind" data-filter="kind"><option value="">Alle Bildtypen</option></select></label><label for="atlas-production-search">Bilder durchsuchen<input id="atlas-production-search" type="search" placeholder="z. B. Brot, Stahl, Icon oder Farm"></label><p class="atlas-status" role="status" aria-live="polite">Bilder werden vorbereitet …</p></div>
+<div class="atlas-grid"></div><p class="atlas-empty" hidden>Keine passenden Bilder gefunden.</p>
+</div>
+</details>
+</section>
+
+<section id="spät"><h2><span class="n">8</span>Late Game & Crown Falls</h2>
+<ul>
+<li><b>Crown Falls</b> (Gesunkene Schätze, Region Kap Trelawney, frei ab 700 Handwerkern via Expeditions-Quest – Kampagne UND Sandbox): größte Insel der Anno-Geschichte, &gt;100.000 Kacheln, 103 Einfluss zum Besiedeln, Platz für 50.000+ Einwohner, <b>keine Piratenangriffe</b> in der Region. Nicht jede Fruchtbarkeit vorhanden → Outposts bleiben sinnvoll</li>
+<li>Dort kettest du unsere Rathaus-Kreise einfach aneinander: <b>Mindestabstand 41 Kacheln</b> zwischen Rathäusern, gleiches Muster wiederholen – die Stadtbilder im Grafik-Atlas sind eine mögliche Blaupause</li>
+<li>Story-Bonus: die Königin will ihre Hauptstadt auf Crown Falls; Alter Nate & Tauchglocke gibt's direkt nach der Besiedlung</li>
+<li>Schienen & Öl: Ölhafen + Tankhof + Schienenkorridor spätestens jetzt; Charter-Schiffe für alles, was pendelt</li>
+</ul>
+</section>
+<section id="quellen"><h2><span class="n">9</span>Quellen</h2>
+<h3>Mechanik-Check für diesen Guide</h3>
+<p class="source-note">Gegenrecherche am 20.10.2026. Die Anno-1800-Community-Wiki ist eine praktische Referenz, aber nicht offiziell; wenn Werte im Spiel abweichen, gelten Tooltip, Statistik und die Anzeige im Spiel.</p>
+<nav class="source-links" aria-label="Nachgeprüfte Anno-1800-Mechaniken">
+<a href="https://anno1800.fandom.com/wiki/Roads?action=render" target="_blank" rel="noopener noreferrer">Straßen & Anschlüsse</a>
+<a href="https://anno1800.fandom.com/wiki/Warehouse?action=render" target="_blank" rel="noopener noreferrer">Lagerhäuser & Karren</a>
+<a href="https://anno1800.fandom.com/wiki/Trading_Post?action=render" target="_blank" rel="noopener noreferrer">Kontor</a>
+<a href="https://anno1800.fandom.com/wiki/Production_buildings?action=render" target="_blank" rel="noopener noreferrer">Produktionsgebäude</a>
+<a href="https://anno1800.fandom.com/wiki/Grain_Farm?action=render" target="_blank" rel="noopener noreferrer">Getreidehof & Brot</a>
+<a href="https://anno1800.fandom.com/wiki/Production_chains?action=render" target="_blank" rel="noopener noreferrer">Produktionsketten & Ratios</a>
+<a href="https://anno1800.fandom.com/wiki/Public_buildings?action=render" target="_blank" rel="noopener noreferrer">Öffentliche Gebäude</a>
+<a href="https://anno1800.fandom.com/wiki/Town_Hall?action=render" target="_blank" rel="noopener noreferrer">Rathaus</a>
+</nav>
+<ul style="font-size:.88rem">
+<li><a href="https://anno1800.fandom.com/wiki/Production?action=render">Anno 1800 Wiki: Production</a> – Grundraten, Zyklus-Rechnung, Warenfluss und die Produktionsübersicht.</li>
+<li><a href="https://anno1800.fandom.com/wiki/Production_chains?action=render">Anno 1800 Wiki: Production chains</a>, <a href="https://anno1800.fandom.com/wiki/Clay_Pit?action=render">Clay Pit</a> und <a href="https://anno1800.fandom.com/wiki/Brick_Factory?action=render">Brick Factory</a> – Gegencheck für Produktionszyklen: eine Lehmgrube macht 2 t/min, eine Ziegelei 1 t/min; daher passt die 1:2-Ratio.</li>
+<li><a href="https://anno1800.fandom.com/wiki/Cattle_Farm?action=render">Cattle Farm</a>, <a href="https://anno1800.fandom.com/wiki/Artisanal_Kitchen?action=render">Artisanal Kitchen</a> und <a href="https://anno1800.fandom.com/wiki/Cannery?action=render">Cannery</a> – Gebäude, Weide-Module und Verarbeitungsschritte der Konservenkette.</li>
+<li><a href="https://anno1800.fandom.com/wiki/Statistics?action=render">Anno 1800 Wiki: Statistics</a> – warum die Produktionsübersicht im Spiel der beste Check für deine tatsächlichen Insel-Raten ist.</li>
+<li>Anno-1800-Wiki (fandom): Town Hall · Public buildings · Marketplace/Church/University/Fire Station/Police · City_layouts · Guide: 10×10 city blocks · Production chains · Production · Production layouts · Sunken Treasures DLC · Cape Trelawney · Diving · Favourite map seeds</li>
+<li>anno1800wiki.fandom.de: Produktionslayout · Gebäude · Produktionsgebäude · Tauschverhältnisse</li>
+<li>annoinfo.de: DLC-Liste · NPC-Charaktere · Gebäude · Warenübersicht</li>
+<li>schwubbe.de/prod_ketten_alle.php – deutsche Ketten-Übersicht (Zyklen, Größen, Felder)</li>
+<li>Reddit r/anno & r/anno1800: i6qgm4 (Rathaus-Zentrum), pasjv8 (124 Häuser/Rathaus), v3c0uh (2×3 auf hoher Schwierigkeit), my1bqr, 197v0tu, pp0arw (10×10), 1lapwdf, qbhnu3 (Startinseln), cyykcd (Fruchtbarkeits-Priorität), 1dnd0ri (Beginner-Seeds), 1452lbo (975), rb3r1v (Seed-Alterung), alwbhd & mozlur & 186dm38 (Ratio-Mathematik), 1lmjni9, 1f994nj, 13wy368 (Farm-Module), 1pxask4 (117 Produktion in der Stadt), otdkeu, gzol3c, kby2cr, bih4ay, 121212/69420</li>
+<li>GameStar: Anno-1800-Layout-Guide & Gesunkene-Schätze-Guide & beste Baupläne Produktionsketten · pcgames.de: Produktionsketten-Überblick & Stahlträger/Waffen · pcgamesn: steel beams & weapons · chillplacegaming: First-Island-Guide (Ketten-Tabellen) · gamestar.de 117 Layout-Guide (Bereichseffekte) · gamesradar & polygon & gamerant & ign: 117 City-Layout-Tipps · netzpiloten: 117-Tipps & DLC-XXL-Test · spieletipps: Felderweiterungen · giga.de: Rieseninsel-DLC · anno-union.com: DevBlog Sunken Treasures</li>
+<li>YouTube: BauPilot „Anno 1800 Stadtlayout Guide – Perfektes 10×10 Layout" (2025) · Waschberik „CITY LAYOUT (ALL LEVELS) SIMPLE & EFFICIENT – Anno 117: Pax Romana" (2025)</li>
+<li>Steam Community & Ubisoft Forums: Seed-Threads, Aquädukt-Diskussionen, Charter-Schiffe</li>
+</ul>
+<h3>Links zu den Layout-Grafiken</h3>
+<p>Die fünf Grafiken aus dem separaten Paket stecken jetzt direkt in diesem Guide. Hier findest du die Original-Referenzen zu den Layout-Ideen:</p>
+<ul style="font-size:.88rem">
+<li><b>Waschberik auf YouTube:</b> <a href="https://www.youtube.com/@waschberik" target="_blank" rel="noopener noreferrer">Kanal</a> · <a href="https://youtu.be/BbVNA8nOdk0" target="_blank" rel="noopener noreferrer">Layout-Video</a> – Rechteck-Module, stapelbare Produktionsketten und Lücken zum späteren Erweitern. Das Video ist zu Anno 117; übernommen wird hier nur das Bauprinzip, nicht die Spielmechanik.</li>
+<li><b>BauPilot – 10×10-Stadtraster für Anno 1800:</b> <a href="https://www.youtube.com/watch?v=jyPdKkTw3kI" target="_blank" rel="noopener noreferrer">Video ansehen</a>.</li>
+<li><b>Anno Companion:</b> <a href="https://anno-companion.com/117/layouts/" target="_blank" rel="noopener noreferrer">Layout-Sammlung für Anno 117</a> – ergänzende Inspiration für modulare Bauweisen.</li>
+<li><b>Reddit – Tipps für schönes Bauen:</b> <a href="https://www.reddit.com/r/anno/comments/zplphn/tips_for_beauty_building/" target="_blank" rel="noopener noreferrer">Diskussion zu 10×10-Blöcken, Lücken und späteren Erweiterungen</a>.</li>
+<li><b>Anno-1800-Wiki zu Reichweiten:</b> <a href="https://anno1800.fandom.com/wiki/Town_Hall" target="_blank" rel="noopener noreferrer">Town Hall</a> · <a href="https://anno1800.fandom.com/wiki/Public_buildings" target="_blank" rel="noopener noreferrer">Public Buildings</a>.</li>
+</ul>
+<p class="small-note">Direkt zu den Sammlungen in diesem Guide: <a href="#atlas-stadt">Stadtbilder</a> · <a href="#ketten">Produktionsketten</a> · <a href="#package-bread">Brot</a> · <a href="#package-beer">Bier</a> · <a href="#package-resources">Ziegel & Stahl</a> · <a href="#grafikatlas">alle 367 Originalbilder im Grafik-Atlas</a>. Die lokalen Bilder funktionieren offline, wenn die Ordner <code>img/</code> und <code>grafiken/</code> neben der HTML-Datei bleiben; externe Videos, Wiki-Seiten und Diskussionen benötigen Internet.</p>
+<p class="foot">Gebaut für entspanntes Bauen: kein Min-Maxing, keine Highscore-Jagd – aber mit Zahlen, wenn du sie brauchst.<br>
+Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/</code> speichern; dann lässt sich der Grafik-Atlas auch offline verwenden.</p>
+</section>
+<details class="chain-reference" id="ketten">
+<summary><span class="chain-reference-number">7</span><span class="chain-reference-title"><strong>Kettenverhältnisse</strong><small>Nachschlagen statt durch lange Baupläne scrollen</small></span><span class="chain-reference-count">19 Grundketten</span></summary>
+<div class="chain-reference-content">
+<p class="lead">Hier stehen die Grundverhältnisse der wichtigsten Ketten auf einen Blick. Die Angaben gelten als Richtwert bei 100 % Produktivität; Boni, DLCs und Inselbedingungen können sie verändern. Öffne bei Bedarf darunter die vollständigen Module und Skizzen.</p>
+<div class="ratio-tools"><label for="ratio-search">Kette finden</label><input id="ratio-search" type="search" placeholder="z. B. Schnaps, Brot oder Hopfen"><span id="ratio-count" role="status" aria-live="polite"></span></div>
+<div class="table-scroll"><table class="ratio-table"><thead><tr><th>Ware / Kette</th><th>Stufe</th><th>Grundverhältnis</th><th>Hinweis / Richtwert</th></tr></thead><tbody>
+<tr><td><a href="#k-holz">Bretter</a></td><td>Basis</td><td><strong>1 Holzfällerhütte : 1 Sägewerk</strong></td><td>Ausstoß: 4 Bretter/min</td></tr>
+<tr><td><a href="#k-fisch">Fische</a></td><td>Bauern</td><td><strong>1 Fischerei (Küste!)</strong></td><td>Ausstoß: 2 Fische/min · ~800 Bauern</td></tr>
+<tr><td><a href="#k-kleidung">Arbeitskleidung</a></td><td>Bauern</td><td><strong>1 Schaffarm : 1 Rahmenstrickerei</strong></td><td>Ausstoß: 2 Kleidung/min · ~650 Bauern</td></tr>
+<tr><td><a href="#k-schnaps">Schnaps</a></td><td>Bauern</td><td><strong>1 Kartoffelhof : 1 Schnapsbrennerei</strong></td><td>Ausstoß: 2 Schnaps/min · ~600 Bauern</td></tr>
+<tr><td><a href="#k-ziegel">Ziegel</a></td><td>Basis</td><td><strong>1 Lehmgrube : 2 Ziegeleien ⚠️</strong></td><td>Ausstoß: 2 Ziegel/min</td></tr>
+<tr><td><a href="#k-brot">Brot</a></td><td>Arbeiter</td><td><strong>2 Getreidefarmen : 1 Mühle : 2 Bäckereien</strong></td><td>Ausstoß: 2 Brot/min · ~2200 Arbeiter</td></tr>
+<tr><td><a href="#k-wurst">Wurst</a></td><td>Arbeiter</td><td><strong>1 Schweinefarm : 1 Schlachthaus</strong></td><td>Ausstoß: 1 Wurst/min · ~1000 Arbeiter</td></tr>
+<tr><td><a href="#k-seife">Seife</a></td><td>Arbeiter</td><td><strong>2 Schweinefarmen : 2 Talgsiedereien : 1 Seifenfabrik</strong></td><td>Ausstoß: 2 Seife/min</td></tr>
+<tr><td><a href="#k-bier">Bier</a></td><td>Arbeiter</td><td><strong>2 Getreide + 3 Hopfen : 1 Mälzerei : 2 Brauereien</strong></td><td>Ausstoß: 2 Bier/min · ~2600 Arbeiter</td></tr>
+<tr><td><a href="#k-stahl">Stahl, Stahlträger & Waffen</a></td><td>Basis/Handwerker</td><td><strong>1 Eisenmine + 1 Kohlemine : 2 Hochöfen : 3 Stahlwerke (Träger) bzw. 6 Waffenfabriken</strong></td><td>Ausstoß: Träger/Waffen</td></tr>
+<tr><td><a href="#k-glas">Glas, Fenster & Brillen</a></td><td>Handwerker</td><td><strong>1 Quarzsteinbruch : 1 Glasbläserei : 1 Fenstermacher / 1 Brillenfabrik</strong></td><td>Ausstoß: Glas → Fenster/Brillen</td></tr>
+<tr><td><a href="#k-dosen">Fleischkonserven</a></td><td>Neue Welt/Handwerker</td><td><strong>4 Rinderfarmen + 4 Paprikafarmen : 4 Goulash-Küchen : 3 Konservenfabriken</strong></td><td>Ausstoß: Konserven</td></tr>
+<tr><td><a href="#k-kaffee">Kaffee</a></td><td>Handwerker</td><td><strong>2 Kaffeeplantagen (NW) : 1 Rösterei (AW)</strong></td><td>Ausstoß: Kaffee</td></tr>
+<tr><td><a href="#k-rum">Rum</a></td><td>NW Arbeiter</td><td><strong>1 Zuckerrohrplantage : 1 Rumbrennerei</strong></td><td>Ausstoß: Rum</td></tr>
+<tr><td><a href="#k-tortillas">Tortillas</a></td><td>NW Arbeiter</td><td><strong>2 Maisplantagen : 1 Tortilla-Bäckerei</strong></td><td>Ausstoß: Tortillas</td></tr>
+<tr><td><a href="#k-ponchos">Ponchos & Baumwollstoff</a></td><td>NW</td><td><strong>1 Baumwollplantage : 1 Weberei : 1 Ponchodarberei</strong></td><td>Ausstoß: Stoff/Ponchos</td></tr>
+<tr><td><a href="#k-schoko">Schokolade & Zigarren</a></td><td>NW Handwerker</td><td><strong>1 Kakao + 1 Zucker : 1 Schokoladenfabrik</strong></td><td>1 Tabak : 1 Zigarrenfabrik · Luxusgüter der Neuen Welt</td></tr>
+<tr><td><a href="#k-sekt">Sekt/Champagner</a></td><td>Investoren</td><td><strong>1 Weinberg : 1 Sektkellerei</strong></td><td>Ausstoß: Sekt</td></tr>
+<tr><td><a href="#k-uhren">Taschenuhren & Glühbirnen</a></td><td>Investoren</td><td><strong>1 Goldmine : 1 Goldschmied : 1 Uhrmacherei</strong></td><td>Glühbirnen: Glas + Filamente · Output: Investoren-Luxus</td></tr>
+</tbody></table></div>
+<details class="chain-details" id="ketten-module">
+<summary>Ausführliche Kettenmodule, Tipps und Kachel-Skizzen anzeigen</summary>
+<div class="chain-details-content">
+<section id="ketten-details">
+<h2>Ausführliche Module, Tipps und Kachel-Skizzen</h2>
 <p class="atlas-links"><a href="#atlas-produktion">Alle 250 Produktionsbilder im Grafik-Atlas ansehen</a></p>
 <div class="fact-note"><strong>Logistik-Merker:</strong> Der Kontor sammelt Waren nicht magisch auf der ganzen Insel ein. Produktionsgebäude müssen ans Straßennetz angeschlossen sein; Lagerhäuser verbinden Gebäude mit dem Kontor und dienen als Umschlagplatz. Karrenreichweite und Straßenverbindung entscheiden, ob Zwischenprodukte ankommen. <a href="https://anno1800.fandom.com/wiki/Roads?action=render" target="_blank" rel="noopener noreferrer">Straßen</a> · <a href="https://anno1800.fandom.com/wiki/Warehouse?action=render" target="_blank" rel="noopener noreferrer">Lagerhäuser</a>.</div>
 <div class="box"><b>So rechnest du selbst:</b> Vergleiche die Zykluszeiten im Baumenü. Ein Getreidehof braucht 1:00, eine Mühle 0:30 und eine Bäckerei 1:00: Für denselben Durchsatz brauchst du darum 2 Höfe : 1 Mühle : 2 Bäckereien. Das ist die Grundratio ohne Boni. Wenn du weniger Brot brauchst, bau einfach weniger davon – und schau bei Engpässen in die Produktionsübersicht (<code>STRG+Q</code>), statt dich mit der perfekten Zahl zu stressen.</div>
@@ -528,74 +673,10 @@ td b,th{letter-spacing:.01em}
 <li><b>Bewusst nicht dabei:</b> Enbesa-, High-Life- & Touristen-Ketten (Land der Löwen, Dächer der Stadt, Reisezeit sind aus). Wenn du ein DLC später doch aktivierst, gelten dieselben Modul-Regeln: Ratio aus Zyklen, Felder als Block, Fabrik an die Farm.</li>
 </ul>
 </section>
-<section id="spät"><h2><span class="n">8</span>Late Game & Crown Falls</h2>
-<ul>
-<li><b>Crown Falls</b> (Gesunkene Schätze, Region Kap Trelawney, frei ab 700 Handwerkern via Expeditions-Quest – Kampagne UND Sandbox): größte Insel der Anno-Geschichte, &gt;100.000 Kacheln, 103 Einfluss zum Besiedeln, Platz für 50.000+ Einwohner, <b>keine Piratenangriffe</b> in der Region. Nicht jede Fruchtbarkeit vorhanden → Outposts bleiben sinnvoll</li>
-<li>Dort kettest du unsere Rathaus-Kreise einfach aneinander: <b>Mindestabstand 41 Kacheln</b> zwischen Rathäusern, gleiches Muster wiederholen – die Gesamtgrafik aus Kapitel 5 ist die Blaupause</li>
-<li>Story-Bonus: die Königin will ihre Hauptstadt auf Crown Falls; Alter Nate & Tauchglocke gibt's direkt nach der Besiedlung</li>
-<li>Schienen & Öl: Ölhafen + Tankhof + Schienenkorridor spätestens jetzt; Charter-Schiffe für alles, was pendelt</li>
-</ul>
-</section>
-<section id="grafikatlas"><h2>Grafik-Atlas · Stadt- und Produktionslayouts</h2>
-<p class="lead">Die Sammlung ist nach Stadtplanung und Produktionsketten sortiert. Öffne einen Bereich, suche nach Region, Ware oder Layout und klicke ein Bild für die Originalgröße an.</p>
-<p class="source-note">Vollständiges Grafikpaket: alle 117 Stadtbilder und 250 Produktionsbilder, einschließlich Gebäude-, Waren- und Arbeitskräfte-Icons, Übersichten und Layoutplänen. Die Galerien lassen sich nach Spielregion und Bildtyp filtern; Bildtitel und Filter sind auf Deutsch. Bereits in die Originalgrafiken eingebettete Beschriftungen bleiben in ihrer Originalsprache.</p>
-<details class="asset-atlas" id="atlas-stadt" data-atlas="city" data-directory="img/city-layouts/">
-<summary>Stadtgrafiken aus allen Regionen <span class="atlas-count">117 Bilder</span></summary>
-<div class="atlas-content">
-<p class="atlas-intro">Alle 117 Originalbilder aus dem Stadtgrafikpaket: Stadt- und Inselpläne, Gebäude- und Bewohner-Icons sowie Übersichten. Nach Spielregion und Bildtyp sortiert. Quelle: <a href="https://anno1800.fandom.com/wiki/City_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · City layouts</a>.</p>
-<div class="atlas-controls"><label for="atlas-city-world">Welt / Region<select id="atlas-city-world" data-filter="region"><option value="">Alle Welten / Regionen</option></select></label><label for="atlas-city-kind">Bildtyp<select id="atlas-city-kind" data-filter="kind"><option value="">Alle Bildtypen</option></select></label><label for="atlas-city-search">Bilder durchsuchen<input id="atlas-city-search" type="search" placeholder="z. B. Investoren, Rathaus oder Arktis"></label><p class="atlas-status" role="status" aria-live="polite">Bilder werden vorbereitet …</p></div>
-<div class="atlas-grid"></div><p class="atlas-empty" hidden>Keine passenden Bilder gefunden.</p>
 </div>
 </details>
-<details class="asset-atlas" id="atlas-produktion" data-atlas="production" data-directory="img/production-layouts/">
-<summary>Produktionsgrafiken aus allen Regionen <span class="atlas-count">250 Bilder</span></summary>
-<div class="atlas-content">
-<p class="atlas-intro">Alle 250 Originalbilder aus dem Produktionsgrafikpaket: Produktionslayouts, Kettenübersichten sowie Gebäude-, Waren- und Arbeitskräfte-Icons. Nach Spielregion und Bildtyp sortiert. Quelle: <a href="https://anno1800.fandom.com/wiki/Production_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · Production layouts</a>.</p>
-<div class="atlas-controls"><label for="atlas-production-world">Welt / Region<select id="atlas-production-world" data-filter="region"><option value="">Alle Welten / Regionen</option></select></label><label for="atlas-production-kind">Bildtyp<select id="atlas-production-kind" data-filter="kind"><option value="">Alle Bildtypen</option></select></label><label for="atlas-production-search">Bilder durchsuchen<input id="atlas-production-search" type="search" placeholder="z. B. Brot, Stahl, Icon oder Farm"></label><p class="atlas-status" role="status" aria-live="polite">Bilder werden vorbereitet …</p></div>
-<div class="atlas-grid"></div><p class="atlas-empty" hidden>Keine passenden Bilder gefunden.</p>
 </div>
 </details>
-</section>
-<section id="quellen"><h2><span class="n">9</span>Quellen</h2>
-<h3>Mechanik-Check für diesen Guide</h3>
-<p class="source-note">Gegenrecherche am 20.10.2026. Die Anno-1800-Community-Wiki ist eine praktische Referenz, aber nicht offiziell; wenn Werte im Spiel abweichen, gelten Tooltip, Statistik und die Anzeige im Spiel.</p>
-<nav class="source-links" aria-label="Nachgeprüfte Anno-1800-Mechaniken">
-<a href="https://anno1800.fandom.com/wiki/Roads?action=render" target="_blank" rel="noopener noreferrer">Straßen & Anschlüsse</a>
-<a href="https://anno1800.fandom.com/wiki/Warehouse?action=render" target="_blank" rel="noopener noreferrer">Lagerhäuser & Karren</a>
-<a href="https://anno1800.fandom.com/wiki/Trading_Post?action=render" target="_blank" rel="noopener noreferrer">Kontor</a>
-<a href="https://anno1800.fandom.com/wiki/Production_buildings?action=render" target="_blank" rel="noopener noreferrer">Produktionsgebäude</a>
-<a href="https://anno1800.fandom.com/wiki/Grain_Farm?action=render" target="_blank" rel="noopener noreferrer">Getreidehof & Brot</a>
-<a href="https://anno1800.fandom.com/wiki/Production_chains?action=render" target="_blank" rel="noopener noreferrer">Produktionsketten & Ratios</a>
-<a href="https://anno1800.fandom.com/wiki/Public_buildings?action=render" target="_blank" rel="noopener noreferrer">Öffentliche Gebäude</a>
-<a href="https://anno1800.fandom.com/wiki/Town_Hall?action=render" target="_blank" rel="noopener noreferrer">Rathaus</a>
-</nav>
-<ul style="font-size:.88rem">
-<li><a href="https://anno1800.fandom.com/wiki/Production?action=render">Anno 1800 Wiki: Production</a> – Grundraten, Zyklus-Rechnung, Warenfluss und die Produktionsübersicht.</li>
-<li><a href="https://anno1800.fandom.com/wiki/Production_chains?action=render">Anno 1800 Wiki: Production chains</a>, <a href="https://anno1800.fandom.com/wiki/Clay_Pit?action=render">Clay Pit</a> und <a href="https://anno1800.fandom.com/wiki/Brick_Factory?action=render">Brick Factory</a> – Gegencheck für Produktionszyklen: eine Lehmgrube macht 2 t/min, eine Ziegelei 1 t/min; daher passt die 1:2-Ratio.</li>
-<li><a href="https://anno1800.fandom.com/wiki/Cattle_Farm?action=render">Cattle Farm</a>, <a href="https://anno1800.fandom.com/wiki/Artisanal_Kitchen?action=render">Artisanal Kitchen</a> und <a href="https://anno1800.fandom.com/wiki/Cannery?action=render">Cannery</a> – Gebäude, Weide-Module und Verarbeitungsschritte der Konservenkette.</li>
-<li><a href="https://anno1800.fandom.com/wiki/Statistics?action=render">Anno 1800 Wiki: Statistics</a> – warum die Produktionsübersicht im Spiel der beste Check für deine tatsächlichen Insel-Raten ist.</li>
-<li>Anno-1800-Wiki (fandom): Town Hall · Public buildings · Marketplace/Church/University/Fire Station/Police · City_layouts · Guide: 10×10 city blocks · Production chains · Production · Production layouts · Sunken Treasures DLC · Cape Trelawney · Diving · Favourite map seeds</li>
-<li>anno1800wiki.fandom.de: Produktionslayout · Gebäude · Produktionsgebäude · Tauschverhältnisse</li>
-<li>annoinfo.de: DLC-Liste · NPC-Charaktere · Gebäude · Warenübersicht</li>
-<li>schwubbe.de/prod_ketten_alle.php – deutsche Ketten-Übersicht (Zyklen, Größen, Felder)</li>
-<li>Reddit r/anno & r/anno1800: i6qgm4 (Rathaus-Zentrum), pasjv8 (124 Häuser/Rathaus), v3c0uh (2×3 auf hoher Schwierigkeit), my1bqr, 197v0tu, pp0arw (10×10), 1lapwdf, qbhnu3 (Startinseln), cyykcd (Fruchtbarkeits-Priorität), 1dnd0ri (Beginner-Seeds), 1452lbo (975), rb3r1v (Seed-Alterung), alwbhd & mozlur & 186dm38 (Ratio-Mathematik), 1lmjni9, 1f994nj, 13wy368 (Farm-Module), 1pxask4 (117 Produktion in der Stadt), otdkeu, gzol3c, kby2cr, bih4ay, 121212/69420</li>
-<li>GameStar: Anno-1800-Layout-Guide & Gesunkene-Schätze-Guide & beste Baupläne Produktionsketten · pcgames.de: Produktionsketten-Überblick & Stahlträger/Waffen · pcgamesn: steel beams & weapons · chillplacegaming: First-Island-Guide (Ketten-Tabellen) · gamestar.de 117 Layout-Guide (Bereichseffekte) · gamesradar & polygon & gamerant & ign: 117 City-Layout-Tipps · netzpiloten: 117-Tipps & DLC-XXL-Test · spieletipps: Felderweiterungen · giga.de: Rieseninsel-DLC · anno-union.com: DevBlog Sunken Treasures</li>
-<li>YouTube: BauPilot „Anno 1800 Stadtlayout Guide – Perfektes 10×10 Layout" (2025) · Waschberik „CITY LAYOUT (ALL LEVELS) SIMPLE & EFFICIENT – Anno 117: Pax Romana" (2025)</li>
-<li>Steam Community & Ubisoft Forums: Seed-Threads, Aquädukt-Diskussionen, Charter-Schiffe</li>
-</ul>
-<h3>Links zu den Layout-Grafiken</h3>
-<p>Die fünf Grafiken aus dem separaten Paket stecken jetzt direkt in diesem Guide. Hier findest du die Original-Referenzen zu den Layout-Ideen:</p>
-<ul style="font-size:.88rem">
-<li><b>Waschberik auf YouTube:</b> <a href="https://www.youtube.com/@waschberik" target="_blank" rel="noopener noreferrer">Kanal</a> · <a href="https://youtu.be/BbVNA8nOdk0" target="_blank" rel="noopener noreferrer">Layout-Video</a> – Rechteck-Module, stapelbare Produktionsketten und Lücken zum späteren Erweitern. Das Video ist zu Anno 117; übernommen wird hier nur das Bauprinzip, nicht die Spielmechanik.</li>
-<li><b>BauPilot – 10×10-Stadtraster für Anno 1800:</b> <a href="https://www.youtube.com/watch?v=jyPdKkTw3kI" target="_blank" rel="noopener noreferrer">Video ansehen</a>.</li>
-<li><b>Anno Companion:</b> <a href="https://anno-companion.com/117/layouts/" target="_blank" rel="noopener noreferrer">Layout-Sammlung für Anno 117</a> – ergänzende Inspiration für modulare Bauweisen.</li>
-<li><b>Reddit – Tipps für schönes Bauen:</b> <a href="https://www.reddit.com/r/anno/comments/zplphn/tips_for_beauty_building/" target="_blank" rel="noopener noreferrer">Diskussion zu 10×10-Blöcken, Lücken und späteren Erweiterungen</a>.</li>
-<li><b>Anno-1800-Wiki zu Reichweiten:</b> <a href="https://anno1800.fandom.com/wiki/Town_Hall" target="_blank" rel="noopener noreferrer">Town Hall</a> · <a href="https://anno1800.fandom.com/wiki/Public_buildings" target="_blank" rel="noopener noreferrer">Public Buildings</a>.</li>
-</ul>
-<p class="small-note">Direkt zu den Sammlungen in diesem Guide: <a href="#stadt">Stadtplanung</a> · <a href="#ketten">Produktionsketten</a> · <a href="#package-bread">Brot</a> · <a href="#package-beer">Bier</a> · <a href="#package-resources">Ziegel & Stahl</a> · <a href="#grafikatlas">alle 367 Originalbilder im Grafik-Atlas</a>. Die lokalen Bilder funktionieren offline, wenn die Ordner <code>img/</code> und <code>grafiken/</code> neben der HTML-Datei bleiben; externe Videos, Wiki-Seiten und Diskussionen benötigen Internet.</p>
-<p class="foot">Gebaut für entspanntes Bauen: kein Min-Maxing, keine Highscore-Jagd – aber mit Zahlen, wenn du sie brauchst.<br>
-Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/</code> speichern; dann lässt sich der Grafik-Atlas auch offline verwenden.</p>
-</section>
 </main>
 <a class="back-top" href="#top">↑ Nach oben</a>
 <script src="grafiken/manifest.js"></script>
@@ -607,6 +688,7 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
   if (event.key === "Escape") menu.checked = false;
  });
  document.querySelectorAll("table").forEach(table => {
+  if (table.closest(".table-scroll")) return;
   const wrapper = document.createElement("div");
   wrapper.className = "table-scroll";
   wrapper.setAttribute("role", "region");
@@ -771,6 +853,60 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
  const count = document.getElementById("chain-count");
  const empty = document.getElementById("chain-empty");
  const normalize = text => text.toLocaleLowerCase("de").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+ const ratioRows = [...document.querySelectorAll(".ratio-table tbody tr")];
+ const ratioSearch = document.getElementById("ratio-search");
+ const ratioCount = document.getElementById("ratio-count");
+ function filterRatioRows() {
+  const query = normalize(ratioSearch.value.trim());
+  let visible = 0;
+  ratioRows.forEach(row => {
+   const matches = normalize(row.textContent).includes(query);
+   row.hidden = !matches;
+   if (matches) visible += 1;
+  });
+  ratioCount.textContent = `${visible} von ${ratioRows.length} Ketten`;
+ }
+ ratioSearch.addEventListener("input", filterRatioRows);
+ filterRatioRows();
+ const chainReference = document.getElementById("ketten");
+ const chainModules = document.getElementById("ketten-module");
+ function openDetailsForHash(hash) {
+  if (!hash) return;
+  let target;
+  try {
+   target = document.getElementById(decodeURIComponent(hash.slice(1)));
+  } catch {
+   return;
+  }
+  for (let details = target?.closest("details"); details; details = details.parentElement.closest("details")) {
+   details.open = true;
+  }
+ }
+ function openChainTarget(hash) {
+  if (!hash || !chainReference) return;
+  let target;
+  try {
+   target = document.getElementById(decodeURIComponent(hash.slice(1)));
+  } catch {
+   return;
+  }
+  if (!target || (target !== chainReference && !chainReference.contains(target))) return;
+  chainReference.open = true;
+  if (target === chainModules || target.closest("#ketten-module")) chainModules.open = true;
+ }
+ document.addEventListener("click", event => {
+  const link = event.target.closest('a[href^="#"]');
+  if (link) {
+   openDetailsForHash(link.hash);
+   openChainTarget(link.hash);
+  }
+ });
+ window.addEventListener("hashchange", () => {
+  openDetailsForHash(location.hash);
+  openChainTarget(location.hash);
+ });
+ openDetailsForHash(location.hash);
+ openChainTarget(location.hash);
  const links = cards.map(card => {
   const heading = card.querySelector("h4")?.textContent.trim() || card.id;
   const link = document.createElement("a");
