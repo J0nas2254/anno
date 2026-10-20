@@ -490,7 +490,7 @@ td b,th{letter-spacing:.01em}
 <details class="asset-atlas" id="atlas-stadt" data-atlas="city" data-directory="img/city-layouts/">
 <summary>Stadtgrafiken aus allen Regionen <span class="atlas-count">117 Bilder</span></summary>
 <div class="atlas-content">
-<p class="atlas-intro">Alle 117 Originalbilder aus dem Stadtgrafikpaket: Stadt- und Inselpläne, Gebäude- und Bewohner-Icons sowie Übersichten. Nach Spielregion und Bildtyp sortiert. Quelle: <a href="https://anno1800.fandom.com/wiki/City_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · City layouts</a>.</p>
+<p class="atlas-intro">Alle 117 Originalbilder aus dem Stadtgrafikpaket: Stadt- und Inselpläne, Gebäude- und Bewohner-Icons sowie Reichweitenübersichten. „Baupläne“ zeigen die Bebauung; die Reichweitenübersicht veranschaulicht die Abdeckung. Quelle: <a href="https://anno1800.fandom.com/wiki/City_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · City layouts</a>.</p>
 <div class="atlas-controls"><label for="atlas-city-world">Welt / Region<select id="atlas-city-world" data-filter="region"><option value="">Alle Welten / Regionen</option></select></label><label for="atlas-city-kind">Bildtyp<select id="atlas-city-kind" data-filter="kind"><option value="">Alle Bildtypen</option></select></label><label for="atlas-city-search">Bilder durchsuchen<input id="atlas-city-search" type="search" placeholder="z. B. Investoren, Rathaus oder Arktis"></label><p class="atlas-status" role="status" aria-live="polite">Bilder werden vorbereitet …</p></div>
 <div class="atlas-grid"></div><p class="atlas-empty" hidden>Keine passenden Bilder gefunden.</p>
 </div>
@@ -498,7 +498,7 @@ td b,th{letter-spacing:.01em}
 <details class="asset-atlas" id="atlas-produktion" data-atlas="production" data-directory="img/production-layouts/">
 <summary>Produktionsgrafiken aus allen Regionen <span class="atlas-count">250 Bilder</span></summary>
 <div class="atlas-content">
-<p class="atlas-intro">Alle 250 Originalbilder aus dem Produktionsgrafikpaket: Produktionslayouts, Kettenübersichten sowie Gebäude-, Waren- und Arbeitskräfte-Icons. Nach Spielregion und Bildtyp sortiert. Quelle: <a href="https://anno1800.fandom.com/wiki/Production_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · Production layouts</a>.</p>
+<p class="atlas-intro">Alle 250 Originalbilder aus dem Produktionsgrafikpaket: Baupläne zeigen die Standorte von Gebäuden und Feldern; Kettenübersichten zeigen die Warenfolge oder die Verhältnisse, nicht den Bauplatz. Dazu kommen Gebäude-, Waren- und Arbeitskräfte-Icons. Quelle: <a href="https://anno1800.fandom.com/wiki/Production_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · Production layouts</a>.</p>
 <details class="productivity-reference" open>
 <summary>Produktionsleistung bei 100 % · wichtige Grundgebäude</summary>
 <div>
@@ -943,9 +943,8 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
   Enbesa: "Enbesa"
  };
  const atlasKindLabels = {
-  plan: "Baupläne",
-  overview: "Übersichten",
-  icon: "Icons"
+  city: { plan: "Stadtbaupläne", overview: "Reichweitenübersicht", icon: "Icons" },
+  production: { plan: "Produktionsbaupläne", overview: "Kettenübersichten", icon: "Icons" }
  };
  document.querySelectorAll("[data-atlas-featured]").forEach(featured => {
   const images = atlasManifest?.[featured.dataset.atlasFeatured];
@@ -981,6 +980,7 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
   const kindSelect = atlas.querySelector('[data-filter="kind"]');
   const status = atlas.querySelector(".atlas-status");
   const empty = atlas.querySelector(".atlas-empty");
+  const kindLabels = atlasKindLabels[atlas.dataset.atlas] || {};
   let rendered = false;
   function populateFilter(select, images, key, labels, allLabel) {
    if (!select) return;
@@ -1004,7 +1004,7 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
     return;
    }
    populateFilter(regionSelect, images, "region", atlasRegionLabels, "Alle Welten / Regionen");
-   populateFilter(kindSelect, images, "kind", atlasKindLabels, "Alle Bildtypen");
+   populateFilter(kindSelect, images, "kind", kindLabels, "Alle Bildtypen");
    images.forEach(item => {
     const figure = document.createElement("figure");
     figure.className = "atlas-card";
@@ -1036,7 +1036,7 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
      if (item.kind) {
       const kind = document.createElement("span");
       kind.className = "atlas-badge";
-      kind.textContent = atlasKindLabels[item.kind] || item.kind;
+      kind.textContent = kindLabels[item.kind] || item.kind;
       badges.append(kind);
      }
      figure.append(badges);
