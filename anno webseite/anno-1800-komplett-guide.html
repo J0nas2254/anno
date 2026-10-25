@@ -1,5 +1,8 @@
 <!DOCTYPE html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#16202c">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <title>Anno 1800 – Dein persönlicher Spielatlas</title>
 <style>
 *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -7,19 +10,22 @@ body{margin:0;background:#efe9dc;color:#2a2118;font:16px/1.7 system-ui,-apple-sy
 header{position:sticky;top:0;z-index:50;background:#2a2118;color:#f5efe3;display:flex;align-items:center;gap:14px;padding:10px 16px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
 header .t{font-weight:800;font-size:1.05rem;letter-spacing:.3px}
 header .s{color:#c9b998;font-size:.8rem;margin-left:auto;text-align:right}
-#nav{display:none}
-.burger{cursor:pointer;width:42px;height:38px;border:1px solid #6b5c48;border-radius:8px;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 8px;background:#3a2f22}
+.burger{cursor:pointer;width:42px;height:38px;border:1px solid #6b5c48;border-radius:8px;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 8px;background:#3a2f22;flex:0 0 auto}
 .burger span{display:block;height:3px;background:#f5efe3;border-radius:2px;transition:.25s}
-#nav:checked ~ header .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
-#nav:checked ~ header .burger span:nth-child(2){opacity:0}
-#nav:checked ~ header .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+body.nav-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+body.nav-open .burger span:nth-child(2){opacity:0}
+body.nav-open .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+body.nav-open{overflow:hidden}
 .drawer{position:fixed;inset:0 auto 0 0;width:min(320px,85vw);background:#221a10;color:#f5efe3;padding:70px 18px 24px;transform:translateX(-105%);visibility:hidden;transition:transform .25s,visibility .25s;z-index:60;overflow-y:auto}
-#nav:checked ~ .drawer{transform:none;visibility:visible}
+body.nav-open .drawer{transform:none;visibility:visible}
 .drawer a{display:block;color:#e8dcc4;text-decoration:none;padding:10px 12px;border-radius:8px;font-size:.98rem}
 .drawer a:hover{background:#3a2f22;color:#ffd9a8}
 .drawer .grp{color:#9c8a6b;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin:16px 12px 6px}
-.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:.3s;z-index:55}
-#nav:checked ~ .scrim{opacity:1;pointer-events:auto}
+.drawer-home{color:#ffd9a8!important;margin-bottom:4px}
+.drawer-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border:1px solid #6b5c48;border-radius:9px;background:#3a2f22;color:#f5efe3;font:700 1.3rem/1 system-ui;cursor:pointer}
+.drawer-close:hover,.drawer-close:focus-visible{background:#5a4630;color:#ffd9a8}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;visibility:hidden;pointer-events:none;transition:.3s;z-index:55}
+body.nav-open .scrim{opacity:1;visibility:visible;pointer-events:auto}
 main{max-width:1000px;margin:0 auto;padding:26px 16px 90px}
 section{background:#fffdf8;border:1px solid #e0d6c4;border-radius:16px;padding:26px 22px;margin:26px 0;scroll-margin-top:70px}
 h1{font-size:clamp(1.6rem,4.5vw,2.4rem);line-height:1.25;margin:0 0 10px}
@@ -48,7 +54,7 @@ code{background:#efe7d6;padding:2px 6px;border-radius:4px;font-size:.9em}
 .range-reference table{min-width:450px}
 .range-reference p:last-child{margin-bottom:0}
 .chain{border:1px solid #e0d6c4;border-radius:12px;padding:14px 14px 12px;margin:14px 0;background:#fbf8f1}
-.chain h4{margin:0 0 4px;font-size:1.02rem}
+.chain h3{margin:0 0 4px;font-size:1.02rem}
 .chain .r{font-size:.88rem;color:#5b4d3c;margin:0 0 8px}
 .chain .tip{font-size:.88rem;color:#4a5c3c;background:#eef5e8;border-radius:8px;padding:8px 10px;margin:10px 0 0}
 .scrollx{overflow-x:auto;padding-bottom:4px}
@@ -68,10 +74,7 @@ html{scroll-behavior:smooth;scroll-padding-top:112px}
 body{background:var(--paper);color:var(--ink);line-height:1.72}
 header{background:var(--accent-dark)}
 header .t{letter-spacing:.035em}
-#nav{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-#nav:focus-visible + header .burger{outline:3px solid #e5bd78;outline-offset:3px}
 .burger{border-radius:9px;flex:0 0 auto}
-.drawer{transition:transform .25s,visibility .25s}
 .drawer a:focus-visible{background:#3a2f22;color:#ffd9a8}
 .drawer .grp{color:#c9b998}
 .skip-link{position:absolute;left:12px;top:-60px;z-index:100;background:var(--surface);padding:9px 12px;border-radius:8px}
@@ -181,7 +184,7 @@ table{width:100%;margin:0;min-width:560px}
 .atlas-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0}
 .atlas-controls label{display:grid;gap:5px;font-size:.82rem;font-weight:700}
 .atlas-controls input,.atlas-controls select{width:min(360px,78vw);min-height:42px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);font:inherit;padding:8px 11px}
-.atlas-status{margin:0;color:var(--muted);font-size:.82rem}
+.atlas-status{margin:8px 0 0;color:var(--muted);font-size:.82rem}
 .atlas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(180px,100%),1fr));gap:12px}
 .atlas-card{min-width:0;margin:0;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--surface)}
 .atlas-image-button{display:grid;place-items:center;width:100%;min-height:170px;padding:0;border:0;background:var(--surface-soft);cursor:zoom-in}
@@ -191,6 +194,7 @@ table{width:100%;margin:0;min-width:560px}
 .atlas-viewer{width:min(96vw,1400px);max-width:none;max-height:94vh;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);box-shadow:0 18px 70px rgba(0,0,0,.45)}
 .atlas-viewer::backdrop{background:rgba(20,17,13,.82)}
 .atlas-viewer-close{display:block;margin:0 0 8px auto;min-height:40px;padding:7px 13px;border:1px solid var(--line);border-radius:9px;background:var(--surface-soft);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+.atlas-viewer-status{margin:0 0 6px;min-height:1.2em;color:var(--muted);font-size:.82rem;text-align:center}
 .atlas-viewer img{display:block;max-width:100%;max-height:calc(94vh - 90px);width:auto;height:auto;margin:0 auto;object-fit:contain}
 .atlas-viewer figcaption{padding:9px 4px 2px;text-align:center;font-size:.9rem}
 .atlas-badges{display:flex;flex-wrap:wrap;gap:5px;padding:0 10px 10px}
@@ -280,8 +284,9 @@ table{width:100%;margin:0;min-width:560px}
  body{font-size:15px}main{padding:18px 12px 80px}section{padding:20px 14px;margin:18px 0}
  header{gap:10px;padding:9px 12px}header .t{font-size:.78rem;white-space:nowrap}header .s{font-size:.65rem;max-width:100px}
  .chapter-nav{top:56px;margin-bottom:14px}
- .chain-reference>summary{gap:10px;padding:15px 13px}
+ .chain-reference>summary{gap:10px;padding:15px 13px;flex-wrap:wrap}
  .chain-reference-count{font-size:.7rem;padding:4px 7px}
+ .chain-reference-title small{display:none}
  .chain-reference-content{padding:14px}
  .chain-details-content{padding:10px}
  .package-graphic figcaption::after{display:inline}
@@ -337,7 +342,7 @@ td b,th{letter-spacing:.01em}
 .package-graphic figcaption{padding:2px 6px 4px;line-height:1.65}
 .chain{border-radius:12px;box-shadow:0 2px 10px rgba(52,39,21,.025);transition:border-color .15s,box-shadow .15s}
 .chain:hover{border-color:#c9b99b;box-shadow:0 5px 16px rgba(52,39,21,.06)}
-.chain h4{font-size:1.04rem}
+.chain h3{font-size:1.04rem}
 .chain-filter{box-shadow:0 3px 10px rgba(52,39,21,.035)}
 .chain-filter input:focus-visible,.chain-filter button:focus-visible,.drawer a:focus-visible,.hero-actions a:focus-visible{outline:3px solid #bc7d39;outline-offset:3px}
 .source-links a{transition:background .15s,border-color .15s,transform .15s}
@@ -364,12 +369,30 @@ td b,th{letter-spacing:.01em}
 }
 @media(max-width:400px){header .t{font-size:.7rem;letter-spacing:.045em}}
 @media(prefers-reduced-motion:reduce){.guide-shortcut,.chapter-nav a,.chain,.package-graphic-index a,.chain-index a,.source-links a{transition:none}}
-</style></head><body id="top">
+.notes-panel{margin:0 0 26px;border:1px solid var(--line);border-radius:14px;background:var(--surface);scroll-margin-top:112px;overflow:hidden}
+.notes-panel summary{display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;font-weight:750;list-style:none}
+.notes-panel summary::-webkit-details-marker{display:none}
+.notes-panel summary::after{content:"＋";margin-left:auto;color:var(--accent);font-size:1.1rem}
+.notes-panel[open] summary::after{content:"−"}
+.notes-panel summary small{color:var(--muted);font-size:.8rem;font-weight:600}
+.notes-body{padding:0 18px 16px;border-top:1px solid var(--line)}
+.notes-body label{display:block;margin:14px 0 6px;font-size:.82rem;font-weight:700}
+.notes-body textarea{display:block;width:100%;min-height:130px;resize:vertical;border:1px solid var(--line);border-radius:10px;background:var(--surface-soft);color:var(--ink);font:inherit;font-size:.95rem;line-height:1.6;padding:10px 12px}
+.notes-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:8px}
+.notes-actions span{color:var(--muted);font-size:.8rem}
+.notes-actions button{border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);font:inherit;font-size:.82rem;font-weight:650;padding:6px 10px;cursor:pointer}
+.notes-actions button:hover{background:#f5e4cc}
+@media(prefers-color-scheme:dark){.notes-actions button:hover{background:#3a352b}}
+@media print{.notes-panel{display:none!important}}
+</style>
+<link rel="stylesheet" href="assets/design.css">
+</head><body id="top">
 <a class="skip-link" href="#main">Direkt zum Guide</a>
-<input type="checkbox" id="nav" aria-label="Menü öffnen oder schließen" aria-controls="drawer">
-<header><label class="burger" for="nav" aria-label="Menü"><span></span><span></span><span></span></label>
-<div class="t">ANNO 1800 · SPIELATLAS</div><div class="s">Dein Spielstand · deine Notizen · dein Tempo</div></header>
+<header><button class="burger" id="nav-toggle" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+<div class="t">ANNO 1800 · SPIELATLAS</div><div class="s">Dein Setup · deine Notizen · dein Tempo</div></header>
 <nav class="drawer" id="drawer" aria-label="Hauptmenü">
+<button class="drawer-close" type="button" data-nav-close aria-label="Menü schließen">×</button>
+<a class="drawer-home" href="index.html">← Zum Haupt-Guide</a>
 <div class="grp">Grundsetup</div>
 <a href="#setup">1 · DLCs & Session-Plan</a>
 <a href="#welt">2 · Welt, Seed & Startinsel</a>
@@ -384,18 +407,28 @@ td b,th{letter-spacing:.01em}
 <a href="#spät">8 · Late Game & Crown Falls</a>
 <div class="grp">Anhang</div>
 <a href="#quellen">9 · Quellen</a>
-</nav><label class="scrim" for="nav"></label>
+<a href="#notizen">Meine Notizen</a>
+</nav><div class="scrim" data-nav-close aria-hidden="true"></div>
 <main id="main">
 <div class="hero"><div class="hero-grid">
 <div><p class="eyebrow">Dein persönlicher Anno-1800-Atlas</p>
 <h1>Eine Insel nach der anderen. Ohne Stress.</h1>
 <p class="hero-intro">Dein Nachschlagewerk für genau diesen Spielstil: gemütlich bauen, bei Bedarf Zahlen nachsehen und erst dann erweitern, wenn es sich gut anfühlt. Keine Pflicht zum Min-Maxing.</p>
 <div class="hero-actions"><a href="index.html">Spielstart Schritt für Schritt</a><a href="#reichweiten">Reichweiten nachschlagen</a></div></div>
-<aside class="personal-brief" aria-label="Dein gespeichertes Spielsetup"><h2>Dein Spiel-Kompass</h2><dl>
+<aside class="personal-brief" aria-label="Dein Spiel-Kompass"><h2>Dein Spiel-Kompass</h2><dl>
 <div><dt>Welt-Notiz</dt><dd><a href="#welt">Seed 440654298 · Alle Welten prüfen</a></dd></div>
 <div><dt>Spielgefühl</dt><dd>Ruhig aufbauen statt optimieren</dd></div>
 <div><dt>Wenn du festhängst</dt><dd><a href="#ketten">Kette suchen · STRG+Q prüfen</a></dd></div>
 </dl></aside></div></div>
+
+<details class="notes-panel" id="notizen">
+<summary><span>Meine Notizen</span><small>nur lokal in diesem Browser</small></summary>
+<div class="notes-body">
+<label for="personal-notes">Was willst du dir merken?</label>
+<textarea id="personal-notes" rows="6" spellcheck="true" placeholder="Seed, Inselnamen, offene Baustellen …"></textarea>
+<div class="notes-actions"><span id="notes-status" role="status" aria-live="polite"></span><button type="button" id="notes-clear">Notizen löschen</button></div>
+</div>
+</details>
 
 <nav class="guide-shortcuts" aria-label="Schnelleinstieg in den Guide">
 <a class="guide-shortcut" href="#setup"><span class="shortcut-kicker">Vor dem neuen Spiel</span><strong>Welt & DLCs vorbereiten</strong><span class="shortcut-description">Dein DLC-Plan, die Startwelt und die Seed-Notizen.</span></a>
@@ -442,8 +475,8 @@ td b,th{letter-spacing:.01em}
 <ol>
 <li>Gibt es mindestens <b>zwei Inseln mit je mindestens drei verschiedenen NW-Fruchtbarkeiten</b>, innerhalb einer Route voneinander?</li>
 <li>Sind <b>Öl-Slots in der Neuen Welt</b> vorhanden?</li>
-<li>Mit „Aufstieg der Neuen Welt“: Gibt es eine <b>große, flache Insel</b> für die spätere NW-Stadt?</li>
-<li>Kurz Enbesa ansehen: mindestens eine große Insel mit mehreren Fruchtbarkeiten. In der Arktis prüfen, ob die Route zur Alten Welt für dich passt.</li>
+<li>Falls du „Aufstieg der Neuen Welt“ doch aktivierst: Gibt es eine <b>große, flache Insel</b> für die spätere NW-Stadt?</li>
+<li>Nur falls du „Land der Löwen“ oder „Die Passage“ aktivierst: in Enbesa eine große Insel mit mehreren Fruchtbarkeiten prüfen; in der Arktis, ob die Route zur Alten Welt für dich passt.</li>
 <li>Kap-Zoom (30 Sekunden): Ressourcen-Overlay auf Crown Falls einschalten und Öl ≥ 6 sowie Eisen ≥ 6 prüfen. Für 440654298 ist ein Bericht mit 8 Öl und 9 Eisen dokumentiert.</li>
 <li>Erst dann bestätigen. Bei „Nein“ zu Punkt 1, 3 oder 5: andere Kartentyp-Variante testen; bleibt der Check negativ, zum nächsten Seed wechseln.</li>
 </ol>
@@ -482,7 +515,7 @@ td b,th{letter-spacing:.01em}
 <details class="seed-comparison" id="seed-vergleich">
 <summary>Seed-Ranking und Vergleichstabelle · alle 17 Kandidaten anzeigen</summary>
 <div class="seed-comparison-content">
-<p>Alle-Welten-Edition für dein Profil: entspannter Städtebau, alle DLCs an (einschließlich „Aufstieg der Neuen Welt“), mehrere Inseln okay, Piraten auf einfach und gewünscht, große Inseln, Versorgung und schnelles Wachstum in allen Regionen. Community-Berichte sind meist Alte-Welt-lastig; bei fehlenden NW-Angaben gilt „unbekannt“ statt „schlecht“.</p>
+<p>Alle-Welten-Edition für dein Profil: entspannter Städtebau, DLC-Plan aus Kapitel 1 (Aufstieg der Neuen Welt ist aus), mehrere Inseln okay, Piraten auf einfach und gewünscht, große Inseln, Versorgung und schnelles Wachstum in allen Regionen. Community-Berichte sind meist Alte-Welt-lastig; bei fehlenden NW-Angaben gilt „unbekannt“ statt „schlecht“.</p>
 <h4>Bewertungskriterien</h4>
 <ul>
 <li><b>Chill-Faktor · 25 %:</b> Piraten-Nähe zu Hauptrouten, Verwaltungsaufwand und Optimierungsdruck</li>
@@ -599,18 +632,18 @@ td b,th{letter-spacing:.01em}
 <section id="grafikatlas"><h2><span class="n">6</span>Grafik-Atlas · Stadt- und Produktionslayouts</h2>
 <p class="lead">Die Bildsammlung ist nach Stadt- und Produktionsgrafiken sortiert. Öffne einen Bereich, suche nach Region, Ware oder Layout und klicke ein Bild, um es direkt hier auf der Seite groß anzusehen.</p>
 <p class="source-note">Vollständiges Grafikpaket: alle 117 Stadtbilder und 250 Produktionsbilder, einschließlich Gebäude-, Waren- und Arbeitskräfte-Icons, Übersichten und Layoutplänen. Die Galerien lassen sich nach Spielregion und Bildtyp filtern; Bildtitel und Filter sind auf Deutsch. Bereits in die Originalgrafiken eingebettete Beschriftungen bleiben in ihrer Originalsprache.</p>
-<details class="asset-atlas" id="atlas-stadt" data-atlas="city" data-directory="img/city-layouts/">
+<details class="asset-atlas" id="atlas-stadt" data-atlas="city" data-directory="img/city-layouts/" data-thumbs="img/city-layouts/thumbs/">
 <summary>Stadtgrafiken aus allen Regionen <span class="atlas-count">117 Bilder</span></summary>
 <div class="atlas-content">
-<p class="atlas-intro">Alle 117 Originalbilder aus dem Stadtgrafikpaket: Stadt- und Inselpläne, Gebäude- und Bewohner-Icons sowie Reichweitenübersichten. „Baupläne“ zeigen die Bebauung; die Reichweitenübersicht veranschaulicht die Abdeckung. Quelle: <a href="https://anno1800.fandom.com/wiki/City_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · City layouts</a>.</p>
-<div class="atlas-controls"><label for="atlas-city-world">Welt / Region<select id="atlas-city-world" data-filter="region"><option value="">Alle Welten / Regionen</option></select></label><label for="atlas-city-kind">Bildtyp<select id="atlas-city-kind" data-filter="kind"><option value="">Alle Bildtypen</option></select></label><label for="atlas-city-search">Bilder durchsuchen<input id="atlas-city-search" type="search" placeholder="z. B. Investoren, Rathaus oder Arktis"></label><p class="atlas-status" role="status" aria-live="polite">Bilder werden vorbereitet …</p></div>
+<p class="atlas-intro">Alle 117 Originalbilder aus dem Stadtgrafikpaket: Stadt- und Inselpläne, Gebäude- und Bewohner-Icons sowie Reichweitenübersichten. Standardmäßig sind die 42 Baupläne gefiltert; über „Bildtyp“ kommen Icons und die Reichweitenübersicht dazu. Quelle: <a href="https://anno1800.fandom.com/wiki/City_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · City layouts</a>.</p>
+<div class="atlas-controls"><label for="atlas-city-world">Welt / Region<select id="atlas-city-world" data-filter="region"><option value="">Alle Welten / Regionen</option></select></label><label for="atlas-city-kind">Bildtyp<select id="atlas-city-kind" data-filter="kind"><option value="">Alle Bildtypen</option></select></label><label for="atlas-city-search">Bilder durchsuchen<input id="atlas-city-search" type="search" placeholder="z. B. Investoren, Rathaus oder Arktis"></label></div><p class="atlas-status" role="status" aria-live="polite">Bilder werden vorbereitet …</p>
 <div class="atlas-grid"></div><p class="atlas-empty" hidden>Keine passenden Bilder gefunden.</p>
 </div>
 </details>
-<details class="asset-atlas" id="atlas-produktion" data-atlas="production" data-directory="img/production-layouts/">
+<details class="asset-atlas" id="atlas-produktion" data-atlas="production" data-directory="img/production-layouts/" data-thumbs="img/production-layouts/thumbs/">
 <summary>Produktionsgrafiken aus allen Regionen <span class="atlas-count">250 Bilder</span></summary>
 <div class="atlas-content">
-<p class="atlas-intro">Alle 250 Originalbilder aus dem Produktionsgrafikpaket: Die Layoutgrafiken zeigen die Standorte von Gebäuden und Feldern – auch die beiden zuvor „Kettenübersichten“ genannten Brotgrafiken sind Produktionsbaupläne. Dazu kommen Gebäude-, Waren- und Arbeitskräfte-Icons. Quelle: <a href="https://anno1800.fandom.com/wiki/Production_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · Production layouts</a>.</p>
+<p class="atlas-intro">Alle 250 Originalbilder aus dem Produktionsgrafikpaket: Die Layoutgrafiken zeigen die Standorte von Gebäuden und Feldern – auch die beiden zuvor „Kettenübersichten“ genannten Brotgrafiken sind Produktionsbaupläne. Standardmäßig sind die 165 Baupläne gefiltert; über „Bildtyp“ kommen die Gebäude-, Waren- und Arbeitskräfte-Icons dazu. Quelle: <a href="https://anno1800.fandom.com/wiki/Production_layouts" target="_blank" rel="noopener noreferrer">Anno 1800 Wiki · Production layouts</a>.</p>
 <details class="productivity-reference" open>
 <summary>Produktionsleistung bei 100 % · wichtige Grundgebäude</summary>
 <div>
@@ -633,7 +666,7 @@ td b,th{letter-spacing:.01em}
 <p class="small-note">Die Prozentangaben in den Originalgrafiken bleiben in der Bildbeschriftung sichtbar. Wo keine layoutbezogene Prozentzahl belegt ist, zeigt diese Tabelle den Vergleichswert eines einzelnen Gebäudes bei 100 %, nicht den Gesamtausstoß des abgebildeten Inselplans. Community-Wiki-Daten, geprüft am 20.10.2026; die Produktivität im Gebäude-Menü und die Statistik im Spiel sind für deinen Spielstand maßgeblich.</p>
 </div>
 </details>
-<div class="atlas-controls"><label for="atlas-production-world">Welt / Region<select id="atlas-production-world" data-filter="region"><option value="">Alle Welten / Regionen</option></select></label><label for="atlas-production-kind">Bildtyp<select id="atlas-production-kind" data-filter="kind"><option value="">Alle Bildtypen</option></select></label><label for="atlas-production-search">Bilder durchsuchen<input id="atlas-production-search" type="search" placeholder="z. B. Brot, Stahl, Icon oder Farm"></label><p class="atlas-status" role="status" aria-live="polite">Bilder werden vorbereitet …</p></div>
+<div class="atlas-controls"><label for="atlas-production-world">Welt / Region<select id="atlas-production-world" data-filter="region"><option value="">Alle Welten / Regionen</option></select></label><label for="atlas-production-kind">Bildtyp<select id="atlas-production-kind" data-filter="kind"><option value="">Alle Bildtypen</option></select></label><label for="atlas-production-search">Bilder durchsuchen<input id="atlas-production-search" type="search" placeholder="z. B. Brot, Stahl, Icon oder Farm"></label></div><p class="atlas-status" role="status" aria-live="polite">Bilder werden vorbereitet …</p>
 <div class="atlas-grid"></div><p class="atlas-empty" hidden>Keine passenden Bilder gefunden.</p>
 </div>
 </details>
@@ -683,7 +716,7 @@ td b,th{letter-spacing:.01em}
 <li><b>Reddit – Tipps für schönes Bauen:</b> <a href="https://www.reddit.com/r/anno/comments/zplphn/tips_for_beauty_building/" target="_blank" rel="noopener noreferrer">Diskussion zu 10×10-Blöcken, Lücken und späteren Erweiterungen</a>.</li>
 <li><b>Anno-1800-Wiki zu Reichweiten:</b> <a href="https://anno1800.fandom.com/wiki/Town_Hall" target="_blank" rel="noopener noreferrer">Town Hall</a> · <a href="https://anno1800.fandom.com/wiki/Public_buildings" target="_blank" rel="noopener noreferrer">Public Buildings</a>.</li>
 </ul>
-<p class="small-note">Direkt zu den Sammlungen in diesem Guide: <a href="#atlas-stadt">Stadtbilder</a> · <a href="#ketten">Produktionsketten</a> · <a href="#package-bread">Brot</a> · <a href="#package-beer">Bier</a> · <a href="#package-resources">Ziegel & Stahl</a> · <a href="#grafikatlas">alle 367 Originalbilder im Grafik-Atlas</a>. Die lokalen Bilder funktionieren offline, wenn die Ordner <code>img/</code> und <code>grafiken/</code> neben der HTML-Datei bleiben; externe Videos, Wiki-Seiten und Diskussionen benötigen Internet.</p>
+<p class="small-note">Direkt zu den Sammlungen in diesem Guide: <a href="#atlas-stadt">Stadtbilder</a> · <a href="#ketten">Produktionsketten</a> · <a href="#package-bread">Brot</a> · <a href="#package-beer">Bier</a> · <a href="#package-resources">Ziegel & Stahl</a> · <a href="#grafikatlas">Grafik-Atlas · 367 Bilder</a>. Die lokalen Bilder funktionieren offline, wenn die Ordner <code>img/</code> und <code>grafiken/</code> neben der HTML-Datei bleiben; externe Videos, Wiki-Seiten und Diskussionen benötigen Internet.</p>
 <p class="foot">Gebaut für entspanntes Bauen: kein Min-Maxing, keine Highscore-Jagd – aber mit Zahlen, wenn du sie brauchst.<br>
 Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/</code> speichern; dann lässt sich der Grafik-Atlas auch offline verwenden.</p>
 </section>
@@ -718,14 +751,18 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
 <div class="chain-details-content">
 <section id="ketten-details">
 <h2>Ausführliche Module, Tipps und Kachel-Skizzen</h2>
-<p class="atlas-links"><a href="#atlas-produktion">Alle 250 Produktionsbilder im Grafik-Atlas ansehen</a></p>
+<p class="atlas-links"><a href="#atlas-produktion">Produktionsbilder im Grafik-Atlas ansehen</a></p>
 <div class="fact-note"><strong>Logistik-Merker:</strong> Der Kontor sammelt Waren nicht magisch auf der ganzen Insel ein. Produktionsgebäude müssen ans Straßennetz angeschlossen sein; Lagerhäuser verbinden Gebäude mit dem Kontor und dienen als Umschlagplatz. Karrenreichweite und Straßenverbindung entscheiden, ob Zwischenprodukte ankommen. <a href="https://anno1800.fandom.com/wiki/Roads?action=render" target="_blank" rel="noopener noreferrer">Straßen</a> · <a href="https://anno1800.fandom.com/wiki/Warehouse?action=render" target="_blank" rel="noopener noreferrer">Lagerhäuser</a>.</div>
 <div class="box"><b>So rechnest du selbst:</b> Vergleiche die Zykluszeiten im Baumenü. Ein Getreidehof braucht 1:00, eine Mühle 0:30 und eine Bäckerei 1:00: Für denselben Durchsatz brauchst du darum 2 Höfe : 1 Mühle : 2 Bäckereien. Das ist die Grundratio ohne Boni. Wenn du weniger Brot brauchst, bau einfach weniger davon – und schau bei Engpässen in die Produktionsübersicht (<code>STRG+Q</code>), statt dich mit der perfekten Zahl zu stressen.</div>
 <div class="box green"><b>Gilt für jeden Inselplan:</b> Felder müssen ohne Lücken an den Hof oder an ein zusammenhängendes Feld anschließen. Plane die Farm, Verarbeitung und Lager-/Straßenwege als zusammengehörige Kette. Die Skizzen zeigen Anordnungsideen, keine millimetergenauen Grundrisse. Auf deiner Insel darf das Ganze um Berge und Küste herumwachsen.</div>
 <nav class="package-graphic-index" aria-label="Große Layout-Grafiken">
 <a href="#package-bread">Brot · 2:1:2</a><a href="#package-beer">Bier · 2+3:1:2</a><a href="#package-resources">Ziegel & Stahl</a>
 </nav>
-<div class="atlas-featured" data-atlas-featured="production" aria-label="Ausgewählte Produktionslayouts"></div>
+<div class="atlas-featured" aria-label="Ausgewählte Produktionslayouts">
+<figure class="atlas-card" id="package-bread"><button type="button" class="atlas-image-button" data-image-viewer data-image-src="img/production-layouts/090_Bread_15_WH_TU_FS_layout.png" data-image-alt="Brotproduktion – Bauplan 15 (Lagerhaus, Gewerkschaft, Feuerwehr)" aria-label="Brotproduktion – Bauplan 15 (Lagerhaus, Gewerkschaft, Feuerwehr) – groß anzeigen" title="Brotproduktion – Bauplan 15 (Lagerhaus, Gewerkschaft, Feuerwehr) – groß anzeigen"><img src="img/production-layouts/thumbs/090_Bread_15_WH_TU_FS_layout.webp" alt="Brotproduktion – Bauplan 15 (Lagerhaus, Gewerkschaft, Feuerwehr)" loading="lazy" decoding="async"></button><figcaption>Brotproduktion – Bauplan 15 (Lagerhaus, Gewerkschaft, Feuerwehr)</figcaption></figure>
+<figure class="atlas-card" id="package-beer"><button type="button" class="atlas-image-button" data-image-viewer data-image-src="img/production-layouts/068_Layout_Beer_WH_TU_with_fields.png" data-image-alt="Bierproduktion – Bauplan mit Feldern, Lagerhaus und Gewerkschaft" aria-label="Bierproduktion – Bauplan mit Feldern, Lagerhaus und Gewerkschaft – groß anzeigen" title="Bierproduktion – Bauplan mit Feldern, Lagerhaus und Gewerkschaft – groß anzeigen"><img src="img/production-layouts/thumbs/068_Layout_Beer_WH_TU_with_fields.webp" alt="Bierproduktion – Bauplan mit Feldern, Lagerhaus und Gewerkschaft" loading="lazy" decoding="async"></button><figcaption>Bierproduktion – Bauplan mit Feldern, Lagerhaus und Gewerkschaft</figcaption></figure>
+<figure class="atlas-card" id="package-resources"><button type="button" class="atlas-image-button" data-image-viewer data-image-src="img/production-layouts/138_Furnace_01_WH_TU_FS_layout.png" data-image-alt="Hochofen – Bauplan 01 (Lagerhaus, Gewerkschaft, Feuerwehr)" aria-label="Hochofen – Bauplan 01 (Lagerhaus, Gewerkschaft, Feuerwehr) – groß anzeigen" title="Hochofen – Bauplan 01 (Lagerhaus, Gewerkschaft, Feuerwehr) – groß anzeigen"><img src="img/production-layouts/thumbs/138_Furnace_01_WH_TU_FS_layout.webp" alt="Hochofen – Bauplan 01 (Lagerhaus, Gewerkschaft, Feuerwehr)" loading="lazy" decoding="async"></button><figcaption>Hochofen – Bauplan 01 (Lagerhaus, Gewerkschaft, Feuerwehr)</figcaption></figure>
+</div>
 <div class="chain-filter">
 <label for="chain-search">Kette finden</label>
 <input id="chain-search" type="search" placeholder="Zum Beispiel: Brot, Kaffee, Neue Welt …" autocomplete="off" aria-controls="ketten">
@@ -735,43 +772,43 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
 <nav class="chain-index" aria-label="Direkt zu einer Produktionskette"></nav>
 <p id="chain-empty" hidden>Keine Kette gefunden. Probier einen anderen Begriff – oder leere die Suche.</p>
 <p class="lead">Die farbigen Draufsichten sind Kachel-Skizzen, keine Screenshots und keine Pflicht-Baupläne. Auf dem Handy kannst du breite Grafiken seitlich wischen. Dreh das Modul ruhig, wenn Küste, Berge oder dein Stadtviertel es verlangen.</p>
-<div class="legend"><span><i style="background:#c07a52"></i>Farm/Plantage</span><span><i style="background:#5f7d99"></i>Verarbeiter/Fabrik</span><span><i style="background:#7c7875"></i>Mine/Bruch</span><span><i style="background:repeating-linear-gradient(45deg,#9dbb7a 0 5px,#8aab67 5px 10px)"></i>Felder (als EIN Block)</span><span><i style="background:#d6c7ab"></i>Straße</span><span><i style="background:#8fb6d2"></i>Wasser</span></div><div class="chain" id="k-holz"><h4>Bretter (Basis) <span class="tag tier">Basis</span></h4>
+<div class="legend"><span><i style="background:#c07a52"></i>Farm/Plantage</span><span><i style="background:#5f7d99"></i>Verarbeiter/Fabrik</span><span><i style="background:#7c7875"></i>Mine/Bruch</span><span><i style="background:repeating-linear-gradient(45deg,#9dbb7a 0 5px,#8aab67 5px 10px)"></i>Felder (als EIN Block)</span><span><i style="background:#d6c7ab"></i>Straße</span><span><i style="background:#8fb6d2"></i>Wasser</span></div><div class="chain" id="k-holz"><h3>Bretter (Basis) <span class="tag tier">Basis</span></h3>
 <p class="r"><b>Ratio:</b> 1 Holzfällerhütte : 1 Sägewerk &nbsp;·&nbsp; <b>Output:</b> 4 Bretter/min</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(16,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 2;grid-row:2/span 2">Holz-<br>hütte</div><div class="c fab" style="grid-column:5/span 4;grid-row:2/span 3">Sägewerk</div><div class="c road" style="grid-column:2/span 13;grid-row:5/span 1">Straße</div></div></div><p class="tip">Die erste Kette überhaupt – alles braucht Bretter. Hütte und Sägewerk 1:1, beide Zyklus 0:15.</p></div><div class="chain" id="k-fisch"><h4>Fische <span class="tag tier">Bauern</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(16,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 2;grid-row:2/span 2">Holz-<br>hütte</div><div class="c fab" style="grid-column:5/span 4;grid-row:2/span 3">Sägewerk</div><div class="c road" style="grid-column:2/span 13;grid-row:5/span 1">Straße</div></div></div><p class="tip">Die erste Kette überhaupt – alles braucht Bretter. Hütte und Sägewerk 1:1, beide Zyklus 0:15.</p></div><div class="chain" id="k-fisch"><h3>Fische <span class="tag tier">Bauern</span></h3>
 <p class="r"><b>Ratio:</b> 1 Fischerei (Küste!) &nbsp;·&nbsp; <b>Output:</b> 2 Fische/min · ~800 Bauern</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(16,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Fischerei</div><div class="c road" style="grid-column:2/span 14;grid-row:6/span 1">Straße</div><div class="c water" style="grid-column:1/span 16;grid-row:1/span 1">Küste</div></div></div><p class="tip">Muss an die Küste. In unserem Stadtlayout: Küste sonst freihalten – Fischereien sind die Ausnahme.</p></div><div class="chain" id="k-kleidung"><h4>Arbeitskleidung <span class="tag tier">Bauern</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(16,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Fischerei</div><div class="c road" style="grid-column:2/span 14;grid-row:6/span 1">Straße</div><div class="c water" style="grid-column:1/span 16;grid-row:1/span 1">Küste</div></div></div><p class="tip">Muss an die Küste. In unserem Stadtlayout: Küste sonst freihalten – Fischereien sind die Ausnahme.</p></div><div class="chain" id="k-kleidung"><h3>Arbeitskleidung <span class="tag tier">Bauern</span></h3>
 <p class="r"><b>Ratio:</b> 1 Schaffarm : 1 Rahmenstrickerei &nbsp;·&nbsp; <b>Output:</b> 2 Kleidung/min · ~650 Bauern</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(16,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Schaf-<br>farm</div><div class="c fab" style="grid-column:6/span 3;grid-row:2/span 3">Rahmen-<br>strickerei</div><div class="c road" style="grid-column:2/span 13;grid-row:6/span 1">Straße</div></div></div><p class="tip">Schafe brauchen keine Felder – die kompakteste Kette im Spiel, perfekt für Inselreste.</p></div><div class="chain" id="k-schnaps"><h4>Schnaps <span class="tag tier">Bauern</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(16,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Schaf-<br>farm</div><div class="c fab" style="grid-column:6/span 3;grid-row:2/span 3">Rahmen-<br>strickerei</div><div class="c road" style="grid-column:2/span 13;grid-row:6/span 1">Straße</div></div></div><p class="tip">Schafe brauchen keine Felder – die kompakteste Kette im Spiel, perfekt für Inselreste.</p></div><div class="chain" id="k-schnaps"><h3>Schnaps <span class="tag tier">Bauern</span></h3>
 <p class="r"><b>Ratio:</b> 1 Kartoffelhof : 1 Schnapsbrennerei &nbsp;·&nbsp; <b>Output:</b> 2 Schnaps/min · ~600 Bauern</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(24,13px);grid-template-rows:repeat(10,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Kartoffel-<br>hof</div><div class="c fab" style="grid-column:2/span 3;grid-row:6/span 4">Brennerei</div><div class="c road" style="grid-column:2/span 22;grid-row:10/span 1">Straße</div><div class="c field" style="grid-column:5/span 9;grid-row:2/span 8">72 Kartoffelfelder = 9×8 Block</div></div></div><p class="tip">Felder als EIN kompaktes Rechteck neben den Hof – nicht verstreuen. Brennerei direkt an den Hof, beide 0:30.</p></div><div class="chain" id="k-ziegel"><h4>Ziegel <span class="tag tier">Basis</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(24,13px);grid-template-rows:repeat(10,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Kartoffel-<br>hof</div><div class="c fab" style="grid-column:2/span 3;grid-row:6/span 4">Brennerei</div><div class="c road" style="grid-column:2/span 22;grid-row:10/span 1">Straße</div><div class="c field" style="grid-column:5/span 9;grid-row:2/span 8">72 Kartoffelfelder = 9×8 Block</div></div></div><p class="tip">Felder als EIN kompaktes Rechteck neben den Hof – nicht verstreuen. Brennerei direkt an den Hof, beide 0:30.</p></div><div class="chain" id="k-ziegel"><h3>Ziegel <span class="tag tier">Basis</span></h3>
 <p class="r"><b>Ratio:</b> 1 Lehmgrube : 2 Ziegeleien  ⚠️ &nbsp;·&nbsp; <b>Output:</b> 2 Ziegel/min</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(16,13px);grid-template-rows:repeat(8,13px)"><div class="c mine" style="grid-column:2/span 2;grid-row:2/span 2">Lehm-<br>grube</div><div class="c fab" style="grid-column:5/span 3;grid-row:2/span 3">Ziegelei</div><div class="c fab" style="grid-column:9/span 3;grid-row:2/span 3">Ziegelei</div><div class="c road" style="grid-column:2/span 13;grid-row:6/span 1">Straße</div></div></div><p class="tip">Der häufigste Anfängerfehler: Lehm 0:30, Ziegel 1:00 → Eine Lehmgrube versorgt zwei Ziegeleien.</p></div><div class="chain" id="k-brot"><h4>Brot <span class="tag tier">Arbeiter</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(16,13px);grid-template-rows:repeat(8,13px)"><div class="c mine" style="grid-column:2/span 2;grid-row:2/span 2">Lehm-<br>grube</div><div class="c fab" style="grid-column:5/span 3;grid-row:2/span 3">Ziegelei</div><div class="c fab" style="grid-column:9/span 3;grid-row:2/span 3">Ziegelei</div><div class="c road" style="grid-column:2/span 13;grid-row:6/span 1">Straße</div></div></div><p class="tip">Der häufigste Anfängerfehler: Lehm 0:30, Ziegel 1:00 → Eine Lehmgrube versorgt zwei Ziegeleien.</p></div><div class="chain" id="k-brot"><h3>Brot <span class="tag tier">Arbeiter</span></h3>
 <p class="r"><b>Ratio:</b> 2 Getreidefarmen : 1 Mühle : 2 Bäckereien &nbsp;·&nbsp; <b>Output:</b> 2 Brot/min · ~2200 Arbeiter</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(30,13px);grid-template-rows:repeat(14,13px)"><div class="c farm" style="grid-column:2/span 4;grid-row:2/span 3">Getreide-<br>farm</div><div class="c farm" style="grid-column:2/span 4;grid-row:6/span 3">Getreide-<br>farm</div><div class="c fab" style="grid-column:19/span 3;grid-row:2/span 3">Mühle</div><div class="c fab" style="grid-column:23/span 4;grid-row:2/span 3">Bäckerei</div><div class="c fab" style="grid-column:23/span 4;grid-row:6/span 3">Bäckerei</div><div class="c road" style="grid-column:2/span 28;grid-row:14/span 1">Straße</div><div class="c field" style="grid-column:6/span 12;grid-row:2/span 6">144 Felder = 12×12</div><div class="c field" style="grid-column:6/span 12;grid-row:9/span 5">144 Felder = 12×12</div></div></div><p class="tip">Mühle läuft 0:30, Farmen und Bäckereien 1:00 → deshalb 2:1:2. Feldblöcke stapeln, Mühle in die Mitte.</p></div><div class="chain" id="k-wurst"><h4>Wurst <span class="tag tier">Arbeiter</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(30,13px);grid-template-rows:repeat(14,13px)"><div class="c farm" style="grid-column:2/span 4;grid-row:2/span 3">Getreide-<br>farm</div><div class="c farm" style="grid-column:2/span 4;grid-row:6/span 3">Getreide-<br>farm</div><div class="c fab" style="grid-column:19/span 3;grid-row:2/span 3">Mühle</div><div class="c fab" style="grid-column:23/span 4;grid-row:2/span 3">Bäckerei</div><div class="c fab" style="grid-column:23/span 4;grid-row:6/span 3">Bäckerei</div><div class="c road" style="grid-column:2/span 28;grid-row:14/span 1">Straße</div><div class="c field" style="grid-column:6/span 12;grid-row:2/span 6">144 Felder = 12×12</div><div class="c field" style="grid-column:6/span 12;grid-row:9/span 5">144 Felder = 12×12</div></div></div><p class="tip">Mühle läuft 0:30, Farmen und Bäckereien 1:00 → deshalb 2:1:2. Feldblöcke stapeln, Mühle in die Mitte.</p></div><div class="chain" id="k-wurst"><h3>Wurst <span class="tag tier">Arbeiter</span></h3>
 <p class="r"><b>Ratio:</b> 1 Schweinefarm : 1 Schlachthaus &nbsp;·&nbsp; <b>Output:</b> 1 Wurst/min · ~1000 Arbeiter</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(16,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Schweine-<br>farm</div><div class="c fab" style="grid-column:6/span 4;grid-row:2/span 3">Schlacht-<br>haus</div><div class="c road" style="grid-column:2/span 13;grid-row:6/span 1">Straße</div></div></div><p class="tip">Schweine brauchen kein Feld und kein Futter – simple 1:1-Kette.</p></div><div class="chain" id="k-seife"><h4>Seife <span class="tag tier">Arbeiter</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(16,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Schweine-<br>farm</div><div class="c fab" style="grid-column:6/span 4;grid-row:2/span 3">Schlacht-<br>haus</div><div class="c road" style="grid-column:2/span 13;grid-row:6/span 1">Straße</div></div></div><p class="tip">Schweine brauchen kein Feld und kein Futter – simple 1:1-Kette.</p></div><div class="chain" id="k-seife"><h3>Seife <span class="tag tier">Arbeiter</span></h3>
 <p class="r"><b>Ratio:</b> 2 Schweinefarmen : 2 Talgsiedereien : 1 Seifenfabrik &nbsp;·&nbsp; <b>Output:</b> 2 Seife/min</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(24,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Schweine-<br>farm</div><div class="c farm" style="grid-column:2/span 3;grid-row:5/span 3">Schweine-<br>farm</div><div class="c fab" style="grid-column:6/span 3;grid-row:2/span 3">Talg-<br>siederei</div><div class="c fab" style="grid-column:6/span 3;grid-row:5/span 3">Talg-<br>siederei</div><div class="c fab" style="grid-column:10/span 4;grid-row:2/span 3">Seifen-<br>fabrik</div><div class="c road" style="grid-column:2/span 22;grid-row:8/span 1">Straße</div></div></div><p class="tip">Seifenfabrik 0:30, Siedereien 1:00 → die Fabrik ist doppelt so schnell wie ihre Zulieferer.</p></div><div class="chain" id="k-bier"><h4>Bier <span class="tag tier">Arbeiter</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(24,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Schweine-<br>farm</div><div class="c farm" style="grid-column:2/span 3;grid-row:5/span 3">Schweine-<br>farm</div><div class="c fab" style="grid-column:6/span 3;grid-row:2/span 3">Talg-<br>siederei</div><div class="c fab" style="grid-column:6/span 3;grid-row:5/span 3">Talg-<br>siederei</div><div class="c fab" style="grid-column:10/span 4;grid-row:2/span 3">Seifen-<br>fabrik</div><div class="c road" style="grid-column:2/span 22;grid-row:8/span 1">Straße</div></div></div><p class="tip">Seifenfabrik 0:30, Siedereien 1:00 → die Fabrik ist doppelt so schnell wie ihre Zulieferer.</p></div><div class="chain" id="k-bier"><h3>Bier <span class="tag tier">Arbeiter</span></h3>
 <p class="r"><b>Ratio:</b> 2 Getreide + 3 Hopfen : 1 Mälzerei : 2 Brauereien &nbsp;·&nbsp; <b>Output:</b> 2 Bier/min · ~2600 Arbeiter</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(34,13px);grid-template-rows:repeat(28,13px)"><div class="c fab" style="grid-column:20/span 4;grid-row:2/span 3">Mälzerei</div><div class="c fab" style="grid-column:25/span 4;grid-row:2/span 4">Brauerei</div><div class="c fab" style="grid-column:25/span 4;grid-row:7/span 4">Brauerei</div><div class="c farm" style="grid-column:2/span 4;grid-row:2/span 3">Getreide</div><div class="c field" style="grid-column:6/span 12;grid-row:2/span 8">2× Getreidefelder · je 12×12</div><div class="c farm" style="grid-column:2/span 4;grid-row:7/span 3">Getreide</div><div class="c farm" style="grid-column:2/span 4;grid-row:12/span 3">Hopfen</div><div class="c field" style="grid-column:6/span 8;grid-row:12/span 4">Hopfen · 8×12</div><div class="c farm" style="grid-column:2/span 4;grid-row:17/span 3">Hopfen</div><div class="c field" style="grid-column:6/span 8;grid-row:17/span 4">Hopfen · 8×12</div><div class="c farm" style="grid-column:2/span 4;grid-row:22/span 3">Hopfen</div><div class="c field" style="grid-column:6/span 8;grid-row:22/span 4">Hopfen · 8×12</div><div class="c road" style="grid-column:2/span 32;grid-row:27/span 1">Straße</div></div></div><p class="tip">Die fünf Farm-/Feld-Module liegen zusammen auf einer Seite; Mälzerei und Brauereien auf der anderen – alle an derselben Straße. Jede Farm steht direkt an ihrem Feldblock. Dreh das Ganze, wie es auf deine Insel passt.</p></div><div class="chain" id="k-stahl"><h4>Stahl, Stahlträger & Waffen <span class="tag tier">Basis/Handwerker</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(34,13px);grid-template-rows:repeat(28,13px)"><div class="c fab" style="grid-column:20/span 4;grid-row:2/span 3">Mälzerei</div><div class="c fab" style="grid-column:25/span 4;grid-row:2/span 4">Brauerei</div><div class="c fab" style="grid-column:25/span 4;grid-row:7/span 4">Brauerei</div><div class="c farm" style="grid-column:2/span 4;grid-row:2/span 3">Getreide</div><div class="c field" style="grid-column:6/span 12;grid-row:2/span 8">2× Getreidefelder · je 12×12</div><div class="c farm" style="grid-column:2/span 4;grid-row:7/span 3">Getreide</div><div class="c farm" style="grid-column:2/span 4;grid-row:12/span 3">Hopfen</div><div class="c field" style="grid-column:6/span 8;grid-row:12/span 4">Hopfen · 8×12</div><div class="c farm" style="grid-column:2/span 4;grid-row:17/span 3">Hopfen</div><div class="c field" style="grid-column:6/span 8;grid-row:17/span 4">Hopfen · 8×12</div><div class="c farm" style="grid-column:2/span 4;grid-row:22/span 3">Hopfen</div><div class="c field" style="grid-column:6/span 8;grid-row:22/span 4">Hopfen · 8×12</div><div class="c road" style="grid-column:2/span 32;grid-row:27/span 1">Straße</div></div></div><p class="tip">Die fünf Farm-/Feld-Module liegen zusammen auf einer Seite; Mälzerei und Brauereien auf der anderen – alle an derselben Straße. Jede Farm steht direkt an ihrem Feldblock. Dreh das Ganze, wie es auf deine Insel passt.</p></div><div class="chain" id="k-stahl"><h3>Stahl, Stahlträger & Waffen <span class="tag tier">Basis/Handwerker</span></h3>
 <p class="r"><b>Ratio:</b> 1 Eisenmine + 1 Kohlemine : 2 Hochöfen : 3 Stahlwerke (Träger) bzw. 6 Waffenfabriken &nbsp;·&nbsp; <b>Output:</b> Träger/Waffen</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(26,13px);grid-template-rows:repeat(10,13px)"><div class="c mine" style="grid-column:2/span 3;grid-row:2/span 3">Eisen-<br>mine</div><div class="c mine" style="grid-column:2/span 3;grid-row:6/span 3">Kohle-<br>mine</div><div class="c fab" style="grid-column:6/span 4;grid-row:2/span 4">Hochofen</div><div class="c fab" style="grid-column:6/span 4;grid-row:6/span 4">Hochofen</div><div class="c fab" style="grid-column:11/span 4;grid-row:2/span 3">Stahlwerk</div><div class="c fab" style="grid-column:11/span 4;grid-row:6/span 3">Stahlwerk</div><div class="c fab" style="grid-column:16/span 4;grid-row:2/span 3">Stahlwerk</div><div class="c road" style="grid-column:2/span 24;grid-row:10/span 1">Straße</div></div></div><p class="tip">Früh reicht 1 Ofen + 1 Stahlwerk – die volle Ratio frisst Arbeitskraft und Unterhalt. Waffen: 2 Öfen feeden 6 Fabriken.</p></div><div class="chain" id="k-glas"><h4>Glas, Fenster & Brillen <span class="tag tier">Handwerker</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(26,13px);grid-template-rows:repeat(10,13px)"><div class="c mine" style="grid-column:2/span 3;grid-row:2/span 3">Eisen-<br>mine</div><div class="c mine" style="grid-column:2/span 3;grid-row:6/span 3">Kohle-<br>mine</div><div class="c fab" style="grid-column:6/span 4;grid-row:2/span 4">Hochofen</div><div class="c fab" style="grid-column:6/span 4;grid-row:6/span 4">Hochofen</div><div class="c fab" style="grid-column:11/span 4;grid-row:2/span 3">Stahlwerk</div><div class="c fab" style="grid-column:11/span 4;grid-row:6/span 3">Stahlwerk</div><div class="c fab" style="grid-column:16/span 4;grid-row:2/span 3">Stahlwerk</div><div class="c road" style="grid-column:2/span 24;grid-row:10/span 1">Straße</div></div></div><p class="tip">Früh reicht 1 Ofen + 1 Stahlwerk – die volle Ratio frisst Arbeitskraft und Unterhalt. Waffen: 2 Öfen feeden 6 Fabriken.</p></div><div class="chain" id="k-glas"><h3>Glas, Fenster & Brillen <span class="tag tier">Handwerker</span></h3>
 <p class="r"><b>Ratio:</b> 1 Quarzsteinbruch : 1 Glasbläserei : 1 Fenstermacher / 1 Brillenfabrik &nbsp;·&nbsp; <b>Output:</b> Glas → Fenster/Brillen</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(22,13px);grid-template-rows:repeat(8,13px)"><div class="c mine" style="grid-column:2/span 3;grid-row:2/span 3">Quarz-<br>bruch</div><div class="c fab" style="grid-column:6/span 4;grid-row:2/span 3">Glas-<br>bläserei</div><div class="c fab" style="grid-column:11/span 4;grid-row:2/span 3">Fenster-<br>macher</div><div class="c fab" style="grid-column:16/span 4;grid-row:2/span 3">Brillen-<br>fabrik</div><div class="c road" style="grid-column:2/span 20;grid-row:6/span 1">Straße</div></div></div><p class="tip">Faustregel 1:1:1 – Zyklen im Bau-Menü prüfen (Tooltip-Zeit = Zyklus). Glas ist Zutat für Fenster, Brillen UND Glühbirnen.</p></div><div class="chain" id="k-dosen"><h4>Fleischkonserven <span class="tag tier">Neue Welt/Handwerker</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(22,13px);grid-template-rows:repeat(8,13px)"><div class="c mine" style="grid-column:2/span 3;grid-row:2/span 3">Quarz-<br>bruch</div><div class="c fab" style="grid-column:6/span 4;grid-row:2/span 3">Glas-<br>bläserei</div><div class="c fab" style="grid-column:11/span 4;grid-row:2/span 3">Fenster-<br>macher</div><div class="c fab" style="grid-column:16/span 4;grid-row:2/span 3">Brillen-<br>fabrik</div><div class="c road" style="grid-column:2/span 20;grid-row:6/span 1">Straße</div></div></div><p class="tip">Faustregel 1:1:1 – Zyklen im Bau-Menü prüfen (Tooltip-Zeit = Zyklus). Glas ist Zutat für Fenster, Brillen UND Glühbirnen.</p></div><div class="chain" id="k-dosen"><h3>Fleischkonserven <span class="tag tier">Neue Welt/Handwerker</span></h3>
 <p class="r"><b>Ratio:</b> 4 Rinderfarmen + 4 Paprikafarmen : 4 Goulash-Küchen : 3 Konservenfabriken &nbsp;·&nbsp; <b>Output:</b> Konserven</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(34,13px);grid-template-rows:repeat(24,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Rinderfarm</div><div class="c field" style="grid-column:5/span 3;grid-row:2/span 4">Weiden</div><div class="c farm" style="grid-column:10/span 3;grid-row:2/span 3">Paprikafarm</div><div class="c field" style="grid-column:13/span 9;grid-row:2/span 4">Paprika · 9×12</div><div class="c fab" style="grid-column:24/span 4;grid-row:2/span 3">Goulash-Küche</div><div class="c fab" style="grid-column:29/span 4;grid-row:2/span 3">Konservenfabrik</div><div class="c farm" style="grid-column:2/span 3;grid-row:7/span 3">Rinderfarm</div><div class="c field" style="grid-column:5/span 3;grid-row:7/span 4">Weiden</div><div class="c farm" style="grid-column:10/span 3;grid-row:7/span 3">Paprikafarm</div><div class="c field" style="grid-column:13/span 9;grid-row:7/span 4">Paprika · 9×12</div><div class="c fab" style="grid-column:24/span 4;grid-row:7/span 3">Goulash-Küche</div><div class="c fab" style="grid-column:29/span 4;grid-row:7/span 3">Konservenfabrik</div><div class="c farm" style="grid-column:2/span 3;grid-row:12/span 3">Rinderfarm</div><div class="c field" style="grid-column:5/span 3;grid-row:12/span 4">Weiden</div><div class="c farm" style="grid-column:10/span 3;grid-row:12/span 3">Paprikafarm</div><div class="c field" style="grid-column:13/span 9;grid-row:12/span 4">Paprika · 9×12</div><div class="c fab" style="grid-column:24/span 4;grid-row:12/span 3">Goulash-Küche</div><div class="c fab" style="grid-column:29/span 4;grid-row:12/span 3">Konservenfabrik</div><div class="c farm" style="grid-column:2/span 3;grid-row:17/span 3">Rinderfarm</div><div class="c field" style="grid-column:5/span 3;grid-row:17/span 4">Weiden</div><div class="c farm" style="grid-column:10/span 3;grid-row:17/span 3">Paprikafarm</div><div class="c field" style="grid-column:13/span 9;grid-row:17/span 4">Paprika · 9×12</div><div class="c fab" style="grid-column:24/span 4;grid-row:17/span 3">Goulash-Küche</div><div class="c road" style="grid-column:2/span 32;grid-row:23/span 1">Straße</div></div></div><p class="tip">Hier sind alle 4 Rinderfarmen, 4 Paprikafarmen, 4 Goulash-Küchen UND 3 Konservenfabriken zu sehen. Die Paprikafelder liegen direkt bei ihren Höfen; passe die Weiden der verwendeten Rinderfarm an.</p></div><div class="chain" id="k-kaffee"><h4>Kaffee <span class="tag tier">Handwerker</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(34,13px);grid-template-rows:repeat(24,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Rinderfarm</div><div class="c field" style="grid-column:5/span 3;grid-row:2/span 4">Weiden</div><div class="c farm" style="grid-column:10/span 3;grid-row:2/span 3">Paprikafarm</div><div class="c field" style="grid-column:13/span 9;grid-row:2/span 4">Paprika · 9×12</div><div class="c fab" style="grid-column:24/span 4;grid-row:2/span 3">Goulash-Küche</div><div class="c fab" style="grid-column:29/span 4;grid-row:2/span 3">Konservenfabrik</div><div class="c farm" style="grid-column:2/span 3;grid-row:7/span 3">Rinderfarm</div><div class="c field" style="grid-column:5/span 3;grid-row:7/span 4">Weiden</div><div class="c farm" style="grid-column:10/span 3;grid-row:7/span 3">Paprikafarm</div><div class="c field" style="grid-column:13/span 9;grid-row:7/span 4">Paprika · 9×12</div><div class="c fab" style="grid-column:24/span 4;grid-row:7/span 3">Goulash-Küche</div><div class="c fab" style="grid-column:29/span 4;grid-row:7/span 3">Konservenfabrik</div><div class="c farm" style="grid-column:2/span 3;grid-row:12/span 3">Rinderfarm</div><div class="c field" style="grid-column:5/span 3;grid-row:12/span 4">Weiden</div><div class="c farm" style="grid-column:10/span 3;grid-row:12/span 3">Paprikafarm</div><div class="c field" style="grid-column:13/span 9;grid-row:12/span 4">Paprika · 9×12</div><div class="c fab" style="grid-column:24/span 4;grid-row:12/span 3">Goulash-Küche</div><div class="c fab" style="grid-column:29/span 4;grid-row:12/span 3">Konservenfabrik</div><div class="c farm" style="grid-column:2/span 3;grid-row:17/span 3">Rinderfarm</div><div class="c field" style="grid-column:5/span 3;grid-row:17/span 4">Weiden</div><div class="c farm" style="grid-column:10/span 3;grid-row:17/span 3">Paprikafarm</div><div class="c field" style="grid-column:13/span 9;grid-row:17/span 4">Paprika · 9×12</div><div class="c fab" style="grid-column:24/span 4;grid-row:17/span 3">Goulash-Küche</div><div class="c road" style="grid-column:2/span 32;grid-row:23/span 1">Straße</div></div></div><p class="tip">Hier sind alle 4 Rinderfarmen, 4 Paprikafarmen, 4 Goulash-Küchen UND 3 Konservenfabriken zu sehen. Die Paprikafelder liegen direkt bei ihren Höfen; passe die Weiden der verwendeten Rinderfarm an.</p></div><div class="chain" id="k-kaffee"><h3>Kaffee <span class="tag tier">Handwerker</span></h3>
 <p class="r"><b>Ratio:</b> 2 Kaffeeplantagen (NW) : 1 Rösterei (AW) &nbsp;·&nbsp; <b>Output:</b> Kaffee</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(18,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Kaffee-<br>plantage</div><div class="c farm" style="grid-column:2/span 3;grid-row:5/span 3">Kaffee-<br>plantage</div><div class="c fab" style="grid-column:6/span 4;grid-row:2/span 3">Rösterei</div><div class="c road" style="grid-column:2/span 16;grid-row:8/span 1">Straße</div></div></div><p class="tip">Plantage 1:00, Rösterei 0:30 → 2:1. Erste Kette, die Waren zwischen den Welten schifft – Handelsroute einplanen.</p></div><div class="chain" id="k-rum"><h4>Rum <span class="tag tier">NW Arbeiter</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(18,13px);grid-template-rows:repeat(8,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Kaffee-<br>plantage</div><div class="c farm" style="grid-column:2/span 3;grid-row:5/span 3">Kaffee-<br>plantage</div><div class="c fab" style="grid-column:6/span 4;grid-row:2/span 3">Rösterei</div><div class="c road" style="grid-column:2/span 16;grid-row:8/span 1">Straße</div></div></div><p class="tip">Plantage 1:00, Rösterei 0:30 → 2:1. Erste Kette, die Waren zwischen den Welten schifft – Handelsroute einplanen.</p></div><div class="chain" id="k-rum"><h3>Rum <span class="tag tier">NW Arbeiter</span></h3>
 <p class="r"><b>Ratio:</b> 1 Zuckerrohrplantage : 1 Rumbrennerei &nbsp;·&nbsp; <b>Output:</b> Rum</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(20,13px);grid-template-rows:repeat(10,13px)"><div class="c farm" style="grid-column:2/span 4;grid-row:2/span 3">Zuckerrohr</div><div class="c fab" style="grid-column:2/span 3;grid-row:6/span 3">Rum-<br>brennerei</div><div class="c road" style="grid-column:2/span 18;grid-row:10/span 1">Straße</div><div class="c field" style="grid-column:7/span 8;grid-row:2/span 8">128 Zuckerrohrfelder = 8×16 (hier 8×8)</div></div></div><p class="tip">Zuckerrohrfelder sind riesig (128 Kacheln!) – als ein Rechteck an den Rand der NW-Insel.</p></div><div class="chain" id="k-tortillas"><h4>Tortillas <span class="tag tier">NW Arbeiter</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(20,13px);grid-template-rows:repeat(10,13px)"><div class="c farm" style="grid-column:2/span 4;grid-row:2/span 3">Zuckerrohr</div><div class="c fab" style="grid-column:2/span 3;grid-row:6/span 3">Rum-<br>brennerei</div><div class="c road" style="grid-column:2/span 18;grid-row:10/span 1">Straße</div><div class="c field" style="grid-column:7/span 8;grid-row:2/span 8">128 Zuckerrohrfelder = 8×16 (hier 8×8)</div></div></div><p class="tip">Zuckerrohrfelder sind riesig (128 Kacheln!) – als ein Rechteck an den Rand der NW-Insel.</p></div><div class="chain" id="k-tortillas"><h3>Tortillas <span class="tag tier">NW Arbeiter</span></h3>
 <p class="r"><b>Ratio:</b> 2 Maisplantagen : 1 Tortilla-Bäckerei &nbsp;·&nbsp; <b>Output:</b> Tortillas</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(26,13px);grid-template-rows:repeat(12,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Mais</div><div class="c field" style="grid-column:5/span 12;grid-row:2/span 7">2× Maisfelder · je 12×14</div><div class="c farm" style="grid-column:2/span 3;grid-row:6/span 3">Mais</div><div class="c fab" style="grid-column:20/span 4;grid-row:2/span 3">Tortilla-Bäckerei</div><div class="c road" style="grid-column:2/span 24;grid-row:11/span 1">Straße</div></div></div><p class="tip">Die beiden Maisfarmen stehen direkt an ihrem gemeinsamen Feld-Modul; die Bäckerei liegt gegenüber an der Straße. Die Flächen sind schematisch gezeichnet – lass sie ruhig der Küste und Inselkante folgen.</p></div><div class="chain" id="k-ponchos"><h4>Ponchos & Baumwollstoff <span class="tag tier">NW</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(26,13px);grid-template-rows:repeat(12,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Mais</div><div class="c field" style="grid-column:5/span 12;grid-row:2/span 7">2× Maisfelder · je 12×14</div><div class="c farm" style="grid-column:2/span 3;grid-row:6/span 3">Mais</div><div class="c fab" style="grid-column:20/span 4;grid-row:2/span 3">Tortilla-Bäckerei</div><div class="c road" style="grid-column:2/span 24;grid-row:11/span 1">Straße</div></div></div><p class="tip">Die beiden Maisfarmen stehen direkt an ihrem gemeinsamen Feld-Modul; die Bäckerei liegt gegenüber an der Straße. Die Flächen sind schematisch gezeichnet – lass sie ruhig der Küste und Inselkante folgen.</p></div><div class="chain" id="k-ponchos"><h3>Ponchos & Baumwollstoff <span class="tag tier">NW</span></h3>
 <p class="r"><b>Ratio:</b> 1 Baumwollplantage : 1 Weberei : 1 Ponchodarberei &nbsp;·&nbsp; <b>Output:</b> Stoff/Ponchos</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(22,13px);grid-template-rows:repeat(10,13px)"><div class="c farm" style="grid-column:2/span 4;grid-row:2/span 3">Baum-<br>wolle</div><div class="c fab" style="grid-column:7/span 4;grid-row:2/span 3">Weberei</div><div class="c fab" style="grid-column:12/span 4;grid-row:2/span 3">Poncho-<br>darberei</div><div class="c road" style="grid-column:2/span 20;grid-row:6/span 1">Straße</div><div class="c field" style="grid-column:2/span 12;grid-row:7/span 4">144 Baumwollfelder = 12×12</div></div></div><p class="tip">Baumwollstoff ist Zutat für Ponchos UND Segel – Weberei deshalb lieber doppelt planen.</p></div><div class="chain" id="k-schoko"><h4>Schokolade & Zigarren <span class="tag tier">NW Handwerker</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(22,13px);grid-template-rows:repeat(10,13px)"><div class="c farm" style="grid-column:2/span 4;grid-row:2/span 3">Baum-<br>wolle</div><div class="c fab" style="grid-column:7/span 4;grid-row:2/span 3">Weberei</div><div class="c fab" style="grid-column:12/span 4;grid-row:2/span 3">Poncho-<br>darberei</div><div class="c road" style="grid-column:2/span 20;grid-row:6/span 1">Straße</div><div class="c field" style="grid-column:2/span 12;grid-row:7/span 4">144 Baumwollfelder = 12×12</div></div></div><p class="tip">Baumwollstoff ist Zutat für Ponchos UND Segel – Weberei deshalb lieber doppelt planen.</p></div><div class="chain" id="k-schoko"><h3>Schokolade & Zigarren <span class="tag tier">NW Handwerker</span></h3>
 <p class="r"><b>Ratio:</b> 1 Kakao + 1 Zucker : 1 Schokoladenfabrik · 1 Tabak : 1 Zigarrenfabrik &nbsp;·&nbsp; <b>Output:</b> Luxus NW</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(22,13px);grid-template-rows:repeat(10,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Kakao</div><div class="c farm" style="grid-column:2/span 4;grid-row:6/span 3">Zucker</div><div class="c fab" style="grid-column:7/span 4;grid-row:2/span 3">Schoko-<br>fabrik</div><div class="c farm" style="grid-column:13/span 4;grid-row:2/span 3">Tabak</div><div class="c fab" style="grid-column:18/span 4;grid-row:2/span 3">Zigarren-<br>fabrik</div><div class="c road" style="grid-column:2/span 20;grid-row:10/span 1">Straße</div></div></div><p class="tip">Luxus-Doppel: beide Ketten 1:1-Faustregel, Tabakfelder 192 Kacheln nicht vergessen.</p></div><div class="chain" id="k-sekt"><h4>Sekt/Champagner <span class="tag tier">Investoren</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(22,13px);grid-template-rows:repeat(10,13px)"><div class="c farm" style="grid-column:2/span 3;grid-row:2/span 3">Kakao</div><div class="c farm" style="grid-column:2/span 4;grid-row:6/span 3">Zucker</div><div class="c fab" style="grid-column:7/span 4;grid-row:2/span 3">Schoko-<br>fabrik</div><div class="c farm" style="grid-column:13/span 4;grid-row:2/span 3">Tabak</div><div class="c fab" style="grid-column:18/span 4;grid-row:2/span 3">Zigarren-<br>fabrik</div><div class="c road" style="grid-column:2/span 20;grid-row:10/span 1">Straße</div></div></div><p class="tip">Luxus-Doppel: beide Ketten 1:1-Faustregel, Tabakfelder 192 Kacheln nicht vergessen.</p></div><div class="chain" id="k-sekt"><h3>Sekt/Champagner <span class="tag tier">Investoren</span></h3>
 <p class="r"><b>Ratio:</b> 1 Weinberg : 1 Sektkellerei &nbsp;·&nbsp; <b>Output:</b> Sekt</p>
-<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(24,13px);grid-template-rows:repeat(10,13px)"><div class="c farm" style="grid-column:2/span 4;grid-row:2/span 4">Weinberg</div><div class="c field" style="grid-column:6/span 8;grid-row:2/span 8">128 Reben · 8×16</div><div class="c fab" style="grid-column:16/span 4;grid-row:2/span 3">Sektkellerei</div><div class="c road" style="grid-column:2/span 22;grid-row:10/span 1">Straße</div></div></div><p class="tip">Weinberg, Rebenblock und Kellerei stehen als gut lesbare Reihe nebeneinander; unten läuft die Zufahrtsstraße. Fruchtbarkeit vor dem Platzieren prüfen.</p></div><div class="chain" id="k-uhren"><h4>Taschenuhren & Glühbirnen <span class="tag tier">Investoren</span></h4>
+<div class="scrollx"><div class="grid" style="grid-template-columns:repeat(24,13px);grid-template-rows:repeat(10,13px)"><div class="c farm" style="grid-column:2/span 4;grid-row:2/span 4">Weinberg</div><div class="c field" style="grid-column:6/span 8;grid-row:2/span 8">128 Reben · 8×16</div><div class="c fab" style="grid-column:16/span 4;grid-row:2/span 3">Sektkellerei</div><div class="c road" style="grid-column:2/span 22;grid-row:10/span 1">Straße</div></div></div><p class="tip">Weinberg, Rebenblock und Kellerei stehen als gut lesbare Reihe nebeneinander; unten läuft die Zufahrtsstraße. Fruchtbarkeit vor dem Platzieren prüfen.</p></div><div class="chain" id="k-uhren"><h3>Taschenuhren & Glühbirnen <span class="tag tier">Investoren</span></h3>
 <p class="r"><b>Ratio:</b> 1 Goldmine : 1 Goldschmied : 1 Uhrmacherei · Glühbirnen: Glas + Filamente &nbsp;·&nbsp; <b>Output:</b> Investoren-Luxus</p>
 <div class="scrollx"><div class="grid" style="grid-template-columns:repeat(22,13px);grid-template-rows:repeat(8,13px)"><div class="c mine" style="grid-column:2/span 3;grid-row:2/span 3">Gold-<br>mine</div><div class="c fab" style="grid-column:6/span 3;grid-row:2/span 3">Gold-<br>schmied</div><div class="c fab" style="grid-column:10/span 4;grid-row:2/span 3">Uhr-<br>macherei</div><div class="c fab" style="grid-column:15/span 4;grid-row:2/span 3">Glühbirnen-<br>fabrik</div><div class="c road" style="grid-column:2/span 20;grid-row:6/span 1">Straße</div></div></div><p class="tip">Gold kommt aus der Neuen Welt. Glühbirnen brauchen Glas aus der AW-Kette – beide Welten verzahnen sich hier.</p></div>
 <h3>Feldgrößen – als EIN Rechteck packen</h3>
@@ -790,19 +827,58 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
 </div>
 </details>
 </main>
-<dialog class="atlas-viewer" aria-label="Bildansicht">
+<p class="version-switch">Neue Version · <a href="alte-version/anno-1800-komplett-guide.html">Alte Version öffnen</a></p>
+
+<dialog class="atlas-viewer" aria-labelledby="atlas-viewer-caption">
 <form method="dialog"><button class="atlas-viewer-close" aria-label="Bildansicht schließen">Schließen <span aria-hidden="true">×</span></button></form>
-<figure><img alt=""><figcaption></figcaption></figure>
+<p class="atlas-viewer-status" role="status" aria-live="polite"></p>
+<figure><img alt="" decoding="async"><figcaption id="atlas-viewer-caption"></figcaption></figure>
 </dialog>
 <a class="back-top" href="#top">↑ Nach oben</a>
 <script src="grafiken/manifest.js"></script>
 <script>
 (() => {
- const menu = document.getElementById("nav");
- document.querySelectorAll(".drawer a").forEach(link => link.addEventListener("click", () => { menu.checked = false; }));
+ const navToggle = document.getElementById("nav-toggle");
+ const drawer = document.getElementById("drawer");
+ function setNav(open, restoreFocus = false) {
+  navToggle.setAttribute("aria-expanded", String(open));
+  navToggle.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+  document.body.classList.toggle("nav-open", open);
+  drawer.inert = !open;
+  if (open) {
+   setTimeout(() => drawer.querySelector("a, button")?.focus(), 50);
+  } else if (restoreFocus) {
+   navToggle.focus();
+  }
+ }
+ navToggle.addEventListener("click", () => setNav(navToggle.getAttribute("aria-expanded") !== "true", true));
+ document.querySelectorAll("[data-nav-close]").forEach(button => button.addEventListener("click", () => setNav(false, true)));
+ drawer.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+  const target = link.hash ? document.getElementById(decodeURIComponent(link.hash.slice(1))) : null;
+  setNav(false);
+  if (target) {
+   target.setAttribute("tabindex", "-1");
+   requestAnimationFrame(() => target.focus({ preventScroll: true }));
+  }
+ }));
  document.addEventListener("keydown", event => {
-  if (event.key === "Escape") menu.checked = false;
+  if (event.key === "Escape" && document.body.classList.contains("nav-open")) setNav(false, true);
  });
+ drawer.addEventListener("keydown", event => {
+  if (event.key !== "Tab") return;
+  const focusables = [...drawer.querySelectorAll('a[href], button:not([disabled])')].filter(element => element.getClientRects().length > 0);
+  if (!focusables.length) return;
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+   event.preventDefault();
+   last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+   event.preventDefault();
+   first.focus();
+  }
+ });
+ drawer.inert = true;
  document.querySelectorAll("table").forEach(table => {
   if (table.closest(".table-scroll")) return;
   const wrapper = document.createElement("div");
@@ -863,7 +939,7 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
      label: (cell.innerText || cell.textContent).replace(/\s+/g, " ").trim()
     };
    });
-   const heading = card.querySelector("h4");
+   const heading = card.querySelector("h3");
    const title = (heading?.childNodes[0]?.textContent || heading?.innerText || card.id).replace(/\s+/g, " ").trim();
    const patternId = `field-${card.id}`;
    const parts = [
@@ -1024,7 +1100,7 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
  openDetailsForHash(location.hash);
  openChainTarget(location.hash);
  const links = cards.map(card => {
-  const heading = card.querySelector("h4")?.textContent.trim() || card.id;
+  const heading = card.querySelector("h3")?.textContent.trim() || card.id;
   const link = document.createElement("a");
   link.href = `#${card.id}`;
   link.textContent = heading;
@@ -1065,49 +1141,41 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
  const atlasViewer = document.querySelector(".atlas-viewer");
  const atlasViewerImage = atlasViewer.querySelector("img");
  const atlasViewerCaption = atlasViewer.querySelector("figcaption");
+ const atlasViewerStatus = atlasViewer.querySelector(".atlas-viewer-status");
+ let atlasViewerTrigger = null;
+ atlasViewerImage.addEventListener("load", () => {
+  atlasViewerStatus.textContent = "";
+  atlasViewer.removeAttribute("aria-busy");
+ });
+ atlasViewerImage.addEventListener("error", () => {
+  atlasViewerStatus.textContent = "Das Originalbild konnte nicht geladen werden.";
+  atlasViewer.removeAttribute("aria-busy");
+ });
  document.addEventListener("keydown", event => {
   if (event.key === "Escape" && atlasViewer.open) atlasViewer.close();
  });
  document.addEventListener("click", event => {
   const trigger = event.target.closest("[data-image-viewer]");
   if (!trigger) return;
-  atlasViewerImage.src = trigger.dataset.imageSrc;
+  atlasViewerTrigger = trigger;
   atlasViewerImage.alt = trigger.dataset.imageAlt;
   atlasViewerCaption.textContent = trigger.dataset.imageAlt;
-  atlasViewer.showModal();
+  atlasViewerStatus.textContent = "Originalbild wird geladen …";
+  atlasViewer.setAttribute("aria-busy", "true");
+  atlasViewerImage.src = trigger.dataset.imageSrc;
+  if (atlasViewerImage.complete && atlasViewerImage.naturalWidth) {
+   atlasViewerStatus.textContent = "";
+   atlasViewer.removeAttribute("aria-busy");
+  }
+  if (!atlasViewer.open) atlasViewer.showModal();
  });
  atlasViewer.addEventListener("click", event => {
   if (event.target === atlasViewer) atlasViewer.close();
  });
- document.querySelectorAll("[data-atlas-featured]").forEach(featured => {
-  const images = atlasManifest?.[featured.dataset.atlasFeatured];
-  if (!Array.isArray(images)) {
-   console.error(`Layoutliste für "${featured.dataset.atlasFeatured}" fehlt oder ist ungültig.`);
-   return;
-  }
-  images.filter(item => item.featured).forEach(item => {
-   const figure = document.createElement("figure");
-   figure.className = "atlas-card";
-   if (item.featuredId) figure.id = item.featuredId;
-   const link = document.createElement("button");
-   link.type = "button";
-   link.className = "atlas-image-button";
-   link.dataset.imageViewer = "";
-   link.dataset.imageSrc = `${featured.dataset.atlasFeatured === "city" ? "img/city-layouts/" : "img/production-layouts/"}${encodeURIComponent(item.file)}`;
-   link.dataset.imageAlt = item.alt;
-   const image = document.createElement("img");
-   const caption = document.createElement("figcaption");
-   link.setAttribute("aria-label", `${item.alt} – groß anzeigen`);
-   link.title = `${item.alt} – groß anzeigen`;
-   image.src = link.dataset.imageSrc;
-   image.alt = item.alt;
-   image.loading = "lazy";
-   image.decoding = "async";
-   caption.textContent = item.alt;
-   link.append(image);
-   figure.append(link, caption);
-   featured.append(figure);
-  });
+ atlasViewer.addEventListener("close", () => {
+  atlasViewer.removeAttribute("aria-busy");
+  atlasViewerStatus.textContent = "";
+  atlasViewerTrigger?.focus();
  });
  document.querySelectorAll(".asset-atlas").forEach(atlas => {
   const grid = atlas.querySelector(".atlas-grid");
@@ -1141,6 +1209,7 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
    }
    populateFilter(regionSelect, images, "region", atlasRegionLabels, "Alle Welten / Regionen");
    populateFilter(kindSelect, images, "kind", kindLabels, "Alle Bildtypen");
+   if (kindSelect && [...kindSelect.options].some(option => option.value === "plan")) kindSelect.value = "plan";
    images.forEach(item => {
     const figure = document.createElement("figure");
     figure.className = "atlas-card";
@@ -1150,16 +1219,23 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
     link.type = "button";
     link.className = "atlas-image-button";
     link.dataset.imageViewer = "";
-    link.dataset.imageSrc = `${atlas.dataset.directory}${encodeURIComponent(item.file)}`;
+    const originalSrc = `${atlas.dataset.directory}${encodeURIComponent(item.file)}`;
+    const thumbSrc = atlas.dataset.thumbs ? `${atlas.dataset.thumbs}${encodeURIComponent(item.file.replace(/\.[^.]+$/, ".webp"))}` : "";
+    link.dataset.imageSrc = originalSrc;
     link.dataset.imageAlt = item.alt;
     const image = document.createElement("img");
     const caption = document.createElement("figcaption");
     link.setAttribute("aria-label", `${item.alt} – groß anzeigen`);
     link.title = `${item.alt} – groß anzeigen`;
-    image.src = link.dataset.imageSrc;
-    image.alt = item.alt;
     image.loading = "lazy";
     image.decoding = "async";
+    image.alt = item.alt;
+    image.src = thumbSrc || originalSrc;
+    image.addEventListener("error", () => {
+     if (image.dataset.fallback) return;
+     image.dataset.fallback = "1";
+     image.src = originalSrc;
+    });
     caption.textContent = item.alt;
     link.append(image);
     figure.append(link, caption);
@@ -1212,6 +1288,71 @@ Diese HTML-Datei zusammen mit den Ordnern <code>img/</code> und <code>grafiken/<
    if (rendered) filterAtlas();
   });
  });
+ const notes = document.getElementById("personal-notes");
+ const notesStatus = document.getElementById("notes-status");
+ const notesClear = document.getElementById("notes-clear");
+ const notesKey = "anno1800-personal-notes-v1";
+ const notesPanel = document.getElementById("notizen");
+ if (notesPanel && location.hash === "#notizen") notesPanel.open = true;
+ let notesTimer = null;
+ let notesAvailable = true;
+ function setNotesStatus(message) {
+  if (notesStatus) notesStatus.textContent = message;
+ }
+ function saveNotes() {
+  if (!notesAvailable || !notes) return;
+  try {
+   if (notes.value.trim()) {
+    localStorage.setItem(notesKey, notes.value);
+    setNotesStatus("Gespeichert.");
+   } else {
+    localStorage.removeItem(notesKey);
+    setNotesStatus("Noch keine Notiz gespeichert.");
+   }
+  } catch {
+   notesAvailable = false;
+   setNotesStatus("Speichern nicht möglich – die Notiz bleibt nur bis zum Schließen dieser Seite.");
+  }
+ }
+ if (notes && notesStatus && notesClear) {
+  try {
+   notes.value = localStorage.getItem(notesKey) || "";
+  } catch {
+   notesAvailable = false;
+  }
+  if (!notesAvailable) setNotesStatus("Lokaler Speicher ist gesperrt – Notizen bleiben nur bis zum Schließen.");
+  else if (notes.value) setNotesStatus("Gespeicherte Notiz geladen.");
+  else setNotesStatus("Noch keine Notiz gespeichert.");
+  notes.addEventListener("input", () => {
+   if (!notesAvailable) {
+    setNotesStatus("Nicht gespeichert – lokaler Speicher ist gesperrt.");
+    return;
+   }
+   setNotesStatus("Speichert …");
+   clearTimeout(notesTimer);
+   notesTimer = setTimeout(saveNotes, 300);
+  });
+  window.addEventListener("pagehide", () => {
+   clearTimeout(notesTimer);
+   saveNotes();
+  });
+  notesClear.addEventListener("click", () => {
+   if (!notes.value || !confirm("Notiz wirklich löschen?")) return;
+   notes.value = "";
+   notesAvailable = true;
+   try {
+    localStorage.removeItem(notesKey);
+    setNotesStatus("Notiz gelöscht.");
+   } catch {
+    notesAvailable = false;
+    setNotesStatus("Notiz geleert – lokaler Speicher ist gesperrt.");
+   }
+   notes.focus();
+  });
+  document.querySelectorAll('a[href="#notizen"]').forEach(link => link.addEventListener("click", () => {
+   document.getElementById("notizen").open = true;
+  }));
+ }
 })();
 </script>
 </body></html>

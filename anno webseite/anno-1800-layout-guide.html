@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#27231f">
 <title>Anno 1800 – Layout-Guide aktualisiert</title>
 <style>
@@ -26,18 +27,37 @@ p{max-width:62ch;color:var(--muted)}
  .links a:hover,.links a:focus-visible{background:#483727}
 }
 </style>
+<link rel="stylesheet" href="assets/design.css">
+
 </head>
 <body>
 <main>
 <p class="eyebrow">Anno 1800 · Layout-Bibliothek</p>
 <h1>Der Layout-Guide ist umgezogen.</h1>
-<p>Die alte Druckfassung verwendete Bilder, die hier nicht mehr verfügbar waren. Stadt- und Produktionspläne sind jetzt gesammelt, durchsuchbar und mit deutschen Titeln in die aktuelle Bibliothek eingebaut.</p>
+<p>Die alte Druckfassung verwendete Bilder, die hier nicht mehr verfügbar waren. Stadt- und Produktionspläne sind jetzt gesammelt, durchsuchbar und mit deutschen Titeln in die aktuelle Bibliothek eingebaut. Die Links öffnen den Atlas bereits auf die Baupläne gefiltert; Icons und Übersichten lassen sich dort über „Bildtyp“ dazuschalten.</p>
 <nav class="links" aria-label="Aktuelle Layoutsammlungen">
-<a href="anno-1800-komplett-guide.html#atlas-stadt">Stadtlayouts ansehen · 34 Pläne</a>
-<a href="anno-1800-komplett-guide.html#atlas-produktion">Produktionslayouts ansehen · 68 Pläne</a>
+<a href="anno-1800-komplett-guide.html#atlas-stadt">Stadtlayouts ansehen · <span data-count="city-plans">42</span> Pläne</a>
+<a href="anno-1800-komplett-guide.html#atlas-produktion">Produktionslayouts ansehen · <span data-count="production-plans">165</span> Pläne</a>
 <a href="index.html">Zur Schritt-für-Schritt-Anleitung</a>
+<a href="anno-1800-komplett-guide.html#notizen">Meine Notizen öffnen</a>
 </nav>
 <p class="note">Für die Offline-Nutzung den gesamten Webseiten-Ordner beisammen lassen, einschließlich der Ordner <code>img/</code> und <code>grafiken/</code>.</p>
 </main>
+<p class="version-switch">Neue Version · <a href="alte-version/anno-1800-layout-guide.html">Alte Version öffnen</a></p>
+
+<script src="grafiken/manifest.js"></script>
+<script>
+(() => {
+ const manifest = window.annoGraphicsManifest;
+ if (!manifest) return;
+ const setCount = (selector, value) => {
+  const element = document.querySelector(selector);
+  if (element) element.textContent = String(value);
+ };
+ const countPlans = list => Array.isArray(list) ? list.filter(item => item.kind === "plan").length : 0;
+ setCount('[data-count="city-plans"]', countPlans(manifest.city));
+ setCount('[data-count="production-plans"]', countPlans(manifest.production));
+})();
+</script>
 </body>
 </html>
